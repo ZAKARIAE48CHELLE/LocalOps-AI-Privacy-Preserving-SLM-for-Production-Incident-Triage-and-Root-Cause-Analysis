@@ -4,7 +4,7 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from src.schemas.enums import IncidentType, Severity
+from src.schemas.enums import IncidentFamily, IncidentType, Severity
 from src.schemas.triage import LogTriageOutput
 
 
@@ -55,6 +55,28 @@ def test_severity_enum_members():
     actual = {item.value for item in Severity}
     assert actual == expected
     assert len(Severity) == 4
+
+
+def test_incident_family_count_and_uniqueness():
+    """Verify exactly 36 expected enum members exist and all values are unique."""
+    assert len(IncidentFamily) == 36
+    values = [member.value for member in IncidentFamily]
+    assert len(values) == len(set(values)), "IncidentFamily values must be unique"
+    # Ensure all values are uppercase strings
+    assert all(val.isupper() and isinstance(val, str) for val in values)
+
+
+def test_incident_family_serialization():
+    """Verify representative family values serialize correctly as strings and JSON."""
+    assert IncidentFamily.DB_CONNECTION_POOL_STARVATION == "DB_CONNECTION_POOL_STARVATION"
+    assert IncidentFamily.INFRA_POD_OOMKILLED.value == "INFRA_POD_OOMKILLED"
+    assert json.dumps(IncidentFamily.NET_DNS_RESOLUTION_FAILURE) == '"NET_DNS_RESOLUTION_FAILURE"'
+
+
+def test_incident_family_unknown_value_rejected():
+    """Verify unknown family value raises ValueError when validating IncidentFamily."""
+    with pytest.raises(ValueError):
+        IncidentFamily("NON_EXISTENT_FAILURE_FAMILY")
 
 
 # =========================================================================
@@ -140,6 +162,20 @@ def test_missing_required_fields_raise_validation_error(valid_payload, missing_f
 
 
 # =========================================================================
+# Forbidden Extra Fields Tests
+# =========================================================================
+
+def test_unexpected_fields_raise_validation_error(valid_payload):
+    """Verify unexpected extra fields are rejected via ConfigDict(extra='forbid')."""
+    payload = valid_payload.copy()
+    payload["unexpected_field"] = "unexpected_value"
+    with pytest.raises(ValidationError) as exc_info:
+        LogTriageOutput(**payload)
+    errors = exc_info.value.errors()
+    assert any(err["loc"] == ("unexpected_field",) for err in errors)
+
+
+# =========================================================================
 # Invalid Enum Values Tests
 # =========================================================================
 
@@ -196,6 +232,27 @@ def test_confidence_invalid_type_raises(valid_payload):
         LogTriageOutput(**payload)
 
 
+def test_confidence_rejects_string_coercion(valid_payload):
+    """Verify string numbers like '0.95' are rejected rather than coerced."""
+    payload = valid_payload.copy()
+    payload["confidence"] = "0.95"
+    with pytest.raises(ValidationError):
+        LogTriageOutput(**payload)
+
+
+def test_confidence_rejects_booleans(valid_payload):
+    """Verify booleans (True/False) are strictly rejected for confidence."""
+    payload_true = valid_payload.copy()
+    payload_true["confidence"] = True
+    with pytest.raises(ValidationError):
+        LogTriageOutput(**payload_true)
+
+    payload_false = valid_payload.copy()
+    payload_false["confidence"] = False
+    with pytest.raises(ValidationError):
+        LogTriageOutput(**payload_false)
+
+
 # =========================================================================
 # Non-Empty & Whitespace String Validation Tests
 # =========================================================================
@@ -219,6 +276,22 @@ def test_whitespace_stripping(valid_payload):
     payload["affected_service"] = "  payment-gateway  "
     triage = LogTriageOutput(**payload)
     assert triage.affected_service == "payment-gateway"
+
+
+def test_explicit_whitespace_normalization_and_evidence_stripping(valid_payload):
+    """Verify '   orders-service   ' is normalized and evidence items are stripped."""
+    payload = valid_payload.copy()
+    payload["affected_service"] = "   orders-service   "
+    payload["evidence"] = [
+        "  FATAL: connection terminated  ",
+        "\tPool saturated\n",
+    ]
+    triage = LogTriageOutput(**payload)
+    assert triage.affected_service == "orders-service"
+    assert triage.evidence == [
+        "FATAL: connection terminated",
+        "Pool saturated",
+    ]
 
 
 # =========================================================================

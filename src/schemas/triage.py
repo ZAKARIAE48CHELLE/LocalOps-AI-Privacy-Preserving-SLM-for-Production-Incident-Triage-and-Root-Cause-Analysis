@@ -19,8 +19,9 @@ class LogTriageOutput(BaseModel):
         root_cause: Concise technical diagnosis of the underlying cause.
         suggested_action: Immediate recommended mitigation or investigation step.
         confidence: Model-reported prediction confidence score in [0.0, 1.0].
-            Note: This initially represents raw model-reported confidence,
-            not a statistically calibrated probability distribution.
+            Strictly typed as a numeric float (rejects booleans and string coercion).
+            Note: Represents raw model-reported confidence, not a statistically
+            calibrated probability distribution.
         evidence: Verifiable excerpts, quotes, or metric signals from the log
             substantiating the triage assessment. At least one non-empty
             evidence item is required.
@@ -30,6 +31,7 @@ class LogTriageOutput(BaseModel):
         use_enum_values=True,
         validate_assignment=True,
         str_strip_whitespace=True,
+        extra="forbid",
     )
 
     incident_type: IncidentType = Field(
@@ -66,6 +68,21 @@ class LogTriageOutput(BaseModel):
         min_length=1,
         description="Log excerpts or signals directly supporting the diagnosis.",
     )
+
+    @field_validator("confidence", mode="before")
+    @classmethod
+    def validate_strict_confidence(cls, v: object) -> float:
+        """Reject non-numeric confidence inputs like booleans or strings."""
+        if isinstance(v, bool):
+            raise ValueError("confidence must be a numeric float, not a boolean.")
+        if not isinstance(v, (int, float)):
+            raise ValueError(
+                "confidence must be a numeric float, string coercion is disallowed."
+            )
+        val = float(v)
+        if not (0.0 <= val <= 1.0):
+            raise ValueError("confidence must be between 0.0 and 1.0.")
+        return val
 
     @field_validator("affected_service", "root_cause", "suggested_action", mode="before")
     @classmethod
