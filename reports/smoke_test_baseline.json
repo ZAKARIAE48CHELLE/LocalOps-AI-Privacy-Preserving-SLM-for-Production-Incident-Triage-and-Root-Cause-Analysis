@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-09-12T11:57:59Z",
+  "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+  "quantization": "4bit-nf4",
+  "gpu_info": {
+    "cuda_available": true,
+    "device_id": 0,
+    "gpu_name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "cuda_version": "12.4",
+    "compute_capability": "8.6",
+    "vram_total_mb": 8191.5
+  },
+  "telemetry": {
+    "load_time_seconds": 4270.525,
+    "generation_latency_seconds": 13.086,
+    "prompt_tokens": 181,
+    "generated_tokens": 175,
+    "tokens_per_second": 13.37,
+    "vram_post_load_mb": 1099.93,
+    "vram_peak_mb": 1149.7,
+    "vram_reserved_mb": 1188.0
+  },
+  "test_input": "2026-09-11T14:22:01.341Z [orders-service] [HikariPool-1] ERROR com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection is not available, request timed out after 30005ms (total=50, active=50, idle=0, waiting=12).\norg.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for non-replication superuser connections",
+  "model_output": "**Incident Type:** Database Connection Failure\n\n**Severity:** High\n\n**Affected Service:** Orders Service\n\n**Likely Root Cause:** The primary database server experienced a failure that caused all connections to be unavailable, leading to a timeout error when attempting to connect to the PostgreSQL database.\n\n**Immediate Remediation Action:** \n1. **Check Network Connectivity:** Ensure there are no network issues preventing communication between the application servers and the database.\n2. **Review Database Logs:** Examine logs from both the application and database environments for more detailed information about the root cause of the issue.\n3. **Database Maintenance:** Perform maintenance on the database to resolve any underlying issues such as memory leaks or configuration errors.\n4. **Increase Connection Pool Size:** Temporarily increase the size of the connection pool in the application to allow for more simultaneous connections until the root cause is identified and resolved."
+}

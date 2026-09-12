@@ -1,0 +1,39 @@
+# Python & virtual environment
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Environment configuration & secrets
+.env
+*.local
+
+# HuggingFace & PyTorch model caches / weights
+models/*
+!models/.gitkeep
+cache/
+.cache/
+
+# Datasets and generated reports
+data/*.jsonl
+reports/*.json
+reports/*.csv
+!reports/.gitkeep
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# Local Documentation (private, do not push to GitHub)
+documentation/
+!reports/smoke_test_baseline.json
