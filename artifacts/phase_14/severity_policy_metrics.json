@@ -1,0 +1,11 @@
+{
+  "policy_version": "1.0.0",
+  "ood_benchmark_accuracy": 0.9625,
+  "ood_benchmark_macro_f1": 0.963,
+  "ood_p3_dominance_ratio": 0.2375,
+  "manual_12_accuracy": 1.0,
+  "manual_12_macro_f1": 1.0,
+  "manual_12_p3_dominance_ratio": 0.3333,
+  "hallucinated_ip_rate": 0.0042,
+  "hallucinated_hostname_rate": 0.0
+}

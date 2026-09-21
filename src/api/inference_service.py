@@ -21,6 +21,8 @@ from src.api.schemas import InferenceTelemetry
 from src.api.settings import ApiSettings, settings
 from src.evaluation.parser import OutputParser
 from src.schemas.triage import LogTriageOutput
+from src.severity.extractor import ImpactExtractor
+from src.severity.policy import SeverityPolicyEngine
 
 logger = logging.getLogger("localops.inference_service")
 
@@ -40,6 +42,8 @@ class InferenceService:
     ):
         self.cfg = cfg or settings
         self.model_manager = model_manager or ModelManager.get_instance(self.cfg)
+        self.impact_extractor = ImpactExtractor()
+        self.policy_engine = SeverityPolicyEngine()
 
     def _format_prompt(self, raw_log: str) -> str:
         messages = [
@@ -128,10 +132,25 @@ class InferenceService:
 
         parsed_output = LogTriageOutput.model_validate(parsed_dict)
 
+        # Phase 14 Two-Stage Severity Calibration (Layer A + B + C)
+        impact = self.impact_extractor.extract(
+            raw_log,
+            parsed_output.root_cause,
+            parsed_output.suggested_action,
+        )
+        decision = self.policy_engine.evaluate(impact)
+        severity_source = "POLICY_ENGINE"
+        if not decision.is_insufficient_evidence:
+            parsed_output = parsed_output.model_copy(update={"severity": decision.severity})
+        else:
+            severity_source = "MODEL"
+
         telemetry = InferenceTelemetry(
             latency_ms=round(latency_ms, 2),
             prompt_tokens=prompt_tokens,
             generated_tokens=generated_token_count,
+            severity_source=severity_source,
+            severity_reason_code=decision.reason_code,
         )
 
         return parsed_output, telemetry
@@ -214,10 +233,25 @@ class InferenceService:
                     _, _, _, parsed_dict, pyd_valid, errors, _ = OutputParser.parse_and_validate(raw_text)
                     if pyd_valid and parsed_dict:
                         validated_out = LogTriageOutput.model_validate(parsed_dict)
+                        # Phase 14 Two-Stage Severity Calibration
+                        impact = self.impact_extractor.extract(
+                            logs[global_idx],
+                            validated_out.root_cause,
+                            validated_out.suggested_action,
+                        )
+                        decision = self.policy_engine.evaluate(impact)
+                        severity_source = "POLICY_ENGINE"
+                        if not decision.is_insufficient_evidence:
+                            validated_out = validated_out.model_copy(update={"severity": decision.severity})
+                        else:
+                            severity_source = "MODEL"
+
                         telem = InferenceTelemetry(
                             latency_ms=per_item_latency,
                             prompt_tokens=prompt_lens[j],
                             generated_tokens=gen_count,
+                            severity_source=severity_source,
+                            severity_reason_code=decision.reason_code,
                         )
                         results[global_idx] = (validated_out, telem, None)
                     else:

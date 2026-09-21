@@ -1,0 +1,74 @@
+# LocalOps AI — Canonical Severity Policy Specification
+# Version: 1.0.0
+# Phase: 14 (Severity Calibration & OOD Generalization)
+
+policy_version: "1.0.0"
+description: "Deterministic operational impact-to-severity mapping policy"
+
+tiers:
+  P1_CRITICAL:
+    description: "Complete outage of a critical service, catastrophic blast radius, active security compromise, or active data corruption."
+    criteria:
+      - service_availability: ["DOWN"]
+        blast_radius: ["MULTI_SERVICE", "MULTI_REGION", "GLOBAL"]
+        environment: ["PRODUCTION"]
+      - security_exposure: ["ACTIVE_COMPROMISE"]
+      - data_integrity: ["LOST_OR_CORRUPTED"]
+        environment: ["PRODUCTION"]
+      - service_availability: ["DOWN"]
+        customer_impact: ["SEVERE"]
+        workaround_available: false
+      - customer_impact: ["SEVERE"]
+        blast_radius: ["GLOBAL", "MULTI_REGION"]
+
+  P2_HIGH:
+    description: "Major service degradation, significant customer impact, degraded redundancy with high risk, or urgent intervention required."
+    criteria:
+      - service_availability: ["DOWN", "PARTIAL"]
+        customer_impact: ["HIGH", "SEVERE"]
+      - service_availability: ["DEGRADED", "PARTIAL"]
+        blast_radius: ["MULTI_SERVICE", "MULTI_REGION"]
+        customer_impact: ["MODERATE", "HIGH"]
+      - redundancy_state: ["DEGRADED", "NONE"]
+        customer_impact: ["MODERATE", "HIGH"]
+        environment: ["PRODUCTION"]
+      - security_exposure: ["CONFIRMED"]
+      - data_integrity: ["AT_RISK"]
+        environment: ["PRODUCTION"]
+      - blast_radius: ["SINGLE_SERVICE"]
+        customer_impact: ["HIGH"]
+        workaround_available: false
+
+  P3_MEDIUM:
+    description: "Localized failure, single-replica/worker crash with intact redundancy, recoverable transient faults, or limited impact."
+    criteria:
+      - blast_radius: ["SINGLE_INSTANCE", "SINGLE_SERVICE"]
+        redundancy_state: ["AVAILABLE"]
+        customer_impact: ["NONE", "LIMITED", "MODERATE"]
+        security_exposure: ["NONE", "SUSPICIOUS"]
+        data_integrity: ["INTACT"]
+      - service_availability: ["DEGRADED"]
+        redundancy_state: ["AVAILABLE"]
+        customer_impact: ["LIMITED"]
+      - security_exposure: ["SUSPICIOUS"]
+        blast_radius: ["SINGLE_INSTANCE"]
+      - environment: ["PRODUCTION"]
+        service_availability: ["AVAILABLE", "DEGRADED"]
+        customer_impact: ["NONE", "LIMITED"]
+
+  P4_LOW:
+    description: "Non-production environment, transient warning, cosmetic issue, self-healed event, or sub-threshold anomaly."
+    criteria:
+      - environment: ["STAGING", "DEVELOPMENT"]
+        customer_impact: ["NONE", "LIMITED"]
+      - customer_impact: ["NONE"]
+        service_availability: ["AVAILABLE"]
+        security_exposure: ["NONE"]
+        data_integrity: ["INTACT"]
+      - service_availability: ["AVAILABLE"]
+        redundancy_state: ["AVAILABLE"]
+        customer_impact: ["NONE"]
+
+fallback:
+  default_tier: "P3_MEDIUM"
+  insufficient_evidence_reason: "INSUFFICIENT_IMPACT_EVIDENCE"

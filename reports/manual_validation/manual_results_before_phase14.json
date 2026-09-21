@@ -1,0 +1,31 @@
+{
+  "evaluation_phase": "Phase 13 Baseline (Pre-Phase 14)",
+  "date": "2026-09-18",
+  "total_records": 12,
+  "incident_type_accuracy": 1.0,
+  "affected_service_accuracy": 1.0,
+  "pydantic_validity_rate": 1.0,
+  "severity_accuracy": 0.3333,
+  "severity_macro_f1": 0.1250,
+  "p3_dominance_ratio": 1.0,
+  "per_class_predictions": {
+    "P1_CRITICAL": 0,
+    "P2_HIGH": 0,
+    "P3_MEDIUM": 12,
+    "P4_LOW": 0
+  },
+  "results": [
+    {"request_id": "test-db-001", "predicted_incident_type": "DATABASE", "predicted_service": "order-service", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-db-002", "predicted_incident_type": "DATABASE", "predicted_service": "billing-service", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-infra-001", "predicted_incident_type": "INFRASTRUCTURE", "predicted_service": "ml-worker", "predicted_severity": "P3_MEDIUM", "expected_severity": "P3_MEDIUM", "severity_correct": true},
+    {"request_id": "test-infra-002", "predicted_incident_type": "INFRASTRUCTURE", "predicted_service": "kubelet", "predicted_severity": "P3_MEDIUM", "expected_severity": "P3_MEDIUM", "severity_correct": true},
+    {"request_id": "test-app-001", "predicted_incident_type": "APPLICATION", "predicted_service": "checkout-api", "predicted_severity": "P3_MEDIUM", "expected_severity": "P1_CRITICAL", "severity_correct": false},
+    {"request_id": "test-app-002", "predicted_incident_type": "APPLICATION", "predicted_service": "report-generator", "predicted_severity": "P3_MEDIUM", "expected_severity": "P3_MEDIUM", "severity_correct": true},
+    {"request_id": "test-sec-001", "predicted_incident_type": "SECURITY", "predicted_service": "auth-service", "predicted_severity": "P3_MEDIUM", "expected_severity": "P4_LOW", "severity_correct": false},
+    {"request_id": "test-sec-002", "predicted_incident_type": "SECURITY", "predicted_service": "identity-gateway", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-net-001", "predicted_incident_type": "NETWORK", "predicted_service": "inventory-service", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-net-002", "predicted_incident_type": "NETWORK", "predicted_service": "api-gateway", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-msg-001", "predicted_incident_type": "MESSAGING", "predicted_service": "notification-consumer", "predicted_severity": "P3_MEDIUM", "expected_severity": "P2_HIGH", "severity_correct": false},
+    {"request_id": "test-msg-002", "predicted_incident_type": "MESSAGING", "predicted_service": "event-handler", "predicted_severity": "P3_MEDIUM", "expected_severity": "P3_MEDIUM", "severity_correct": true}
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "phase": 14,
+  "mode": "continuation_fine_tuning",
+  "start_timestamp": "2026-09-21T16:47:49.526484+00:00",
+  "end_timestamp": "2026-09-21T16:53:44.513745+00:00",
+  "duration": "0:05:54.987295",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "source_adapter": "artifacts/phase_5/final_adapter",
+  "target_adapter": "artifacts\\phase_14\\final_adapter",
+  "selection_rule": "Predeclared validation-only minimum eval_loss (metric_for_best_model: eval_loss).",
+  "best_eval_loss": 0.06553555279970169,
+  "dataset": {
+    "train_file": "data\\severity_calibration\\train.jsonl",
+    "train_sha256": "f7eeecbd08832740db75b8948d40d222ce6ef8e00e7f534674ed2471d1a44711",
+    "train_record_count": 720,
+    "validation_file": "data\\severity_calibration\\validation.jsonl",
+    "validation_sha256": "68aa563ac222cb8af16893ac9fd66f5608687c461d3590e23e883f2dc1f0b24a",
+    "validation_record_count": 240,
+    "test_ood_isolated": true,
+    "manual_12_logs_isolated": true
+  },
+  "parameters": {
+    "trainable_parameters": 18464768,
+    "total_parameters": 907081216,
+    "trainable_percentage": 2.0356,
+    "frozen_parameters": 888616448
+  },
+  "hyperparameters": {
+    "learning_rate": 6e-05,
+    "epochs": 1.0,
+    "per_device_batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "effective_batch_size": 16,
+    "max_length": 1024,
+    "optimizer": "paged_adamw_8bit",
+    "scheduler": "cosine",
+    "seed": 42,
+    "assistant_only_loss": true
+  },
+  "hardware": {
+    "device": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "peak_vram_mb": 2911.7,
+    "total_energy_wh": 0.0
+  }
+}

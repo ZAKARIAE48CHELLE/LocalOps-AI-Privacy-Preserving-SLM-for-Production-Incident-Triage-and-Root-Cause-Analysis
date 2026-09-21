@@ -1,0 +1,90 @@
+{
+  "manifest_version": "1.0.0",
+  "description": "Ground-truth expected labels for the 12 manual out-of-template evaluation logs",
+  "labels": [
+    {
+      "request_id": "test-db-001",
+      "expected_incident_type": "DATABASE",
+      "expected_affected_service": "order-service",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "Order database pool exhausted; active connection ceiling reached, customer order requests timing out."
+    },
+    {
+      "request_id": "test-db-002",
+      "expected_incident_type": "DATABASE",
+      "expected_affected_service": "billing-service",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "Billing transaction deadlock with 3 retries aborted, directly impacting billing processing."
+    },
+    {
+      "request_id": "test-infra-001",
+      "expected_incident_type": "INFRASTRUCTURE",
+      "expected_affected_service": "ml-worker",
+      "expected_severity": "P3_MEDIUM",
+      "rationalization": "Isolated container worker OOMKilled; single task failure without cluster-wide cascade."
+    },
+    {
+      "request_id": "test-infra-002",
+      "expected_incident_type": "INFRASTRUCTURE",
+      "expected_affected_service": "kubelet",
+      "expected_severity": "P3_MEDIUM",
+      "rationalization": "Node disk pressure condition true; evicting secondary pod log-collector to preserve node health."
+    },
+    {
+      "request_id": "test-app-001",
+      "expected_incident_type": "APPLICATION",
+      "expected_affected_service": "checkout-api",
+      "expected_severity": "P1_CRITICAL",
+      "rationalization": "NullPointerException on checkout critical path returning HTTP 500, halting customer purchases."
+    },
+    {
+      "request_id": "test-app-002",
+      "expected_incident_type": "APPLICATION",
+      "expected_affected_service": "report-generator",
+      "expected_severity": "P3_MEDIUM",
+      "rationalization": "StackOverflowError in report generator rendering malformed document; localized background job failure."
+    },
+    {
+      "request_id": "test-sec-001",
+      "expected_incident_type": "SECURITY",
+      "expected_affected_service": "auth-service",
+      "expected_severity": "P4_LOW",
+      "rationalization": "Normal security perimeter rejection of an expired JWT token; expected defensive behavior."
+    },
+    {
+      "request_id": "test-sec-002",
+      "expected_incident_type": "SECURITY",
+      "expected_affected_service": "identity-gateway",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "Targeted brute-force credential stuffing attack (48 failed attempts in 60s) targeting admin account."
+    },
+    {
+      "request_id": "test-net-001",
+      "expected_incident_type": "NETWORK",
+      "expected_affected_service": "inventory-service",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "CoreDNS timeout preventing inventory service from resolving upstream pricing cluster service."
+    },
+    {
+      "request_id": "test-net-002",
+      "expected_incident_type": "NETWORK",
+      "expected_affected_service": "api-gateway",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "API gateway receiving connection refused (HTTP 502) from customer-profile upstream service."
+    },
+    {
+      "request_id": "test-msg-001",
+      "expected_incident_type": "MESSAGING",
+      "expected_affected_service": "notification-consumer",
+      "expected_severity": "P2_HIGH",
+      "rationalization": "Kafka consumer group lag accumulation (135k messages) causing SLA breach with 900s age."
+    },
+    {
+      "request_id": "test-msg-002",
+      "expected_incident_type": "MESSAGING",
+      "expected_affected_service": "event-handler",
+      "expected_severity": "P3_MEDIUM",
+      "rationalization": "Malformed JSON payload causing deserialization poison-pill loop with 19 redeliveries."
+    }
+  ]
+}

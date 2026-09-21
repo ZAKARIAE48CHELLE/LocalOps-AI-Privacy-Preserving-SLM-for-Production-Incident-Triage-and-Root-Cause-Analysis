@@ -425,7 +425,7 @@ function renderPhase4(data) {
           </div>
           <div class="feed-item-body">
             <div class="feed-body-col"><span class="k">TYPE (PRED / GT)</span><span class="v font-mono">${r.incident_type_pred || "--"} / ${r.incident_type_gt || "--"}</span></div>
-            <div class="feed-body-col"><span class="k">SEV (PRED / GT)</span><span class="v font-mono">${r.severity_pred || "--"} / ${r.severity_gt || "--"}</span></div>
+            <div class="feed-body-col"><span class="k" title="Severity is based on operational impact, blast radius, redundancy, security exposure, and data integrity.">SEV (PRED / GT) ℹ️</span><span class="v font-mono">${r.severity_pred || "--"} <span class="badge font-mono" style="font-size: 0.65rem; padding: 1px 4px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); border-radius: 4px;" title="Severity Source: ${r.severity_source || 'POLICY_ENGINE'}">${r.severity_source === 'MODEL' ? 'SLM' : 'POLICY'}</span> / ${r.severity_gt || "--"}${r.severity_warning ? ' <span title="' + r.severity_warning + '">⚠️</span>' : ''}</span></div>
             <div class="feed-body-col"><span class="k">SERVICE (PRED / GT)</span><span class="v font-mono">${r.affected_service_pred || "--"} / ${r.affected_service_gt || "--"}</span></div>
             <div class="feed-body-col"><span class="k">TECHNOLOGY</span><span class="v font-mono">${r.technology || "--"}</span></div>
           </div>

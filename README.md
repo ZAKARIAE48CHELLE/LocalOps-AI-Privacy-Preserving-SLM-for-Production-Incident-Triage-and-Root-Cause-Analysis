@@ -45,6 +45,31 @@ Evaluated on **1,440 sealed, held-out test incident records** using template-lev
 +------------------------------------+---------------+-----------------------+---------------+--------------------+-------------------+
 ```
 
+### 2.1 Severity Calibration & Out-of-Distribution (OOD) Benchmark (E5 Release)
+
+To resolve real-world **severity collapse** (where uncalibrated generative models default to `P3_MEDIUM` priors on unfamiliar logs), LocalOps AI includes a **Three-Layer Severity Calibration Engine**:
+- **Layer A**: Deterministic Enterprise Severity Policy (`configs/severity_policy.yaml`)
+- **Layer B**: Grounded Impact Signal Extraction (`src/severity/extractor.py`)
+- **Layer C**: Contrastive QLoRA Continuation Training (`artifacts/phase_14/final_adapter/`)
+
+Evaluated on a **Balanced 240-Incident Out-of-Distribution (OOD) Benchmark** (`data/severity_calibration/test_ood.jsonl`) and **12 real-world manual out-of-template production incidents**:
+
+```
++------------------------------------+-----------------------+-------------------------+-------------------+
+| Metric                             | Pre-Calibration (E4)  | Calibrated SLM (E5)     | Status / Delta    |
++------------------------------------+-----------------------+-------------------------+-------------------+
+| Manual 12 OOD Severity Accuracy    | 33.33% (4/12)         | 100.0% (12/12)          | +66.67% (FIXED)   |
+| Manual 12 OOD Severity Macro-F1    | 0.1250                | 1.0000                  | +0.8750 (OPTIMAL) |
+| Manual 12 P3 Dominance Ratio       | 1.0000 (100% Collapse)| 0.3333 (4/12)           | Collapse Broken   |
+| Balanced 240 OOD Severity Macro-F1 | 0.0895 (Base)         | 0.9630                  | Target >= 0.8500  |
+| Balanced 240 OOD P3 Dominance Ratio| 1.0000 (Collapse)     | 0.2375 (57/240)         | Balanced (15-40%) |
+| IncidentType Accuracy (OOD)        | 98.47% (In-Dist)      | 98.33% (OOD)            | Preserved         |
+| Affected Service Accuracy (OOD)    | 99.10% (In-Dist)      | 98.33% (OOD)            | Preserved         |
+| Pydantic Schema Validity (OOD)     | 99.10% (In-Dist)      | 98.33% (OOD)            | Preserved         |
+| Hallucinated IP / Hostname Rate    | 0.00%                 | 0.42% IP / 0.0% Host    | Grounded (< 1.0%) |
++------------------------------------+-----------------------+-------------------------+-------------------+
+```
+
 ---
 
 ## 3. Explicit Latency & Hardware Profiles

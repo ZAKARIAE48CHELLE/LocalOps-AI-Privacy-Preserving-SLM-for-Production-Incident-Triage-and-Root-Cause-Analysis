@@ -1,10 +1,10 @@
 {
-  "energy_wh": 1601.6744,
-  "energy_kwh": 1.601674,
-  "total_active_seconds": 140581.04,
-  "average_power_w": 42.02,
+  "energy_wh": 1607.8666,
+  "energy_kwh": 1.607867,
+  "total_active_seconds": 140921.91,
+  "average_power_w": 42.08,
   "peak_power_w": 752.67,
-  "sample_count": 82791,
-  "total_power_sum": 3478518.91,
-  "last_updated": 1789767805.1557646
+  "sample_count": 83012,
+  "total_power_sum": 3492876.04,
+  "last_updated": 1790009596.167849
 }

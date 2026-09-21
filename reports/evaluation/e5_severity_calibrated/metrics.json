@@ -1,0 +1,138 @@
+{
+  "model_id": "e5_severity_calibrated",
+  "timestamp": "2026-09-21T17:06:12.950760+00:00",
+  "total_test_samples": 240,
+  "pydantic_validity_rate": 0.9833,
+  "incident_type_accuracy": 0.9833,
+  "affected_service_accuracy": 0.9833,
+  "hallucinated_ip_rate": 0.0042,
+  "hallucinated_hostname_rate": 0.0,
+  "calibrated_severity": {
+    "total_evaluated": 240,
+    "severity_accuracy": 0.9625,
+    "severity_macro_f1": 0.963,
+    "p3_dominance_ratio": 0.2375,
+    "per_class_metrics": {
+      "P1_CRITICAL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 60
+      },
+      "P2_HIGH": {
+        "precision": 0.8806,
+        "recall": 0.9833,
+        "f1": 0.9291,
+        "support": 60
+      },
+      "P3_MEDIUM": {
+        "precision": 0.9825,
+        "recall": 0.9333,
+        "f1": 0.9573,
+        "support": 60
+      },
+      "P4_LOW": {
+        "precision": 1.0,
+        "recall": 0.9333,
+        "f1": 0.9655,
+        "support": 60
+      }
+    },
+    "prediction_distribution": {
+      "P1_CRITICAL": 60,
+      "P2_HIGH": 67,
+      "P3_MEDIUM": 57,
+      "P4_LOW": 56
+    },
+    "confusion_matrix": {
+      "P1_CRITICAL": {
+        "P1_CRITICAL": 60,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 0
+      },
+      "P2_HIGH": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 59,
+        "P3_MEDIUM": 1,
+        "P4_LOW": 0
+      },
+      "P3_MEDIUM": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 4,
+        "P3_MEDIUM": 56,
+        "P4_LOW": 0
+      },
+      "P4_LOW": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 4,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 56
+      }
+    }
+  },
+  "raw_model_severity": {
+    "total_evaluated": 240,
+    "severity_accuracy": 0.9875,
+    "severity_macro_f1": 0.9876,
+    "p3_dominance_ratio": 0.2625,
+    "per_class_metrics": {
+      "P1_CRITICAL": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "support": 60
+      },
+      "P2_HIGH": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "support": 60
+      },
+      "P3_MEDIUM": {
+        "precision": 0.9524,
+        "recall": 1.0,
+        "f1": 0.9756,
+        "support": 60
+      },
+      "P4_LOW": {
+        "precision": 1.0,
+        "recall": 0.9833,
+        "f1": 0.9916,
+        "support": 60
+      }
+    },
+    "prediction_distribution": {
+      "P1_CRITICAL": 59,
+      "P2_HIGH": 59,
+      "P3_MEDIUM": 63,
+      "P4_LOW": 59
+    },
+    "confusion_matrix": {
+      "P1_CRITICAL": {
+        "P1_CRITICAL": 59,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 1,
+        "P4_LOW": 0
+      },
+      "P2_HIGH": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 59,
+        "P3_MEDIUM": 1,
+        "P4_LOW": 0
+      },
+      "P3_MEDIUM": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 60,
+        "P4_LOW": 0
+      },
+      "P4_LOW": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 1,
+        "P4_LOW": 59
+      }
+    }
+  }
+}

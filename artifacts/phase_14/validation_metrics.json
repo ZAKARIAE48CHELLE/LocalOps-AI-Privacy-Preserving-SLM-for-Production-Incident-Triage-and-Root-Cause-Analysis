@@ -1,0 +1,7 @@
+{
+  "eval_loss": 0.06553555279970169,
+  "eval_runtime_seconds": 27.2986,
+  "eval_samples_per_second": 8.792,
+  "selection_metric": "eval_loss",
+  "timestamp": "2026-09-21T16:53:44.513745+00:00"
+}

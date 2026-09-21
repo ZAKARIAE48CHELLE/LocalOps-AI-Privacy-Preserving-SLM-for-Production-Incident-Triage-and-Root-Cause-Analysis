@@ -1,0 +1,35 @@
+{
+  "dataset_name": "severity_calibration_v1",
+  "random_seed": 42,
+  "total_records": 1200,
+  "split_counts": {
+    "train": 720,
+    "validation": 240,
+    "test_ood": 240
+  },
+  "group_counts": {
+    "train_groups": 180,
+    "val_groups": 60,
+    "ood_groups": 60
+  },
+  "severity_distribution_train": {
+    "P1_CRITICAL": 180,
+    "P2_HIGH": 180,
+    "P3_MEDIUM": 180,
+    "P4_LOW": 180
+  },
+  "severity_distribution_validation": {
+    "P1_CRITICAL": 60,
+    "P2_HIGH": 60,
+    "P3_MEDIUM": 60,
+    "P4_LOW": 60
+  },
+  "severity_distribution_test_ood": {
+    "P1_CRITICAL": 60,
+    "P2_HIGH": 60,
+    "P3_MEDIUM": 60,
+    "P4_LOW": 60
+  },
+  "leakage_verification": "PASS (0 group overlap)",
+  "manual_12_logs_isolated": "PASS (excluded from all training and validation splits)"
+}

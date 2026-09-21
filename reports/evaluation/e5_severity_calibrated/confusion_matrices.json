@@ -1,0 +1,54 @@
+{
+  "calibrated_severity_confusion_matrix": {
+    "P1_CRITICAL": {
+      "P1_CRITICAL": 60,
+      "P2_HIGH": 0,
+      "P3_MEDIUM": 0,
+      "P4_LOW": 0
+    },
+    "P2_HIGH": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 59,
+      "P3_MEDIUM": 1,
+      "P4_LOW": 0
+    },
+    "P3_MEDIUM": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 4,
+      "P3_MEDIUM": 56,
+      "P4_LOW": 0
+    },
+    "P4_LOW": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 4,
+      "P3_MEDIUM": 0,
+      "P4_LOW": 56
+    }
+  },
+  "raw_severity_confusion_matrix": {
+    "P1_CRITICAL": {
+      "P1_CRITICAL": 59,
+      "P2_HIGH": 0,
+      "P3_MEDIUM": 1,
+      "P4_LOW": 0
+    },
+    "P2_HIGH": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 59,
+      "P3_MEDIUM": 1,
+      "P4_LOW": 0
+    },
+    "P3_MEDIUM": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 0,
+      "P3_MEDIUM": 60,
+      "P4_LOW": 0
+    },
+    "P4_LOW": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 0,
+      "P3_MEDIUM": 1,
+      "P4_LOW": 59
+    }
+  }
+}

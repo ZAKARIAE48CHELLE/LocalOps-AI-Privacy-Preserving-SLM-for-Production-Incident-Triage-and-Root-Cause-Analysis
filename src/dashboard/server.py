@@ -209,6 +209,12 @@ def get_evaluation_status():
                 "incident_type_pred": parsed.get("incident_type"),
                 "severity_gt": gt.get("severity"),
                 "severity_pred": parsed.get("severity"),
+                "severity_source": r.get("severity_source", "POLICY_ENGINE"),
+                "severity_warning": (
+                    "Insufficient impact context in log"
+                    if r.get("severity_basis") == "INSUFFICIENT_IMPACT_EVIDENCE"
+                    else None
+                ),
                 "affected_service_gt": gt.get("affected_service"),
                 "affected_service_pred": parsed.get("affected_service"),
                 "incident_family": meta.get("incident_family"),

@@ -59,6 +59,8 @@ class InferenceTelemetry(BaseModel):
     latency_ms: float
     prompt_tokens: int
     generated_tokens: int
+    severity_source: Optional[str] = "POLICY_ENGINE"
+    severity_reason_code: Optional[str] = None
 
 
 class TriageResponse(BaseModel):
