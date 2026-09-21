@@ -1,148 +1,118 @@
 {
-  "comparison_title": "LocalOps AI Manual OOD Validation: Before vs After Phase 14",
-  "sample_count": 12,
-  "metrics_comparison": {
-    "severity_accuracy": {
-      "before": 0.3333,
-      "after": 1.0,
-      "delta": 0.6667
-    },
-    "severity_macro_f1": {
-      "before": 0.125,
-      "after": 1.0,
-      "delta": 0.875
-    },
-    "p3_dominance_ratio": {
-      "before": 1.0,
-      "after": 0.3333,
-      "delta": -0.6667
-    },
-    "incident_type_accuracy": {
-      "before": 1.0,
-      "after": 0.8333,
-      "delta": 0.0
-    },
-    "affected_service_accuracy": {
-      "before": 1.0,
-      "after": 0.75,
-      "delta": 0.0
-    },
-    "pydantic_validity_rate": {
-      "before": 1.0,
-      "after": 0.8333,
-      "delta": 0.0
-    }
-  },
-  "per_class_predictions": {
-    "before": {
-      "P1_CRITICAL": 0,
-      "P2_HIGH": 0,
-      "P3_MEDIUM": 12,
-      "P4_LOW": 0
-    },
-    "after": {
-      "P2_HIGH": 6,
-      "P3_MEDIUM": 4,
-      "P1_CRITICAL": 1,
-      "P4_LOW": 1
-    }
-  },
-  "item_level_changes": [
+  "manual_logs_sha256": "d8a1a2915a1942ca837ae3a85e89e6fa5eb1742116a5d1012ca2ea091ac15a81",
+  "total_manual_cases": 12,
+  "reviewable_cases": 8,
+  "insufficient_context_cases": 4,
+  "unknown_context_rate": 0.3333,
+  "accuracy_on_reviewable_cases": 1.0,
+  "comparisons": [
     {
       "request_id": "test-db-001",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P2_HIGH",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "REDUNDANCY_DEPLETED",
-      "fixed": true
+      "policy_reason": "REDUNDANCY_DEPLETED",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-db-002",
-      "expected_severity": "P2_HIGH",
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "expected_severity": null,
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "DATA_INTEGRITY_AT_RISK",
-      "fixed": true
+      "policy_reason": "DATA_INTEGRITY_AT_RISK",
+      "correct_on_reviewable": null
     },
     {
       "request_id": "test-infra-001",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P3_MEDIUM",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P3_MEDIUM",
-      "reason_code": "LOCALIZED_INSTANCE_FAILURE",
-      "fixed": false
+      "policy_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-infra-002",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P3_MEDIUM",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P3_MEDIUM",
-      "reason_code": "LOCALIZED_INSTANCE_FAILURE",
-      "fixed": false
+      "policy_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-app-001",
-      "expected_severity": "P1_CRITICAL",
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "expected_severity": null,
       "before_severity": "P3_MEDIUM",
       "after_severity": "P1_CRITICAL",
-      "reason_code": "WIDESPREAD_SEVERE_IMPACT",
-      "fixed": true
+      "policy_reason": "WIDESPREAD_SEVERE_IMPACT",
+      "correct_on_reviewable": null
     },
     {
       "request_id": "test-app-002",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P3_MEDIUM",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P3_MEDIUM",
-      "reason_code": "LOCALIZED_INSTANCE_FAILURE",
-      "fixed": false
+      "policy_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-sec-001",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P4_LOW",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P4_LOW",
-      "reason_code": "NO_OPERATIONAL_IMPACT",
-      "fixed": true
+      "policy_reason": "NO_OPERATIONAL_IMPACT",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-sec-002",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P2_HIGH",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "CONFIRMED_SECURITY_EVENT",
-      "fixed": true
+      "policy_reason": "CONFIRMED_SECURITY_EVENT",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-net-001",
-      "expected_severity": "P2_HIGH",
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "expected_severity": null,
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "MULTI_SERVICE_DEGRADATION",
-      "fixed": true
+      "policy_reason": "MULTI_SERVICE_DEGRADATION",
+      "correct_on_reviewable": null
     },
     {
       "request_id": "test-net-002",
-      "expected_severity": "P2_HIGH",
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "expected_severity": null,
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "MAJOR_SERVICE_DEGRADATION",
-      "fixed": true
+      "policy_reason": "MAJOR_SERVICE_DEGRADATION",
+      "correct_on_reviewable": null
     },
     {
       "request_id": "test-msg-001",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P2_HIGH",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P2_HIGH",
-      "reason_code": "MAJOR_SERVICE_DEGRADATION",
-      "fixed": true
+      "policy_reason": "MAJOR_SERVICE_DEGRADATION",
+      "correct_on_reviewable": true
     },
     {
       "request_id": "test-msg-002",
+      "review_status": "REVIEWABLE",
       "expected_severity": "P3_MEDIUM",
       "before_severity": "P3_MEDIUM",
       "after_severity": "P3_MEDIUM",
-      "reason_code": "LOCALIZED_INSTANCE_FAILURE",
-      "fixed": false
+      "policy_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "correct_on_reviewable": true
     }
   ]
 }

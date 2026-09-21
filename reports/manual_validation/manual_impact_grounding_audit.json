@@ -1,0 +1,761 @@
+{
+  "file_sha256": "d8a1a2915a1942ca837ae3a85e89e6fa5eb1742116a5d1012ca2ea091ac15a81",
+  "records": [
+    {
+      "request_id": "test-db-001",
+      "raw_log_sha256": "ab616de68230deaa525988a6dd9fe9a83940fca4f86a04bf8098d73a9dbcd277",
+      "raw_log": "2026-09-18T21:02:14Z ERROR [order-service] HikariPool-1 - Connection is not available, request timed out after 30000ms.\n2026-09-18T21:02:14Z INFO [order-service] pool.total=40 pool.active=40 pool.idle=0 pool.waiting=17\n2026-09-18T21:02:15Z ERROR [order-service] org.postgresql.util.PSQLException: FATAL: sorry, too many clients already",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "NONE",
+          "evidence": "Connection pool capacity completely exhausted: 'pool.active=40 pool.idle=0'",
+          "substring": "pool.active=40 pool.idle=0",
+          "evidence_start": 176,
+          "evidence_end": 202,
+          "source": "EXPLICIT"
+        },
+        "service_availability": {
+          "value": "DEGRADED",
+          "evidence": "Service degradation evidenced: 'connection is not available'",
+          "substring": "connection is not available",
+          "evidence_start": 58,
+          "evidence_end": 85,
+          "source": "EXPLICIT"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_SERVICE",
+          "evidence": "Single service boundary indicated: 'order-service'",
+          "substring": "order-service",
+          "evidence_start": 28,
+          "evidence_end": 41,
+          "source": "DERIVED"
+        }
+      }
+    },
+    {
+      "request_id": "test-db-002",
+      "raw_log_sha256": "f7522b5e24126ebd66e86a72998bbf66f9698b068edba30fca56feecfc93d699",
+      "raw_log": "2026-09-18T21:08:47Z ERROR [billing-service] deadlock detected\nDETAIL: Process 18842 waits for ShareLock on transaction 774021; blocked by process 18857.\nDETAIL: Process 18857 waits for ShareLock on transaction 774019; blocked by process 18842.\nERROR [billing-service] transaction aborted after 3 retries",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_SERVICE",
+          "evidence": "Single service boundary indicated: 'billing-service'",
+          "substring": "billing-service",
+          "evidence_start": 28,
+          "evidence_end": 43,
+          "source": "DERIVED"
+        }
+      }
+    },
+    {
+      "request_id": "test-infra-001",
+      "raw_log_sha256": "572d7b038152e44a723067fb6e4448b6357ddec85ffd27491c45224e897f10e0",
+      "raw_log": "2026-09-18T21:20:10Z kubelet: Warning OOMKilling container ml-worker\n2026-09-18T21:20:10Z kernel: Memory cgroup out of memory: Killed process 29984 (python) anon-rss:4062212kB\n2026-09-18T21:20:11Z kubelet: Container ml-worker terminated exitCode=137 reason=OOMKilled",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_INSTANCE",
+          "evidence": "Single pod, process, or container instance indicated: 'container ml-worker terminated'",
+          "substring": "container ml-worker terminated",
+          "evidence_start": 206,
+          "evidence_end": 236,
+          "source": "EXPLICIT"
+        }
+      }
+    },
+    {
+      "request_id": "test-infra-002",
+      "raw_log_sha256": "3b7ff59f5ff44b2288fd93290242c38832289c0a69356e99c6bddda28c2c02a4",
+      "raw_log": "2026-09-18T21:27:33Z kubelet: nodefs available 4.1%, threshold 5%\n2026-09-18T21:27:34Z kubelet: DiskPressure condition is now true\n2026-09-18T21:27:35Z kubelet: evicting pod log-collector due to ephemeral-storage usage 11.8Gi",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "DEGRADED",
+          "evidence": "Service degradation evidenced: 'diskpressure'",
+          "substring": "diskpressure",
+          "evidence_start": 96,
+          "evidence_end": 108,
+          "source": "EXPLICIT"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_INSTANCE",
+          "evidence": "Single pod, process, or container instance indicated: 'evicting pod'",
+          "substring": "evicting pod",
+          "evidence_start": 161,
+          "evidence_end": 173,
+          "source": "EXPLICIT"
+        }
+      }
+    },
+    {
+      "request_id": "test-app-001",
+      "raw_log_sha256": "417fecb3c1da563e320a0bd1350b562a117469ffb501368268a938e80cc9836a",
+      "raw_log": "2026-09-18T21:40:04Z ERROR [checkout-api] java.lang.NullPointerException: Cannot invoke Cart.getItems() because cart is null\n at com.localops.checkout.CartService.calculateTotal(CartService.java:184)\n at com.localops.checkout.CheckoutController.submit(CheckoutController.java:77)\n2026-09-18T21:40:04Z ERROR [checkout-api] status=500 path=/checkout",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_SERVICE",
+          "evidence": "Single service boundary indicated: 'checkout-api'",
+          "substring": "checkout-api",
+          "evidence_start": 28,
+          "evidence_end": 40,
+          "source": "DERIVED"
+        }
+      }
+    },
+    {
+      "request_id": "test-app-002",
+      "raw_log_sha256": "30a9da0e7ad64216f2b0e7b467a7684af71893fe3f88398e4b7767dc492cb567",
+      "raw_log": "2026-09-18T21:45:31Z ERROR [report-generator] java.lang.StackOverflowError\n at com.acme.report.NodeRenderer.render(NodeRenderer.java:91)\n at com.acme.report.NodeRenderer.renderChildren(NodeRenderer.java:128)\n2026-09-18T21:45:32Z ERROR [report-generator] recursive depth exceeded after malformed cyclic document graph",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_INSTANCE",
+          "evidence": "Single pod, process, or container instance indicated: 'document graph'",
+          "substring": "document graph",
+          "evidence_start": 302,
+          "evidence_end": 316,
+          "source": "EXPLICIT"
+        }
+      }
+    },
+    {
+      "request_id": "test-sec-001",
+      "raw_log_sha256": "837a130a5442475351b1531b20e4d2b2dda4d231f1880b1999fdce5fe4706785",
+      "raw_log": "2026-09-18T22:02:11Z WARN [auth-service] JWT validation failed: token expired at 2026-09-18T21:57:00Z\n2026-09-18T22:02:11Z INFO [auth-service] request rejected status=401 reason=invalid_token",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "NONE",
+          "evidence": "Routine perimeter token rejection: 'jwt validation failed: token expired'",
+          "substring": "jwt validation failed: token expired",
+          "evidence_start": 41,
+          "evidence_end": 77,
+          "source": "EXPLICIT"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "NONE",
+          "evidence": "Zero customer impact: 'request rejected status=401 reason=invalid_token'",
+          "substring": "request rejected status=401 reason=invalid_token",
+          "evidence_start": 143,
+          "evidence_end": 191,
+          "source": "EXPLICIT"
+        },
+        "blast_radius": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "request_id": "test-sec-002",
+      "raw_log_sha256": "bc8ec625b78ec3cca4f9b54d209a7c85f020ec26160e92d7754a697befc0b3a9",
+      "raw_log": "2026-09-18T22:08:30Z WARN [identity-gateway] 48 failed login attempts for account ops-admin from 203.0.113.44 within 60 seconds\n2026-09-18T22:08:31Z WARN [identity-gateway] password authentication failed user=ops-admin\n2026-09-18T22:08:33Z WARN [identity-gateway] account temporarily locked after threshold exceeded",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "CONFIRMED",
+          "evidence": "Confirmed brute-force attack or account lockout: '48 failed login attempts'",
+          "substring": "48 failed login attempts",
+          "evidence_start": 45,
+          "evidence_end": 69,
+          "source": "EXPLICIT"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_SERVICE",
+          "evidence": "Single service boundary indicated: 'identity-gateway'",
+          "substring": "identity-gateway",
+          "evidence_start": 27,
+          "evidence_end": 43,
+          "source": "DERIVED"
+        }
+      }
+    },
+    {
+      "request_id": "test-net-001",
+      "raw_log_sha256": "83d6fda88bdd0554a0ecaf34783792bb84275b2c7e050c55fcf71d309487fc8e",
+      "raw_log": "2026-09-18T22:20:19Z ERROR [inventory-service] java.net.UnknownHostException: pricing.internal.svc.cluster.local\n2026-09-18T22:20:20Z WARN [coredns] plugin/errors: read udp 10.244.3.17:42210->10.96.0.10:53: i/o timeout",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "request_id": "test-net-002",
+      "raw_log_sha256": "96c1c2b96de590dfc62fd4ec2062cd3cf080c76dbefa700181592aa49c26ec15",
+      "raw_log": "2026-09-18T22:26:58Z ERROR [api-gateway] connect() failed (111: Connection refused) while connecting to upstream http://10.42.7.91:8080\n2026-09-18T22:26:58Z INFO [api-gateway] response_status=502 upstream_service=customer-profile",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "DEGRADED",
+          "evidence": "Service degradation evidenced: 'connect() failed'",
+          "substring": "connect() failed",
+          "evidence_start": 41,
+          "evidence_end": 57,
+          "source": "EXPLICIT"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_SERVICE",
+          "evidence": "Single service boundary indicated: 'api-gateway'",
+          "substring": "api-gateway",
+          "evidence_start": 28,
+          "evidence_end": 39,
+          "source": "DERIVED"
+        }
+      }
+    },
+    {
+      "request_id": "test-msg-001",
+      "raw_log_sha256": "588fce9166ef962822b3ec008f7fa67015005b7bef04f13f2a9b1247709e7fe0",
+      "raw_log": "2026-09-18T22:40:05Z WARN [notification-consumer] kafka consumer group notifications-v2 lag increasing\n2026-09-18T22:40:05Z INFO topic=notifications partition=3 current_offset=912334 end_offset=1048122 lag=135788\n2026-09-18T22:40:12Z ERROR SLA breach: oldest unprocessed message age=923s",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "DEGRADED",
+          "evidence": "Service degradation evidenced: 'lag increasing'",
+          "substring": "lag increasing",
+          "evidence_start": 88,
+          "evidence_end": 102,
+          "source": "EXPLICIT"
+        },
+        "customer_impact": {
+          "value": "HIGH",
+          "evidence": "Explicit SLA breach impacting customer delivery: 'sla breach'",
+          "substring": "sla breach",
+          "evidence_start": 240,
+          "evidence_end": 250,
+          "source": "EXPLICIT"
+        },
+        "blast_radius": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "request_id": "test-msg-002",
+      "raw_log_sha256": "9dc311d4a11ba523d20ea6df9311ea9204eb02fee666a210573e0b01f6eed56c",
+      "raw_log": "2026-09-18T22:46:27Z ERROR [event-handler] message processing failed delivery_tag=883920\n2026-09-18T22:46:27Z ERROR com.fasterxml.jackson.core.JsonParseException: Unexpected character '}' expected a value\n2026-09-18T22:46:27Z WARN [event-handler] message requeued redelivery_count=19",
+      "grounded_signals": {
+        "environment": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "security_exposure": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "data_integrity": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "redundancy_state": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "service_availability": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "customer_impact": {
+          "value": "UNKNOWN",
+          "evidence": null,
+          "substring": null,
+          "evidence_start": null,
+          "evidence_end": null,
+          "source": "UNKNOWN"
+        },
+        "blast_radius": {
+          "value": "SINGLE_INSTANCE",
+          "evidence": "Single pod, process, or container instance indicated: 'delivery_tag=883920'",
+          "substring": "delivery_tag=883920",
+          "evidence_start": 69,
+          "evidence_end": 88,
+          "source": "EXPLICIT"
+        }
+      }
+    }
+  ]
+}

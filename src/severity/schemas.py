@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 from src.schemas.enums import Severity
@@ -64,6 +64,28 @@ class EnvironmentType(str, Enum):
     UNKNOWN = "UNKNOWN"
 
 
+class SignalSource(str, Enum):
+    EXPLICIT = "EXPLICIT"
+    DERIVED = "DERIVED"
+    UNKNOWN = "UNKNOWN"
+
+
+class GroundedSignal(BaseModel):
+    """Grounded operational impact signal linking an assessed value to exact log evidence."""
+
+    model_config = ConfigDict(
+        use_enum_values=True,
+        extra="forbid",
+    )
+
+    value: str
+    evidence: Optional[str] = None
+    substring: Optional[str] = None
+    evidence_start: Optional[int] = None
+    evidence_end: Optional[int] = None
+    source: SignalSource = SignalSource.UNKNOWN
+
+
 class ImpactAssessment(BaseModel):
     """Structured assessment of operational impact signals extracted from logs/telemetry."""
 
@@ -84,6 +106,7 @@ class ImpactAssessment(BaseModel):
     incident_duration_minutes: Optional[float] = None
     affected_users_estimate: Optional[int] = None
     impact_evidence: List[str] = Field(default_factory=list)
+    grounded_signals: Dict[str, GroundedSignal] = Field(default_factory=dict)
 
 
 class SeverityDecision(BaseModel):

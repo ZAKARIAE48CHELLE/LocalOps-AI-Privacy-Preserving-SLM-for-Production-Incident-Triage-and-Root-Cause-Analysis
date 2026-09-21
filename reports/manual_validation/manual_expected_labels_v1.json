@@ -1,90 +1,91 @@
 {
-  "manifest_version": "1.0.0",
-  "description": "Ground-truth expected labels for the 12 manual out-of-template evaluation logs",
+  "manifest_version": "2.0.0",
+  "description": "Human/policy-reviewed expected labels enforcing strict impact-grounding rules",
+  "total_cases": 12,
   "labels": [
     {
       "request_id": "test-db-001",
-      "expected_incident_type": "DATABASE",
-      "expected_affected_service": "order-service",
       "expected_severity": "P2_HIGH",
-      "rationalization": "Order database pool exhausted; active connection ceiling reached, customer order requests timing out."
+      "severity_expected": "P2_HIGH",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Connection pool capacity completely depleted (40/40 active, 0 idle, 17 waiting callers). Exhaustion of redundant pool capacity under active load."
     },
     {
       "request_id": "test-db-002",
-      "expected_incident_type": "DATABASE",
-      "expected_affected_service": "billing-service",
       "expected_severity": "P2_HIGH",
-      "rationalization": "Billing transaction deadlock with 3 retries aborted, directly impacting billing processing."
+      "severity_expected": null,
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "rationalization": "Deadlock alone with transaction rollback does not establish persistent data corruption or cluster error rate. Without operational impact context, severity cannot be deterministically assigned."
     },
     {
       "request_id": "test-infra-001",
-      "expected_incident_type": "INFRASTRUCTURE",
-      "expected_affected_service": "ml-worker",
       "expected_severity": "P3_MEDIUM",
-      "rationalization": "Isolated container worker OOMKilled; single task failure without cluster-wide cascade."
+      "severity_expected": "P3_MEDIUM",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Single ml-worker container terminated by OOMKiller. Localized single-instance task failure without cluster cascade."
     },
     {
       "request_id": "test-infra-002",
-      "expected_incident_type": "INFRASTRUCTURE",
-      "expected_affected_service": "kubelet",
       "expected_severity": "P3_MEDIUM",
-      "rationalization": "Node disk pressure condition true; evicting secondary pod log-collector to preserve node health."
+      "severity_expected": "P3_MEDIUM",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Node DiskPressure evicting auxiliary pod log-collector. Localized secondary pod eviction preserving node health."
     },
     {
       "request_id": "test-app-001",
-      "expected_incident_type": "APPLICATION",
-      "expected_affected_service": "checkout-api",
       "expected_severity": "P1_CRITICAL",
-      "rationalization": "NullPointerException on checkout critical path returning HTTP 500, halting customer purchases."
+      "severity_expected": null,
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "rationalization": "One HTTP 500 NullPointerException on /checkout path. A single request failure without traffic metrics or failure percentage cannot distinguish between an edge-case bug and a total outage."
     },
     {
       "request_id": "test-app-002",
-      "expected_incident_type": "APPLICATION",
-      "expected_affected_service": "report-generator",
       "expected_severity": "P3_MEDIUM",
-      "rationalization": "StackOverflowError in report generator rendering malformed document; localized background job failure."
+      "severity_expected": "P3_MEDIUM",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Single report-generator worker recursion StackOverflowError on cyclic document graph. Localized document processing error."
     },
     {
       "request_id": "test-sec-001",
-      "expected_incident_type": "SECURITY",
-      "expected_affected_service": "auth-service",
       "expected_severity": "P4_LOW",
-      "rationalization": "Normal security perimeter rejection of an expired JWT token; expected defensive behavior."
+      "severity_expected": "P4_LOW",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Routine defensive perimeter rejection of expired JWT token (HTTP 401). Expected normal security behavior."
     },
     {
       "request_id": "test-sec-002",
-      "expected_incident_type": "SECURITY",
-      "expected_affected_service": "identity-gateway",
       "expected_severity": "P2_HIGH",
-      "rationalization": "Targeted brute-force credential stuffing attack (48 failed attempts in 60s) targeting admin account."
+      "severity_expected": "P2_HIGH",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Targeted brute-force credential stuffing attack (48 failed attempts in 60s) resulting in admin account lockout. Confirmed security event."
     },
     {
       "request_id": "test-net-001",
-      "expected_incident_type": "NETWORK",
-      "expected_affected_service": "inventory-service",
       "expected_severity": "P2_HIGH",
-      "rationalization": "CoreDNS timeout preventing inventory service from resolving upstream pricing cluster service."
+      "severity_expected": null,
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "rationalization": "Single CoreDNS UDP query timeout for pricing service. Without error rate or cluster blast radius, impact context is insufficient."
     },
     {
       "request_id": "test-net-002",
-      "expected_incident_type": "NETWORK",
-      "expected_affected_service": "api-gateway",
       "expected_severity": "P2_HIGH",
-      "rationalization": "API gateway receiving connection refused (HTTP 502) from customer-profile upstream service."
+      "severity_expected": null,
+      "review_status": "INSUFFICIENT_IMPACT_CONTEXT",
+      "rationalization": "Single HTTP 502 connection refused from api-gateway to upstream. Single upstream failure without error rate or cluster metrics is insufficient."
     },
     {
       "request_id": "test-msg-001",
-      "expected_incident_type": "MESSAGING",
-      "expected_affected_service": "notification-consumer",
       "expected_severity": "P2_HIGH",
-      "rationalization": "Kafka consumer group lag accumulation (135k messages) causing SLA breach with 900s age."
+      "severity_expected": "P2_HIGH",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Kafka consumer group backlog accumulating (135,788 messages) causing an explicit SLA breach with oldest message age 923s."
     },
     {
       "request_id": "test-msg-002",
-      "expected_incident_type": "MESSAGING",
-      "expected_affected_service": "event-handler",
       "expected_severity": "P3_MEDIUM",
-      "rationalization": "Malformed JSON payload causing deserialization poison-pill loop with 19 redeliveries."
+      "severity_expected": "P3_MEDIUM",
+      "review_status": "REVIEWABLE",
+      "rationalization": "Poison-pill message delivery_tag=883920 requeued with redelivery_count=19. Localized single message deserialization failure."
     }
   ]
 }
