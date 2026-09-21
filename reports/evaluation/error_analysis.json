@@ -1,0 +1,179 @@
+{
+  "E1": {
+    "total_evaluated": 1440,
+    "error_distribution": {
+      "malformed_json": 1438,
+      "missing_field": 2,
+      "extra_field": 2
+    },
+    "top_incident_type_misclassifications": [
+      {
+        "pair": "DATABASE -> UNPARSED",
+        "count": 240,
+        "rate": 0.1667
+      },
+      {
+        "pair": "INFRASTRUCTURE -> UNPARSED",
+        "count": 240,
+        "rate": 0.1667
+      },
+      {
+        "pair": "APPLICATION -> UNPARSED",
+        "count": 240,
+        "rate": 0.1667
+      },
+      {
+        "pair": "SECURITY -> UNPARSED",
+        "count": 240,
+        "rate": 0.1667
+      },
+      {
+        "pair": "NETWORK -> UNPARSED",
+        "count": 240,
+        "rate": 0.1667
+      }
+    ],
+    "top_severity_misclassifications": [
+      {
+        "pair": "P3_MEDIUM -> UNPARSED",
+        "count": 385,
+        "rate": 0.2674
+      },
+      {
+        "pair": "P2_HIGH -> UNPARSED",
+        "count": 369,
+        "rate": 0.2562
+      },
+      {
+        "pair": "P1_CRITICAL -> UNPARSED",
+        "count": 347,
+        "rate": 0.241
+      },
+      {
+        "pair": "P4_LOW -> UNPARSED",
+        "count": 339,
+        "rate": 0.2354
+      }
+    ]
+  },
+  "E2": {
+    "total_evaluated": 1440,
+    "error_distribution": {
+      "malformed_json": 290
+    },
+    "top_incident_type_misclassifications": [
+      {
+        "pair": "MESSAGING -> APPLICATION",
+        "count": 130,
+        "rate": 0.0903
+      },
+      {
+        "pair": "INFRASTRUCTURE -> APPLICATION",
+        "count": 83,
+        "rate": 0.0576
+      },
+      {
+        "pair": "INFRASTRUCTURE -> UNPARSED",
+        "count": 72,
+        "rate": 0.05
+      },
+      {
+        "pair": "DATABASE -> UNPARSED",
+        "count": 58,
+        "rate": 0.0403
+      },
+      {
+        "pair": "APPLICATION -> UNPARSED",
+        "count": 52,
+        "rate": 0.0361
+      }
+    ],
+    "top_severity_misclassifications": [
+      {
+        "pair": "P3_MEDIUM -> P1_CRITICAL",
+        "count": 310,
+        "rate": 0.2153
+      },
+      {
+        "pair": "P2_HIGH -> P1_CRITICAL",
+        "count": 305,
+        "rate": 0.2118
+      },
+      {
+        "pair": "P4_LOW -> P1_CRITICAL",
+        "count": 267,
+        "rate": 0.1854
+      },
+      {
+        "pair": "P1_CRITICAL -> UNPARSED",
+        "count": 79,
+        "rate": 0.0549
+      },
+      {
+        "pair": "P3_MEDIUM -> UNPARSED",
+        "count": 75,
+        "rate": 0.0521
+      }
+    ]
+  },
+  "E3": {
+    "total_evaluated": 1440,
+    "error_distribution": {
+      "malformed_json": 24
+    },
+    "top_incident_type_misclassifications": [
+      {
+        "pair": "NETWORK -> INFRASTRUCTURE",
+        "count": 140,
+        "rate": 0.0972
+      },
+      {
+        "pair": "MESSAGING -> APPLICATION",
+        "count": 133,
+        "rate": 0.0924
+      },
+      {
+        "pair": "SECURITY -> APPLICATION",
+        "count": 120,
+        "rate": 0.0833
+      },
+      {
+        "pair": "INFRASTRUCTURE -> APPLICATION",
+        "count": 89,
+        "rate": 0.0618
+      },
+      {
+        "pair": "SECURITY -> INFRASTRUCTURE",
+        "count": 88,
+        "rate": 0.0611
+      }
+    ],
+    "top_severity_misclassifications": [
+      {
+        "pair": "P2_HIGH -> P3_MEDIUM",
+        "count": 212,
+        "rate": 0.1472
+      },
+      {
+        "pair": "P4_LOW -> P3_MEDIUM",
+        "count": 182,
+        "rate": 0.1264
+      },
+      {
+        "pair": "P1_CRITICAL -> P3_MEDIUM",
+        "count": 163,
+        "rate": 0.1132
+      },
+      {
+        "pair": "P2_HIGH -> P1_CRITICAL",
+        "count": 144,
+        "rate": 0.1
+      },
+      {
+        "pair": "P4_LOW -> P2_HIGH",
+        "count": 124,
+        "rate": 0.0861
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "demonstrations": [
+    {
+      "incident_id": "inc_db_connection_pool_starvation_db_conn_01_b7c8cbbb9e",
+      "incident_type": "DATABASE",
+      "incident_family": "DB_CONNECTION_POOL_STARVATION",
+      "severity": "P1_CRITICAL",
+      "technology": "PostgreSQL",
+      "template_id": "DB_CONN_01",
+      "record_hash": "5c5a442cf673249854e5529ec0ccb78c6faeb079856f21df64aa73bac2231d01",
+      "raw_log": "[2026-09-24T20:03:07.704Z] [INFO] [checkout-service] Optional metrics telemetry flush to 203.0.113.77:8125 succeeded after 1 transient retry\n[2026-09-24T20:03:27.235Z] [INFO] [checkout-service] Successfully refreshed public JWKS key rotation cache from auth provider\n[2026-09-24T20:03:33.146Z] [ERROR] [checkout-service] com.zaxxer.hikari.pool.HikariPool: HikariPool-1 - Connection is not available, request timed out after 13000ms\n[2026-09-24T20:03:33.146Z] [ERROR] [checkout-service] org.postgresql.util.PSQLException: Connection checkout failed for pool on host 203.0.113.77:5432\n[2026-09-24T20:03:33.146Z] [FATAL] [checkout-service] CRITICAL: 100% of checkout transactions failing; all worker threads blocked on pool acquisition\n[2026-09-24T20:04:11.241Z] [INFO] [checkout-service] Connection to downstream recommendation-engine established (pool_size=10, idle=8)\n[2026-09-24T20:04:12.369Z] [WARN] [checkout-service] Configuration notice: Property 'client.read-timeout-ms' is deprecated and will be removed in v3.0\n[2026-09-24T20:05:52.384Z] [INFO] [checkout-service] Connection to downstream recommendation-engine established (pool_size=10, idle=8)",
+      "target": {
+        "incident_type": "DATABASE",
+        "severity": "P1_CRITICAL",
+        "affected_service": "checkout-service",
+        "root_cause": "Database connection pool capacity exhausted, preventing checkout-service from acquiring a connection within the timeout limit.",
+        "suggested_action": "Increase max connection pool limit; inspect active connection lifetime, slow queries, and thread concurrency in checkout-service.",
+        "confidence": 0.65,
+        "evidence": [
+          "Connection is not available, request timed out",
+          "Connection checkout failed for pool",
+          "CRITICAL: 100% of checkout transactions failing; all worker threads blocked on pool acquisition"
+        ]
+      }
+    },
+    {
+      "incident_id": "inc_infra_pod_oomkilled_inf_oom_01_ac6b9b0e35",
+      "incident_type": "INFRASTRUCTURE",
+      "incident_family": "INFRA_POD_OOMKILLED",
+      "severity": "P2_HIGH",
+      "technology": "Kubernetes",
+      "template_id": "INF_OOM_01",
+      "record_hash": "ee4ee2f3894a58f8d32939ac1c0ff812bda94f6884b90699895f94447a97a4ba",
+      "raw_log": "[2026-10-03T16:13:33.690Z] [WARN] [shipping-router] Configuration notice: Property 'client.read-timeout-ms' is deprecated and will be removed in v3.0\n[2026-10-03T16:13:45.450Z] [ERROR] [shipping-router] kubelet[198.51.100.24]: container \"api-server\" in pod \"shipping-router-96a2e79d\" terminated with exit code 137\n[2026-10-03T16:13:45.450Z] [WARN] [shipping-router] kernel: Memory cgroup out of memory: Killed process 1140 (python3) total-vm:116736kB, anon-rss:58368kB\n[2026-10-03T16:13:45.450Z] [FATAL] [shipping-router] HIGH ALERT: Container shipping-router-96a2e79d killed with exit code 137; pod restarting\n[2026-10-03T16:15:29.699Z] [INFO] [shipping-router] Successfully refreshed public JWKS key rotation cache from auth provider",
+      "target": {
+        "incident_type": "INFRASTRUCTURE",
+        "severity": "P2_HIGH",
+        "affected_service": "shipping-router",
+        "root_cause": "Container memory consumption exceeded configured cgroup limit causing termination (exit code 137) in shipping-router.",
+        "suggested_action": "Review memory limits against peak workload demand and configure Horizontal Pod Autoscaler.",
+        "confidence": 0.79,
+        "evidence": [
+          "terminated with exit code 137",
+          "Memory cgroup out of memory: Killed process",
+          "HIGH ALERT: Container shipping-router-96a2e79d killed with exit code 137; pod restarting"
+        ]
+      }
+    },
+    {
+      "incident_id": "inc_app_memory_leak_app_leak_01_27f014eb8a",
+      "incident_type": "APPLICATION",
+      "incident_family": "APP_MEMORY_LEAK",
+      "severity": "P3_MEDIUM",
+      "technology": "Java",
+      "template_id": "APP_LEAK_01",
+      "record_hash": "ea8fa680ddad190ca097063947ec3feff0d9b23b073a7675069a7fc82c236174",
+      "raw_log": "[2026-10-04T16:37:26.497Z] [INFO] [billing-aggregator] Optional metrics telemetry flush to 192.0.2.120:8125 succeeded after 1 transient retry\n[2026-10-04T16:38:36.641Z] [FATAL] [billing-aggregator] java.lang.OutOfMemoryError: Java heap space\n[2026-10-04T16:38:36.641Z] [WARN] [billing-aggregator] GC (Allocation Failure) [PSYoungGen: 2210M->2210M(1024M)] [ParOldGen: 2040M->2040M(2048M)] on 192.0.2.120\n[2026-10-04T16:38:36.641Z] [CRITICAL] [billing-aggregator] NOTICE: High frequency of full garbage collection cycles; minor latency degradation on 192.0.2.120\n[2026-10-04T16:41:30.123Z] [INFO] [billing-aggregator] Connection to downstream recommendation-engine established (pool_size=10, idle=8)",
+      "target": {
+        "incident_type": "APPLICATION",
+        "severity": "P3_MEDIUM",
+        "affected_service": "billing-aggregator",
+        "root_cause": "Application heap memory capacity exhausted in billing-aggregator, triggering OutOfMemoryError.",
+        "suggested_action": "Capture application heap dump and analyze memory leak suspects, unreleased references, and unbounded caches.",
+        "confidence": 0.94,
+        "evidence": [
+          "java.lang.OutOfMemoryError: Java heap space",
+          "ParOldGen:",
+          "NOTICE: High frequency of full garbage collection cycles; minor latency degradation on 192.0.2.120"
+        ]
+      }
+    },
+    {
+      "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_01_1fb4e3f713",
+      "incident_type": "SECURITY",
+      "incident_family": "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION",
+      "severity": "P1_CRITICAL",
+      "technology": "OAuth/JWT",
+      "template_id": "SEC_TOK_01",
+      "record_hash": "52f03b596cce00309cedc21c5945f8dd29f35c3d908339dec9cd9978e96d35dc",
+      "raw_log": "[2026-09-28T10:02:12.837Z] [DEBUG] [orders-service] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-09-28T10:03:03.128Z] [WARN] [orders-service] org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2026-09-28T10:02:18Z\n[2026-09-28T10:03:03.128Z] [ERROR] [orders-service] HTTP 401 Unauthorized: token_expired: The access token expired 45 seconds ago\n[2026-09-28T10:03:03.128Z] [CRITICAL] [orders-service] CRITICAL: 100% of outbound payment gateway calls failing with 401 Unauthorized; API key expired\n[2026-09-28T10:04:35.459Z] [INFO] [orders-service] Normal HTTP GET /healthz returned 200 in 39ms",
+      "target": {
+        "incident_type": "SECURITY",
+        "severity": "P1_CRITICAL",
+        "affected_service": "orders-service",
+        "root_cause": "Expired JWT authentication token rejected by downstream authorization server on 203.0.113.8.",
+        "suggested_action": "Rotate API keys immediately in secret manager and restart dependent worker pods.",
+        "confidence": 0.64,
+        "evidence": [
+          "JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired",
+          "HTTP 401 Unauthorized: token_expired",
+          "CRITICAL: 100% of outbound payment gateway calls failing with 401 Unauthorized; API key expired"
+        ]
+      }
+    },
+    {
+      "incident_id": "inc_net_dns_resolution_failure_net_dns_01_183a640821",
+      "incident_type": "NETWORK",
+      "incident_family": "NET_DNS_RESOLUTION_FAILURE",
+      "severity": "P4_LOW",
+      "technology": "CoreDNS",
+      "template_id": "NET_DNS_01",
+      "record_hash": "e03906a28e200208ef23572c244c0cafc3ba3e06cc9922c5d82149158231bf85",
+      "raw_log": "[2026-10-13T19:48:01.534Z] [INFO] [inventory-manager] Periodic heartbeat acknowledged by cluster orchestrator\n[2026-10-13T19:48:02.583Z] [INFO] [inventory-manager] Optional metrics telemetry flush to 203.0.113.19:8125 succeeded after 1 transient retry\n[2026-10-13T19:48:49.377Z] [DEBUG] [inventory-manager] GC completed in 66ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-10-13T19:48:54.056Z] [ERROR] [inventory-manager] coredns[198.51.100.24]: [ERROR] plugin/errors: 2 auth.production.svc.cluster.local. A: read udp 10.244.0.1:53: i/o timeout\n[2026-10-13T19:48:54.056Z] [ERROR] [inventory-manager] java.net.UnknownHostException: auth.production.svc.cluster.local: Name or service not known\n[2026-10-13T19:48:54.056Z] [CRITICAL] [inventory-manager] LOW: Single transient DNS lookup retry on internal metrics endpoint; resolved on first retry with 0 dropped packets\n[2026-10-13T19:49:31.669Z] [DEBUG] [inventory-manager] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-13T19:50:13.158Z] [DEBUG] [inventory-manager] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-13T19:51:42.201Z] [INFO] [inventory-manager] Periodic heartbeat acknowledged by cluster orchestrator",
+      "target": {
+        "incident_type": "NETWORK",
+        "severity": "P4_LOW",
+        "affected_service": "inventory-manager",
+        "root_cause": "DNS resolution failure: resolver unable to resolve downstream dependency hostname in inventory-manager.",
+        "suggested_action": "Inspect /etc/resolv.conf search domains, ndots configuration, and restart NodeLocal DNSCache daemonset.",
+        "confidence": 0.86,
+        "evidence": [
+          "plugin/errors: 2 auth.production.svc.cluster.local. A: read udp",
+          "UnknownHostException: auth.production.svc.cluster.local: Name or service not known",
+          "LOW: Single transient DNS lookup retry on internal metrics endpoint; resolved on first retry with 0 dropped packets"
+        ]
+      }
+    },
+    {
+      "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_01_e34a8cf9e1",
+      "incident_type": "MESSAGING",
+      "incident_family": "MSG_CONSUMER_LAG_ACCUMULATION",
+      "severity": "P2_HIGH",
+      "technology": "Apache Kafka",
+      "template_id": "MSG_LAG_01",
+      "record_hash": "7a22ea8789fefef8020ffcad15c69e170024f11827207b17cb0c231f8127dc51",
+      "raw_log": "[2026-10-06T17:24:46.359Z] [INFO] [checkout-service] Periodic heartbeat acknowledged by cluster orchestrator\n[2026-10-06T17:25:38.810Z] [INFO] [checkout-service] TLS session resumption ticket validated for peer 198.51.100.140\n[2026-10-06T17:26:28.237Z] [INFO] [checkout-service] Periodic heartbeat acknowledged by cluster orchestrator\n[2026-10-06T17:26:31.790Z] [WARN] [checkout-service] org.apache.kafka.clients.consumer.internals.ConsumerCoordinator: [Consumer clientId=checkout-service-1, groupId=billing-workers] Consumer lag is high: partition orders-2 has lag of 1595000 messages\n[2026-10-06T17:26:31.790Z] [ERROR] [checkout-service] Estimated time to catch up: 2800s on broker 192.0.2.120:9092\n[2026-10-06T17:26:31.790Z] [CRITICAL] [checkout-service] HIGH ALERT: Consumer lag spike on topic orders-stream: 120,000 unread messages in checkout-service\n[2026-10-06T17:27:12.073Z] [WARN] [checkout-service] Configuration notice: Property 'client.read-timeout-ms' is deprecated and will be removed in v3.0",
+      "target": {
+        "incident_type": "MESSAGING",
+        "severity": "P2_HIGH",
+        "affected_service": "checkout-service",
+        "root_cause": "Consumer lag accumulation exceeding operational threshold across topic partitions on 192.0.2.120.",
+        "suggested_action": "Profile slow consumer message handler logic, optimize downstream batch inserts, and inspect database latency.",
+        "confidence": 0.62,
+        "evidence": [
+          "Consumer lag is high: partition",
+          "has lag of",
+          "HIGH ALERT: Consumer lag spike on topic orders-stream: 120,000 unread messages in checkout-service"
+        ]
+      }
+    }
+  ]
+}

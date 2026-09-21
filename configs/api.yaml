@@ -1,0 +1,33 @@
+# LocalOps AI — FastAPI Production Service Configuration
+service:
+  name: "localops-ai"
+  version: "1.0.0"
+  host: "0.0.0.0"
+  port: 8000
+  log_level: "INFO"
+  log_raw_payloads: false  # Privacy safety: do not log raw production logs or root causes
+  cors_origins: []         # Restricted by default
+
+model:
+  base_model_id: "Qwen/Qwen2.5-1.5B-Instruct"
+  adapter_path: "artifacts/phase_5/final_adapter"
+  adapter_source_checkpoint: "checkpoint-100"
+  device: "cuda"
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: "bfloat16"
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_use_double_quant: true
+  warmup_enabled: true
+  warmup_sample_log: "[2026-09-18T12:00:00Z] [WARN] [service-discovery] Keepalive ping delayed by 120ms; re-establishing socket."
+
+inference:
+  max_input_characters: 16384
+  max_input_tokens: 2048
+  max_new_tokens: 384
+  temperature: 0.0
+  do_sample: false
+  seed: 42
+  max_concurrent_inference: 2
+  request_timeout_seconds: 30.0
+  batch_max_items: 16
+  batch_micro_batch_size: 4

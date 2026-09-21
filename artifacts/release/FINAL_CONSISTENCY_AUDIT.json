@@ -1,0 +1,110 @@
+{
+  "audit_metadata": {
+    "project": "LocalOps AI",
+    "audit_type": "FINAL RELEASE DOCUMENTATION & METRIC CONSISTENCY AUDIT",
+    "date": "2026-09-18",
+    "total_repository_tests": 159,
+    "tests_passed": 159,
+    "tests_failed": 0,
+    "conflicting_metric_count": 0,
+    "audit_status": "PASSED"
+  },
+  "canonical_phase_4_metrics": {
+    "E1_ZeroShot": {
+      "pydantic_valid_rate": 0.0,
+      "incident_type_macro_f1": 0.0,
+      "severity_macro_f1": 0.0
+    },
+    "E2_StructuredPrompt": {
+      "pydantic_valid_rate": 0.7986,
+      "incident_type_accuracy": 0.4472,
+      "incident_type_macro_f1": 0.4679,
+      "severity_accuracy": 0.1861,
+      "severity_macro_f1": 0.0895
+    },
+    "E3_FewShot": {
+      "pydantic_valid_rate": 0.9833,
+      "incident_type_accuracy": 0.3937,
+      "incident_type_macro_f1": 0.3514,
+      "severity_accuracy": 0.2972,
+      "severity_macro_f1": 0.2319
+    }
+  },
+  "canonical_phase_6_metrics": {
+    "total_records": 1440,
+    "valid_records_count": 1427,
+    "pydantic_valid_rate": 0.991,
+    "incident_type_accuracy": 0.9847,
+    "incident_type_macro_f1": 0.9892,
+    "severity_accuracy": 0.991,
+    "severity_macro_f1": 0.9955,
+    "affected_service_exact_match": 0.991,
+    "evidence_verbatim_rate": 0.9675,
+    "evidence_token_f1_mean": 0.8599,
+    "root_cause_semantic_similarity_mean": 0.5781,
+    "suggested_action_semantic_similarity_mean": 0.4755
+  },
+  "adapter_hashes": {
+    "adapter_model_safetensors_sha256": "86ec3c28877e09b75468f95cd9f19eaa66c940d7ec079804d11491aa866c645f",
+    "adapter_config_json_sha256": "fbcbe0c3863afba8fa68d4d28025cd04e0b7976c400529471d1aff1616da7532"
+  },
+  "dataset_hashes": {
+    "train_jsonl_sha256": "081b337a9bce2a1a07e8c1fd00ccfbf4af717c32c6efe364824ad92d5a24d039",
+    "validation_jsonl_sha256": "b1d9b273b2278220a2e2668a67268ca805425d6f82200f738d08fb033ba2315c",
+    "test_jsonl_sha256": "a1c79a8beb9ca4868d358aa9bba1dd3c762466bd58249d460987a1e692f817b9"
+  },
+  "release_hashes": {
+    "release_manifest_sha256": "e3581eaa14e2b23e3c23dc8cd48816edaee5d4819cde9a48f6696db222cd1e8a",
+    "final_benchmark_sha256": "5f219f0ef318bc15c4b690fc7a05ab8482a2690bcdd195393cef1e0b512008be",
+    "serving_parity_sha256": "32e40b2e440bd1536a199cb9ab221a87528b14478fc0bd9e60486cf401f5f57d",
+    "checksums_sha256": "a61c66d5b93cd5bf69d433dc98e71a640d439dbe52c59f629244e6d452dc7ba9",
+    "release_notes_sha256": "16b25d53ac99affe9aa5ebd160faeb2c4dad5b5702a51439c6a539688dad2f11"
+  },
+  "documentation_consistency_checks": [
+    {
+      "file": "README.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "MODEL_CARD.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "documentation/FINAL_PROJECT_AUDIT.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "documentation/architecture.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "documentation/api.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "documentation/phase_12/Phase_12_Report.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "documentation/phase_11/Phase_11_Report.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "artifacts/release/release_notes.md",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    },
+    {
+      "file": "artifacts/release/release_manifest.json",
+      "status": "CONSISTENT",
+      "conflicts_found": []
+    }
+  ]
+}

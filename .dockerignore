@@ -1,0 +1,35 @@
+# LocalOps AI — Docker Ignore File
+.git
+.gitignore
+.gitattributes
+
+# Environments & Caches
+.venv
+venv
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Datasets (Prevent baking multi-gigabyte training data into image)
+data/generated/
+data/smoke/
+
+# Training checkpoints and raw evaluation predictions
+artifacts/phase_5/checkpoint-*
+reports/evaluation/*/predictions.jsonl
+scratch/
+
+# Temporary and development files
+*.tmp
+*.log
+*.ipynb
+.env
+.env.local
+.DS_Store
+Thumbs.db

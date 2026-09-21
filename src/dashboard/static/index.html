@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>LocalOps AI — Mission Control Dashboard</title>
+  <meta name="description" content="Real-time telemetry and execution monitor for LocalOps AI Phase 5 QLoRA fine-tuning and Phase 4 baseline evaluation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dark-theme">
+  <!-- Background Glow Orbs -->
+  <div class="bg-glow orb-1"></div>
+  <div class="bg-glow orb-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="dashboard-header" id="dashboard-header">
+      <div class="header-branding">
+        <div class="brand-badge">
+          <span class="pulse-dot" id="header-pulse-dot"></span>
+          <span class="badge-text" id="status-badge-text">PHASE 5: READY TO TRAIN</span>
+        </div>
+        <h1 class="brand-title">LocalOps AI <span class="gradient-text">Mission Control</span></h1>
+        <p class="brand-subtitle" id="header-subtitle">Phase 5 QLoRA Fine-Tuning · Qwen/Qwen2.5-1.5B-Instruct · 8 GB RTX 3070</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="system-time-box">
+          <span class="label">LIVE CLOCK</span>
+          <span class="value font-mono" id="live-clock">--:--:--</span>
+        </div>
+        <div class="connection-status" id="connection-status">
+          <span class="status-indicator live"></span>
+          <span id="connection-text">Live (2.5s)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Phase Navigation Tabs -->
+    <nav class="phase-nav-tabs" aria-label="Dashboard Phases">
+      <button class="tab-btn active" id="tab-btn-phase5" onclick="switchTab('phase5')">
+        <span class="tab-icon">🔥</span>
+        <span class="tab-title">Phase 5: QLoRA Fine-Tuning</span>
+        <span class="tab-badge" id="tab-badge-p5">ACTIVE</span>
+      </button>
+      <button class="tab-btn" id="tab-btn-phase4" onclick="switchTab('phase4')">
+        <span class="tab-icon">📊</span>
+        <span class="tab-title">Phase 4: Baseline Benchmark</span>
+        <span class="tab-badge badge-locked">COMPLETED</span>
+      </button>
+    </nav>
+
+    <!-- Agent Live Activity Stream (Top Banner for Real-Time Mobile/Desktop Following) -->
+    <section class="agent-activity-banner glass-card" id="agent-activity-banner">
+      <div class="agent-activity-header">
+        <div class="agent-activity-title-group">
+          <div class="agent-pulse-indicator">
+            <span class="pulse-dot"></span>
+            <span class="pulse-label font-mono">AGENT LIVE ACTIVITY</span>
+          </div>
+          <h2 class="agent-activity-task" id="agent-current-task">Phase 5 Validation Audit & Checkpoint Resolution Complete</h2>
+          <p class="agent-activity-desc" id="agent-task-desc">
+            Official adapter checkpoint-100 locked and exported (eval_loss: 1.0444). 8/8 audit corrections implemented. Test split strictly sealed.
+          </p>
+        </div>
+        <div class="agent-activity-badge-group">
+          <span class="agent-status-badge" id="agent-status-badge">★ PHASE 5 LOCKED · READY FOR PHASE 6</span>
+          <button class="agent-timeline-toggle-btn font-mono" id="toggle-timeline-btn" onclick="toggleAgentTimeline()">
+            <span id="timeline-toggle-icon">▼</span> Activity & Audit Log (<span id="timeline-count">7</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Expandable Timeline / Action Feed -->
+      <div class="agent-timeline-container" id="agent-timeline-container" style="display: none;">
+        <div class="agent-timeline-list font-mono" id="agent-timeline-list">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </div>
+
+      <div class="agent-next-step-row font-mono">
+        <span class="next-step-tag">NEXT STEP:</span>
+        <span class="next-step-text" id="agent-next-step">Awaiting user authorization to proceed to Phase 6 (held-out test split evaluation).</span>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW: PHASE 5 — QLoRA FINE-TUNING                                          -->
+    <!-- ========================================================================= -->
+    <main id="view-phase5" class="dashboard-view active">
+      <!-- Hero Training Banner -->
+      <section class="p5-hero-card glass-card" id="p5-hero-card">
+        <div class="p5-hero-top">
+          <div class="p5-hero-meta">
+            <div class="p5-status-pill status-ready" id="p5-status-pill">READY TO TRAIN</div>
+            <h2 class="p5-hero-title">Qwen2.5-1.5B-Instruct · 4-bit NF4 QLoRA</h2>
+            <p class="p5-hero-desc">
+              Response-Only Loss Supervision · Rank 16 / Alpha 32 · 18,464,768 Trainable Parameters (1.182%)
+            </p>
+          </div>
+          <div class="p5-hero-quick-stats">
+            <div class="p5-quick-stat">
+              <span class="p5-stat-lbl">OPTIMIZATION STEP</span>
+              <span class="p5-stat-val font-mono" id="p5-step-val">0 / 810</span>
+              <span class="p5-stat-sub" id="p5-step-sub">0.0% Progress</span>
+            </div>
+            <div class="p5-quick-stat">
+              <span class="p5-stat-lbl">EPOCH</span>
+              <span class="p5-stat-val font-mono" id="p5-epoch-val">0.00 / 3.00</span>
+              <span class="p5-stat-sub">Effective Batch: 16</span>
+            </div>
+            <div class="p5-quick-stat">
+              <span class="p5-stat-lbl">TRAIN LOSS</span>
+              <span class="p5-stat-val font-mono text-cyan" id="p5-loss-val">--</span>
+              <span class="p5-stat-sub" id="p5-loss-sub">Response Tokens</span>
+            </div>
+            <div class="p5-quick-stat">
+              <span class="p5-stat-lbl">ESTIMATED ETA</span>
+              <span class="p5-stat-val font-mono text-green" id="p5-eta-val">Ready</span>
+              <span class="p5-stat-sub" id="p5-elapsed-sub">Elapsed: 0s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Training Progress Bar -->
+        <div class="p5-progress-wrap">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill gradient-fill" id="p5-progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="progress-labels font-mono">
+            <span id="p5-pct-label">0.0% Complete</span>
+            <span id="p5-steps-remaining-label">810 Steps Remaining</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Metrics Row (4 Cards) -->
+      <section class="p5-grid-4">
+        <div class="metric-card glass-card">
+          <div class="mc-label">CURRENT TRAIN LOSS</div>
+          <div class="mc-value font-mono text-cyan" id="mc-train-loss">--</div>
+          <div class="mc-sub">Cross-entropy on assistant JSON tokens</div>
+        </div>
+        <div class="metric-card glass-card">
+          <div class="mc-label">BEST VALIDATION LOSS</div>
+          <div class="mc-value font-mono text-green" id="mc-eval-loss">--</div>
+          <div class="mc-sub" id="mc-best-ckpt-sub">Best Checkpoint: None yet</div>
+        </div>
+        <div class="metric-card glass-card">
+          <div class="mc-label">LEARNING RATE</div>
+          <div class="mc-value font-mono" id="mc-learning-rate">1.50e-4</div>
+          <div class="mc-sub">Cosine Decay · 40 Warmup Steps</div>
+        </div>
+        <div class="metric-card glass-card">
+          <div class="mc-label">MEMORY LIMIT GUARD</div>
+          <div class="mc-value font-mono text-cyan" id="mc-vram-limit">1024 Tok</div>
+          <div class="mc-sub">Max Seq Len · 0.0% Truncation Rate</div>
+        </div>
+      </section>
+
+      <!-- Diagnostic Quality Targets Grid (Addressing Phase 4 Failure Modes) -->
+      <section class="glass-card p5-section">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Diagnostic Quality & Failure Mode Targets</h3>
+            <p class="section-subtitle">Real-time validation tracking cures for baseline failure modes (tested on validation slice)</p>
+          </div>
+          <span class="tag-badge">CHECKPOINT VALIDATION</span>
+        </div>
+
+        <div class="p5-quality-grid">
+          <!-- Target 1: Schema Validity -->
+          <div class="quality-card glass-panel">
+            <div class="qc-top">
+              <span class="qc-title">Schema Validity</span>
+              <span class="qc-target">Target: ≥98.0%</span>
+            </div>
+            <div class="qc-val font-mono" id="qc-schema-val">--%</div>
+            <div class="qc-baseline">Baseline: 0.0% (E1) · 79.9% (E2)</div>
+          </div>
+
+          <!-- Target 2: Severity Macro-F1 -->
+          <div class="quality-card glass-panel">
+            <div class="qc-top">
+              <span class="qc-title">Severity Macro-F1</span>
+              <span class="qc-target">Target: ≥0.40</span>
+            </div>
+            <div class="qc-val font-mono text-cyan" id="qc-sev-f1-val">--</div>
+            <div class="qc-baseline">Baseline: 0.0895 (E2 Collapse) · 0.2319 (E3)</div>
+          </div>
+
+          <!-- Target 3: P4_LOW Recall -->
+          <div class="quality-card glass-panel">
+            <div class="qc-top">
+              <span class="qc-title">P4_LOW Recall</span>
+              <span class="qc-target">Cure Blindness</span>
+            </div>
+            <div class="qc-val font-mono text-green" id="qc-p4-val">--%</div>
+            <div class="qc-baseline">Baseline: ~0.0% (Severe P4 Under-prediction)</div>
+          </div>
+
+          <!-- Target 4: IncidentType Macro-F1 -->
+          <div class="quality-card glass-panel">
+            <div class="qc-top">
+              <span class="qc-title">IncidentType Macro-F1</span>
+              <span class="qc-target">Target: ≥0.55</span>
+            </div>
+            <div class="qc-val font-mono" id="qc-type-f1-val">--</div>
+            <div class="qc-baseline">Baseline: 0.4679 (E2) · 0.3514 (E3)</div>
+          </div>
+
+          <!-- Target 5: MESSAGING Recall -->
+          <div class="quality-card glass-panel">
+            <div class="qc-top">
+              <span class="qc-title">MESSAGING Recall</span>
+              <span class="qc-target">Cure Confusion</span>
+            </div>
+            <div class="qc-val font-mono text-amber" id="qc-msg-val">--%</div>
+            <div class="qc-baseline">Baseline: 1 / 240 (0.4% in E2)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Checkpoint Resolution & Overfitting Protection -->
+      <section class="glass-card p5-section" id="checkpoint-resolution-section">
+        <div class="section-title-row">
+          <div>
+            <div class="tag-badge font-mono" style="background: rgba(16, 185, 129, 0.2); color: #34d399; margin-bottom: 0.4rem;">
+              🛡️ OVERFITTING PROTECTION · CHECKPOINT RESOLUTION
+            </div>
+            <h3 class="section-title">Validation Checkpoint Selection (Predeclared Loss Rule)</h3>
+            <p class="section-subtitle">
+              Validation loss reached minimum at Step 100 (1.0444) and diverged to 1.564 at Step 810. Checkpoint-100 is selected as official Phase 5 adapter.
+            </p>
+          </div>
+          <span class="p5-status-pill status-completed" style="font-size: 0.75rem;">
+            ★ CHECKPOINT-100 SELECTED
+          </span>
+        </div>
+
+        <div class="checkpoint-table-container" style="overflow-x: auto; margin-top: 1rem;">
+          <table class="checkpoint-table font-mono" style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+            <thead>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-dim); text-align: left;">
+                <th style="padding: 0.6rem;">CHECKPOINT</th>
+                <th style="padding: 0.6rem;">STEP</th>
+                <th style="padding: 0.6rem;">EVAL LOSS</th>
+                <th style="padding: 0.6rem;">TRAIN LOSS</th>
+                <th style="padding: 0.6rem;">SCHEMA VALID</th>
+                <th style="padding: 0.6rem;">TYPE F1</th>
+                <th style="padding: 0.6rem;">SEV F1</th>
+                <th style="padding: 0.6rem;">MSG RECALL</th>
+                <th style="padding: 0.6rem;">P4 RECALL</th>
+                <th style="padding: 0.6rem;">DECISION</th>
+              </tr>
+            </thead>
+            <tbody id="checkpoint-table-body">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Hardware Telemetry & Energy Grid -->
+      <section class="glass-card p5-section">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Hardware Telemetry & Power Consumption</h3>
+            <p class="section-subtitle">Real-time NVML power draw and 8 GB VRAM safety monitor</p>
+          </div>
+          <span class="tag-badge font-mono" id="p5-gpu-name">NVIDIA RTX 3070</span>
+        </div>
+
+        <div class="p5-telemetry-grid">
+          <!-- VRAM Card -->
+          <div class="telemetry-card glass-panel">
+            <div class="tc-header">
+              <span class="tc-label">VRAM ALLOCATED</span>
+              <span class="tc-val font-mono" id="p5-vram-text">0.0 / 8.0 GB</span>
+            </div>
+            <div class="tc-bar-track">
+              <div class="tc-bar-fill" id="p5-vram-bar" style="width: 0%"></div>
+            </div>
+            <div class="tc-sub" id="p5-vram-sub">Budget: 8,192 MB · Peak: 0 MB</div>
+          </div>
+
+          <!-- Power Draw Card -->
+          <div class="telemetry-card glass-panel">
+            <div class="tc-header">
+              <span class="tc-label">INSTANT POWER DRAW</span>
+              <span class="tc-val font-mono text-cyan" id="p5-power-text">-- W</span>
+            </div>
+            <div class="tc-bar-track">
+              <div class="tc-bar-fill tc-power-fill" id="p5-power-bar" style="width: 0%"></div>
+            </div>
+            <div class="tc-sub" id="p5-power-sub">Limit: 85.0 W · Avg: -- W</div>
+          </div>
+
+          <!-- Total Energy Card -->
+          <div class="telemetry-card glass-panel">
+            <div class="tc-header">
+              <span class="tc-label">CUMULATIVE ENERGY</span>
+              <span class="tc-val font-mono text-green" id="p5-energy-text">0.00 Wh</span>
+            </div>
+            <div class="tc-meta-row font-mono">
+              <span id="p5-energy-kwh">0.0000 kWh</span>
+              <span id="p5-energy-cost">$0.00 USD</span>
+            </div>
+            <div class="tc-sub" id="p5-energy-carbon">0.0 g CO₂ equivalent</div>
+          </div>
+
+          <!-- Core Utilization Card -->
+          <div class="telemetry-card glass-panel">
+            <div class="tc-header">
+              <span class="tc-label">GPU LOAD & TEMP</span>
+              <span class="tc-val font-mono" id="p5-load-temp-text">0% · 0°C</span>
+            </div>
+            <div class="tc-bar-track">
+              <div class="tc-bar-fill tc-load-fill" id="p5-load-bar" style="width: 0%"></div>
+            </div>
+            <div class="tc-sub">Tensor Cores Active · SDPA bfloat16</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Loss Curve Chart Section -->
+      <section class="glass-card p5-section">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Live Training & Convergence Curves</h3>
+            <p class="section-subtitle">Real-time loss trajectory on response tokens vs. validation evaluations</p>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot dot-train"></span> Train Loss</span>
+            <span class="legend-item"><span class="legend-dot dot-eval"></span> Validation Loss</span>
+          </div>
+        </div>
+
+        <div class="p5-chart-wrap">
+          <canvas id="p5-loss-canvas" class="p5-chart-canvas"></canvas>
+          <div class="p5-chart-empty" id="p5-chart-empty">
+            <span>Awaiting initial optimizer steps to plot loss curve...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Training Events & Checkpoint Feed -->
+      <section class="glass-card p5-section">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Training Event Ticker & Milestones</h3>
+            <p class="section-subtitle">Live stream of optimizer steps, validation checks, and checkpoint saves</p>
+          </div>
+          <span class="tag-badge" id="p5-event-count">0 Events</span>
+        </div>
+
+        <div class="p5-events-list font-mono" id="p5-events-list">
+          <div class="p5-event-empty">No training events recorded yet. Ready to launch.</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================================= -->
+    <!-- VIEW: PHASE 4 — BASELINE BENCHMARK (LOCKED)                                -->
+    <!-- ========================================================================= -->
+    <main id="view-phase4" class="dashboard-view">
+      <!-- Top Headline Banner: Active Experiment -->
+      <section class="active-banner glass-card" id="active-experiment-card">
+        <div class="active-banner-main">
+          <div class="active-tag" id="active-exp-badge">PHASE 4 BENCHMARK</div>
+          <h2 class="active-exp-title" id="active-exp-title">Baseline Benchmark Completed</h2>
+          <p class="active-exp-desc" id="active-exp-desc">All 4,320 held-out test predictions (E1, E2, E3) completed and verified.</p>
+        </div>
+        <div class="active-banner-stats">
+          <div class="banner-stat">
+            <span class="banner-stat-label">TOTAL EVALUATED</span>
+            <span class="banner-stat-val font-mono" id="active-progress-val">4,320 / 4,320</span>
+            <span class="banner-stat-sub" id="active-progress-pct">100.0%</span>
+          </div>
+          <div class="banner-stat">
+            <span class="banner-stat-label">AVG LATENCY</span>
+            <span class="banner-stat-val font-mono" id="active-latency-val">5.14 s</span>
+            <span class="banner-stat-sub">per sample</span>
+          </div>
+          <div class="banner-stat">
+            <span class="banner-stat-label">BENCHMARK STATUS</span>
+            <span class="banner-stat-val font-mono text-cyan" id="active-eta-val">Completed</span>
+            <span class="banner-stat-sub">Phase 4 Locked</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overall Progress Overview -->
+      <section class="progress-section glass-card" id="overall-progress-card">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Baseline Benchmark Milestones</h3>
+            <p class="section-subtitle">Evaluating 4,320 total records across E1, E2, and E3</p>
+          </div>
+          <div class="overall-badge font-mono" id="overall-counter">4,320 / 4,320</div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill gradient-fill" id="overall-progress-fill" style="width: 100%"></div>
+          </div>
+          <div class="progress-labels">
+            <span id="overall-pct-label" class="font-mono">100.0% Complete</span>
+            <span id="overall-eta-label" class="font-mono text-cyan">Benchmark Locked</span>
+          </div>
+        </div>
+
+        <!-- Three Experiment Milestone Cards -->
+        <div class="experiment-grid" id="experiment-milestones">
+          <!-- E1 -->
+          <div class="exp-card glass-panel" id="exp-card-e1">
+            <div class="exp-header">
+              <div class="exp-title-group">
+                <span class="exp-badge badge-e1">E1</span>
+                <div>
+                  <h4 class="exp-name">Zero-Shot</h4>
+                  <span class="exp-sub">Baseline Unformatted Prompt</span>
+                </div>
+              </div>
+              <span class="status-pill status-completed" id="e1-status-pill">COMPLETED</span>
+            </div>
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="e1-progress-fill" style="width: 100%"></div>
+            </div>
+            <div class="exp-footer font-mono">
+              <span id="e1-count-label">1440 / 1440</span>
+              <span id="e1-pct-label">100.0%</span>
+            </div>
+          </div>
+
+          <!-- E2 -->
+          <div class="exp-card glass-panel" id="exp-card-e2">
+            <div class="exp-header">
+              <div class="exp-title-group">
+                <span class="exp-badge badge-e2">E2</span>
+                <div>
+                  <h4 class="exp-name">Structured Prompt</h4>
+                  <span class="exp-sub">Detailed JSON Schema Prompt</span>
+                </div>
+              </div>
+              <span class="status-pill status-completed" id="e2-status-pill">COMPLETED</span>
+            </div>
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="e2-progress-fill" style="width: 100%"></div>
+            </div>
+            <div class="exp-footer font-mono">
+              <span id="e2-count-label">1440 / 1440</span>
+              <span id="e2-pct-label">100.0%</span>
+            </div>
+          </div>
+
+          <!-- E3 -->
+          <div class="exp-card glass-panel" id="exp-card-e3">
+            <div class="exp-header">
+              <div class="exp-title-group">
+                <span class="exp-badge badge-e3">E3</span>
+                <div>
+                  <h4 class="exp-name">Few-Shot In-Context</h4>
+                  <span class="exp-sub">6 Frozen Canonical Demonstrations</span>
+                </div>
+              </div>
+              <span class="status-pill status-completed" id="e3-status-pill">COMPLETED</span>
+            </div>
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="e3-progress-fill" style="width: 100%"></div>
+            </div>
+            <div class="exp-footer font-mono">
+              <span id="e3-count-label">1440 / 1440</span>
+              <span id="e3-pct-label">100.0%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Predictions Feed -->
+      <section class="feed-section glass-card" id="predictions-feed-section">
+        <div class="section-title-row">
+          <div>
+            <h3 class="section-title">Baseline Prediction Feed</h3>
+            <p class="section-subtitle">Verified samples from held-out test evaluation</p>
+          </div>
+          <div class="feed-controls">
+            <button class="btn-sm" onclick="fetchStatus()">Refresh Feed</button>
+          </div>
+        </div>
+        <div class="predictions-stream" id="predictions-stream">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <div class="footer-meta">
+        <span>LocalOps AI Evaluation & Training Engine · Phase 5 QLoRA · NVIDIA GeForce RTX 3070 Laptop GPU</span>
+        <span class="footer-time font-mono" id="footer-time">Network: 192.168.1.8:8080</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Interactive Notification / Action Modal (Mobile & Desktop) -->
+  <div id="action-modal-backdrop" class="action-modal-backdrop" style="display: none;">
+    <div class="action-modal glass-card" id="action-modal">
+      <div class="action-modal-header">
+        <div class="action-modal-badge font-mono" id="action-modal-badge">⚡ NOTIFICATION ALERT</div>
+        <h3 class="action-modal-title" id="action-modal-title">Action Required</h3>
+      </div>
+      <p class="action-modal-desc" id="action-modal-desc">
+        Message content loading...
+      </p>
+      <div class="action-options-container" id="action-options-container">
+        <!-- Buttons injected dynamically -->
+      </div>
+      <div class="action-modal-status" id="action-modal-status" style="display: none;">
+        <span class="pulse-dot"></span>
+        <span id="action-status-text">Submitting response to server...</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

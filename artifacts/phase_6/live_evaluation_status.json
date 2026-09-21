@@ -1,0 +1,12 @@
+{
+  "timestamp": 1789752088.813644,
+  "experiment_id": "E4",
+  "completed": 1440,
+  "total": 1440,
+  "progress_pct": 100.0,
+  "peak_vram_mb": 2620.14,
+  "avg_sample_latency": 0.9926,
+  "eta_seconds": 0.0,
+  "phase_detail": "E4 evaluation complete. Metrics compiled.",
+  "recent_predictions": []
+}

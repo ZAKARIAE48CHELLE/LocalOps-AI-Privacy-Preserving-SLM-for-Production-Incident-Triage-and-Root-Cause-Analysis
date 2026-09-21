@@ -1,0 +1,4669 @@
+{
+  "E1": {
+    "total_records": 1440,
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.0,
+      "end_to_end_incident_type_macro_f1": 0.0,
+      "end_to_end_incident_type_micro_f1": 0.0,
+      "end_to_end_severity_accuracy": 0.0,
+      "end_to_end_severity_macro_f1": 0.0,
+      "end_to_end_severity_micro_f1": 0.0
+    },
+    "secondary_metrics": {
+      "valid_record_count": 0,
+      "incident_type_accuracy_on_valid_outputs": 0.0,
+      "incident_type_macro_f1_on_valid_outputs": 0.0,
+      "severity_accuracy_on_valid_outputs": 0.0,
+      "severity_macro_f1_on_valid_outputs": 0.0
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.0,
+      "json_extraction_success_rate": 0.0014,
+      "pydantic_valid_rate": 0.0,
+      "missing_field_failure_rate": 0.0014,
+      "extra_field_failure_rate": 0.0014,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.0,
+      "affected_service_normalized_exact_match": 0.0,
+      "affected_service_log_grounded_rate": 0.0
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.0,
+      "evidence_token_f1_mean": 0.0
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.0,
+      "root_cause_semantic_similarity_median": 0.0,
+      "suggested_action_semantic_similarity_mean": 0.0,
+      "suggested_action_semantic_similarity_median": 0.0,
+      "root_cause_token_f1_mean": 0.0,
+      "suggested_action_token_f1_mean": 0.0
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0,
+      "unsupported_claim_rate": 0.0,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "confidence_analysis": {
+      "mean_model_reported_confidence": 0.0,
+      "confidence_correct_incident_type_mean": 0.0,
+      "confidence_incorrect_incident_type_mean": 0.0,
+      "confidence_correct_severity_mean": 0.0,
+      "confidence_incorrect_severity_mean": 0.0,
+      "confidence_by_diagnostic_clarity": {}
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 5.5769,
+        "min": 2.6468,
+        "max": 61.4494,
+        "p50": 3.3929,
+        "p90": 17.4931,
+        "p95": 20.5138
+      },
+      "tokens_per_second_mean": 97.97,
+      "prompt_tokens": {
+        "mean": 398.3444,
+        "min": 202,
+        "max": 650,
+        "p50": 375.0,
+        "p90": 536.0,
+        "p95": 563.0
+      },
+      "generated_tokens": {
+        "mean": 365.134,
+        "min": 219,
+        "max": 384,
+        "p50": 384.0,
+        "p90": 384.0,
+        "p95": 384.0
+      },
+      "peak_vram_mb": 1585.16,
+      "samples_per_minute": 10.76
+    },
+    "slices": {
+      "incident_type": {
+        "DATABASE": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRASTRUCTURE": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APPLICATION": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SECURITY": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NETWORK": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MESSAGING": {
+          "count": 240,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "incident_family": {
+        "DB_CONNECTION_POOL_STARVATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DB_DEADLOCK_OR_CONTENTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DB_REPLICATION_LAG": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DB_QUERY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DB_STORAGE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DB_INDEX_OR_DATA_CORRUPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_POD_OOMKILLED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_CPU_THROTTLING": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_INODE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_NODE_NOT_READY": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_CRASHLOOP_BACKOFF": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "INFRA_STORAGE_EVICTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_MEMORY_LEAK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_THREAD_POOL_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_UNHANDLED_EXCEPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_SERIALIZATION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_STACK_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "APP_DEPENDENCY_INJECTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_PERMISSION_OR_RBAC_DENIED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_SECRET_LEAKAGE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_BRUTE_FORCE_ATTACK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_CORS_POLICY_BLOCK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SEC_SSRF_OR_EGRESS_VIOLATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_DNS_RESOLUTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_CONNECTION_REFUSED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_SOCKET_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_TLS_HANDSHAKE_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_INGRESS_GATEWAY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NET_PARTITION_OR_BLACKHOLE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_CONSUMER_LAG_ACCUMULATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_DEAD_LETTER_QUEUE_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_PARTITION_LEADER_OFFLINE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_POISON_PILL_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_QUEUE_STORAGE_BACKPRESSURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "MSG_DUPLICATE_DELIVERY_OR_IDEMPOTENCY": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "severity": {
+        "P2_HIGH": {
+          "count": 369,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "P1_CRITICAL": {
+          "count": 347,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "P4_LOW": {
+          "count": 339,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "P3_MEDIUM": {
+          "count": 385,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "technology": {
+        "PostgreSQL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby on Rails": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CockroachDB": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Neo4j": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Cassandra": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ClickHouse": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SQLite": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Elasticsearch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Linux": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Kubernetes": {
+          "count": 60,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS EC2": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "FreeBSD": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ceph": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GKE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "VMware": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Node.js": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Nomad": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C++": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Celery": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PHP": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Rust/Serde": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache Thrift": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Python": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/Dagger": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Azure Active Directory": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SendGrid API": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Istio Service Mesh": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OpenStack Keystone": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OpenAI SDK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Redis Client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS Cognito": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Redis RateLimiter": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Cloudflare Workers": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Envoy Proxy": {
+          "count": 60,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Palo Alto Firewall": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Unbound DNS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "gRPC Client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby TCPSocket": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "aiohttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "cert-manager": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Cloudflare Edge": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Caddy Server": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OVN Kubernetes": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Keepalived VRRP": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Azure Service Bus": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Node librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NATS JetStream": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS MSK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Apache Kafka Producer": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Redis Streams": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "runtime": {
+        ".NET": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go": {
+          "count": 80,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java": {
+          "count": 80,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C++": {
+          "count": 60,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "kernel-mm": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "cgroups": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "cloudwatch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "kubelet": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "UFS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CephFS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "k8s-node-controller": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "vSphere-HA": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "V8": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go-runtime": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "nomad-client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "valgrind": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "jemalloc": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Python": {
+          "count": 80,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Puma": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Laravel": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "net/http": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "regex": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Nashorn": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PHP-DI": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "JVM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C#/.NET": {
+          "count": 40,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Envoy/C++": {
+          "count": 80,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS/Java": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "JavaScript": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PanOS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS/Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C/Unbound": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/gRPC": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Python/asyncio": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/k8s": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Edge/Cloudflare": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/Caddy": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Linux/OVN": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C/Keepalived": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "C/librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Ruby/Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/NATS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS/CloudWatch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Java/Kafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go/Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "signature_profile": {
+        "DOTNET_NPGSQL_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "RAILS_ACTIVERECORD_POOL_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "COCKROACHDB_TXN_RETRY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NEO4J_GRAPH_DEADLOCK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CASSANDRA_HINTS_REPL_LAG": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CLICKHOUSE_MERGETREE_REPL_DELAY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "COCKROACHDB_STATEMENT_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "REDIS_SOCKET_SLOWLOG_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CLICKHOUSE_DATA_BIN_DISK_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SQLITE_WAL_DISK_IO_ERROR": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CASSANDRA_SSTABLE_CRC_CORRUPT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "LUCENE_CORRUPT_INDEX_HEADER": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "KERNEL_OOM_KILL_PROCESS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "K8S_CGROUP_MEMORY_MAX_OOM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS_EC2_T3_CPU_CREDIT_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "K8S_STRICT_CFS_QUOTA_THROTTLING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "FREEBSD_UFS_OUT_OF_INODES": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CEPH_MDS_INODE_QUOTA_BREACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GKE_NODE_DISK_PRESSURE_NOTREADY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "VMWARE_LOST_NETWORK_HEARTBEAT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NODEJS_SYNTAX_ERROR_CRASH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GO_NIL_POINTER_INIT_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NOMAD_ALLOC_DISK_EXCEEDED_EVICTION": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "K8S_HARD_EVICTION_NODEFS_LOW": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CPP_MALLOC_UNFREED_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "RUST_ARC_CYCLE_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CELERY_WORKER_CONCURRENCY_REACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PUMA_THREAD_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "LARAVEL_MEMBER_FUNCTION_ON_NULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GO_HTTP_NIL_POINTER_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "RUST_SERDE_JSON_MISSING_FIELD": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "THRIFT_BAD_VERSION_IDENTIFIER": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PYTHON_REGEX_CATASTROPHIC_BACKTRACKING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NASHORN_JS_CALL_STACK_EXCEEDED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PHP_DI_INVALID_DEFINITION_API_KEY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DAGGER_MISSING_BINDING_GRAPH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AZURE_AD_CLIENT_SECRET_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SENDGRID_API_KEY_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ISTIO_AUTHORIZATION_POLICY_DENIED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "KEYSTONE_IDENTITY_FORBIDDEN": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OPENAI_API_KEY_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "REDIS_AUTH_URI_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "COGNITO_FAILED_ATTEMPTS_LOCKOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "REDIS_SLIDING_WINDOW_AUTH_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CLOUDFLARE_CORS_HEADER_MISMATCH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ENVOY_CORS_FILTER_REJECTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ENVOY_EGRESS_DENY_METADATA": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PALOALTO_DNS_TUNNEL_DROPPED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ROUTE53_ENI_PPS_THROTTLE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "UNBOUND_UPSTREAM_SERVFAIL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GRPC_UNAVAILABLE_CONNECT_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "RUBY_ECONNREFUSED_443": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OKHTTP_SOCKET_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AIOHTTP_ASYNC_READ_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ENVOY_SSL_DISALLOWED_TLS10": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CERT_MANAGER_ACME_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CLOUDFLARE_524_ORIGIN_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CADDY_502_DIAL_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "OVN_GENEVE_MTU_DROP": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "VRRP_SPLIT_BRAIN_VIP": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ACTIVEMQ_QUEUE_SIZE_ALARM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AZURE_SERVICEBUS_ACTIVE_COUNT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "PULSAR_DLQ_QUOTA_BREACH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NSQ_DEAD_CHANNEL_BUFFER_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "LIBRDKAFKA_LEADER_NOT_AVAILABLE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "ZOOKEEPER_SESSION_EXPIRED_LEADERLESS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AVRO_SCHEMA_REGISTRY_MISSING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "SHORYUKEN_INVALID_UTF8_BYTE_SEQUENCE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NATS_JETSTREAM_STORAGE_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AWS_MSK_DATA_VOLUME_USED_ALERT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "KAFKA_NON_IDEMPOTENT_RETRY_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "REDIS_STREAMS_XACK_LOST_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "diagnostic_clarity": {
+        "CLEAR": {
+          "count": 470,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "EXPLICIT": {
+          "count": 472,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "AMBIGUOUS": {
+          "count": 498,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "noise_profile": {
+        "MEDIUM": {
+          "count": 598,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "LIGHT": {
+          "count": 583,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "NONE": {
+          "count": 259,
+          "pydantic_valid_rate": 0.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      }
+    }
+  },
+  "E2": {
+    "total_records": 1440,
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.4472,
+      "end_to_end_incident_type_macro_f1": 0.4679,
+      "end_to_end_incident_type_micro_f1": 0.4973,
+      "end_to_end_severity_accuracy": 0.1861,
+      "end_to_end_severity_macro_f1": 0.0895,
+      "end_to_end_severity_micro_f1": 0.2069
+    },
+    "secondary_metrics": {
+      "valid_record_count": 1150,
+      "incident_type_accuracy_on_valid_outputs": 0.56,
+      "incident_type_macro_f1_on_valid_outputs": 0.5259,
+      "severity_accuracy_on_valid_outputs": 0.233,
+      "severity_macro_f1_on_valid_outputs": 0.0945
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.0,
+      "json_extraction_success_rate": 0.7986,
+      "pydantic_valid_rate": 0.7986,
+      "missing_field_failure_rate": 0.0,
+      "extra_field_failure_rate": 0.0,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.6208,
+      "affected_service_normalized_exact_match": 0.6208,
+      "affected_service_log_grounded_rate": 0.759
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.9769,
+      "evidence_token_f1_mean": 0.5098
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.4838,
+      "root_cause_semantic_similarity_median": 0.4899,
+      "suggested_action_semantic_similarity_mean": 0.3741,
+      "suggested_action_semantic_similarity_median": 0.376,
+      "root_cause_token_f1_mean": 0.1622,
+      "suggested_action_token_f1_mean": 0.1369
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0014,
+      "unsupported_claim_rate": 0.091,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "confidence_analysis": {
+      "mean_model_reported_confidence": 0.9759,
+      "confidence_correct_incident_type_mean": 0.9782,
+      "confidence_incorrect_incident_type_mean": 0.973,
+      "confidence_correct_severity_mean": 0.9877,
+      "confidence_incorrect_severity_mean": 0.9723,
+      "confidence_by_diagnostic_clarity": {
+        "EXPLICIT": 0.9785,
+        "CLEAR": 0.9741,
+        "AMBIGUOUS": 0.9752
+      }
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 1.7257,
+        "min": 1.198,
+        "max": 4.4208,
+        "p50": 1.6676,
+        "p90": 2.0037,
+        "p95": 2.77
+      },
+      "tokens_per_second_mean": 187.98,
+      "prompt_tokens": {
+        "mean": 620.3444,
+        "min": 424,
+        "max": 872,
+        "p50": 597.0,
+        "p90": 758.0,
+        "p95": 785.0
+      },
+      "generated_tokens": {
+        "mean": 306.2799,
+        "min": 180,
+        "max": 384,
+        "p50": 294.5,
+        "p90": 384.0,
+        "p95": 384.0
+      },
+      "peak_vram_mb": 3029.82,
+      "samples_per_minute": 34.77
+    },
+    "slices": {
+      "incident_type": {
+        "DATABASE": {
+          "count": 240,
+          "pydantic_valid_rate": 0.7583,
+          "end_to_end_incident_type_accuracy": 0.5042,
+          "end_to_end_severity_accuracy": 0.1458
+        },
+        "INFRASTRUCTURE": {
+          "count": 240,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.2917,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "APPLICATION": {
+          "count": 240,
+          "pydantic_valid_rate": 0.7833,
+          "end_to_end_incident_type_accuracy": 0.5667,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "SECURITY": {
+          "count": 240,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.7667,
+          "end_to_end_severity_accuracy": 0.2125
+        },
+        "NETWORK": {
+          "count": 240,
+          "pydantic_valid_rate": 0.8292,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.2292
+        },
+        "MESSAGING": {
+          "count": 240,
+          "pydantic_valid_rate": 0.8208,
+          "end_to_end_incident_type_accuracy": 0.0042,
+          "end_to_end_severity_accuracy": 0.2292
+        }
+      },
+      "incident_family": {
+        "DB_CONNECTION_POOL_STARVATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "DB_DEADLOCK_OR_CONTENTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.975,
+          "end_to_end_incident_type_accuracy": 0.425,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "DB_REPLICATION_LAG": {
+          "count": 40,
+          "pydantic_valid_rate": 0.675,
+          "end_to_end_incident_type_accuracy": 0.325,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "DB_QUERY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.675,
+          "end_to_end_incident_type_accuracy": 0.475,
+          "end_to_end_severity_accuracy": 0.075
+        },
+        "DB_STORAGE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.725,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "DB_INDEX_OR_DATA_CORRUPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.775,
+          "end_to_end_incident_type_accuracy": 0.725,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "INFRA_POD_OOMKILLED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "INFRA_CPU_THROTTLING": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "INFRA_INODE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.775,
+          "end_to_end_incident_type_accuracy": 0.675,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "INFRA_NODE_NOT_READY": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.475,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "INFRA_CRASHLOOP_BACKOFF": {
+          "count": 40,
+          "pydantic_valid_rate": 0.775,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.075
+        },
+        "INFRA_STORAGE_EVICTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "APP_MEMORY_LEAK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "APP_THREAD_POOL_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.45,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "APP_UNHANDLED_EXCEPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.675,
+          "end_to_end_incident_type_accuracy": 0.675,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "APP_SERIALIZATION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.875,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "APP_STACK_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "APP_DEPENDENCY_INJECTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.375,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.925,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "SEC_PERMISSION_OR_RBAC_DENIED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.925,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "SEC_SECRET_LEAKAGE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.975,
+          "end_to_end_incident_type_accuracy": 0.825,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "SEC_BRUTE_FORCE_ATTACK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "SEC_CORS_POLICY_BLOCK": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.725,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "SEC_SSRF_OR_EGRESS_VIOLATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "NET_DNS_RESOLUTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.775,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "NET_CONNECTION_REFUSED": {
+          "count": 40,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "NET_SOCKET_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.825,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "NET_TLS_HANDSHAKE_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.825,
+          "end_to_end_incident_type_accuracy": 0.225,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "NET_INGRESS_GATEWAY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.425,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "NET_PARTITION_OR_BLACKHOLE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "MSG_CONSUMER_LAG_ACCUMULATION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "MSG_DEAD_LETTER_QUEUE_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 0.825,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "MSG_PARTITION_LEADER_OFFLINE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.775,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "MSG_POISON_PILL_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "MSG_QUEUE_STORAGE_BACKPRESSURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "MSG_DUPLICATE_DELIVERY_OR_IDEMPOTENCY": {
+          "count": 40,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.025,
+          "end_to_end_severity_accuracy": 0.375
+        }
+      },
+      "severity": {
+        "P2_HIGH": {
+          "count": 369,
+          "pydantic_valid_rate": 0.8266,
+          "end_to_end_incident_type_accuracy": 0.4553,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "P1_CRITICAL": {
+          "count": 347,
+          "pydantic_valid_rate": 0.7723,
+          "end_to_end_incident_type_accuracy": 0.4092,
+          "end_to_end_severity_accuracy": 0.7723
+        },
+        "P4_LOW": {
+          "count": 339,
+          "pydantic_valid_rate": 0.7876,
+          "end_to_end_incident_type_accuracy": 0.472,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "P3_MEDIUM": {
+          "count": 385,
+          "pydantic_valid_rate": 0.8052,
+          "end_to_end_incident_type_accuracy": 0.4519,
+          "end_to_end_severity_accuracy": 0.0
+        }
+      },
+      "technology": {
+        "PostgreSQL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Ruby on Rails": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CockroachDB": {
+          "count": 40,
+          "pydantic_valid_rate": 0.825,
+          "end_to_end_incident_type_accuracy": 0.325,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Neo4j": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Cassandra": {
+          "count": 40,
+          "pydantic_valid_rate": 0.675,
+          "end_to_end_incident_type_accuracy": 0.375,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "ClickHouse": {
+          "count": 40,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "SQLite": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Elasticsearch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Linux": {
+          "count": 20,
+          "pydantic_valid_rate": 0.5,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Kubernetes": {
+          "count": 60,
+          "pydantic_valid_rate": 0.5833,
+          "end_to_end_incident_type_accuracy": 0.1667,
+          "end_to_end_severity_accuracy": 0.0667
+        },
+        "AWS EC2": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "FreeBSD": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Ceph": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "GKE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "VMware": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Node.js": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go": {
+          "count": 40,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.275,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "Nomad": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "C++": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Celery": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Ruby": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "PHP": {
+          "count": 40,
+          "pydantic_valid_rate": 0.55,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Rust/Serde": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "Apache Thrift": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.95,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Python": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "Java": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Java/Dagger": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Azure Active Directory": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "SendGrid API": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Istio Service Mesh": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "OpenStack Keystone": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "OpenAI SDK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Redis Client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "AWS Cognito": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Redis RateLimiter": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Cloudflare Workers": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Envoy Proxy": {
+          "count": 60,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.5833,
+          "end_to_end_severity_accuracy": 0.1667
+        },
+        "Palo Alto Firewall": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "AWS Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Unbound DNS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "gRPC Client": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Ruby TCPSocket": {
+          "count": 20,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "aiohttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "cert-manager": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Cloudflare Edge": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Caddy Server": {
+          "count": 20,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "OVN Kubernetes": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Keepalived VRRP": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Apache ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Azure Service Bus": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Apache Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Node librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Apache ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Apache Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Ruby Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "NATS JetStream": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "AWS MSK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Apache Kafka Producer": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Redis Streams": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        }
+      },
+      "runtime": {
+        ".NET": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Ruby": {
+          "count": 40,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.425,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Go": {
+          "count": 80,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.575,
+          "end_to_end_severity_accuracy": 0.1625
+        },
+        "Java": {
+          "count": 80,
+          "pydantic_valid_rate": 0.7875,
+          "end_to_end_incident_type_accuracy": 0.5625,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "C++": {
+          "count": 60,
+          "pydantic_valid_rate": 0.7833,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2167
+        },
+        "C": {
+          "count": 40,
+          "pydantic_valid_rate": 0.725,
+          "end_to_end_incident_type_accuracy": 0.575,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "kernel-mm": {
+          "count": 20,
+          "pydantic_valid_rate": 0.5,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "cgroups": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "cloudwatch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "kubelet": {
+          "count": 40,
+          "pydantic_valid_rate": 0.525,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "UFS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CephFS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "k8s-node-controller": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "vSphere-HA": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "V8": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "Go-runtime": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "nomad-client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "valgrind": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "jemalloc": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Python": {
+          "count": 80,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.7375,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Puma": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Laravel": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "net/http": {
+          "count": 20,
+          "pydantic_valid_rate": 0.55,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "regex": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "Nashorn": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "PHP-DI": {
+          "count": 20,
+          "pydantic_valid_rate": 0.3,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "JVM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "C#/.NET": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.45,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Envoy/C++": {
+          "count": 80,
+          "pydantic_valid_rate": 0.925,
+          "end_to_end_incident_type_accuracy": 0.6125,
+          "end_to_end_severity_accuracy": 0.1875
+        },
+        "AWS/Java": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "JavaScript": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "PanOS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "AWS/Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "C/Unbound": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Go/gRPC": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Java/OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Python/asyncio": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Go/k8s": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Edge/Cloudflare": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Go/Caddy": {
+          "count": 20,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "Linux/OVN": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "C/Keepalived": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Java/ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Java/Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Go/NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "C/librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Java/ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Java/Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Ruby/Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Go/NATS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "AWS/CloudWatch": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "Java/Kafka": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Go/Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        }
+      },
+      "signature_profile": {
+        "DOTNET_NPGSQL_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "RAILS_ACTIVERECORD_POOL_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "COCKROACHDB_TXN_RETRY": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "NEO4J_GRAPH_DEADLOCK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CASSANDRA_HINTS_REPL_LAG": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "CLICKHOUSE_MERGETREE_REPL_DELAY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "COCKROACHDB_STATEMENT_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "REDIS_SOCKET_SLOWLOG_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "CLICKHOUSE_DATA_BIN_DISK_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "SQLITE_WAL_DISK_IO_ERROR": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CASSANDRA_SSTABLE_CRC_CORRUPT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "LUCENE_CORRUPT_INDEX_HEADER": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "KERNEL_OOM_KILL_PROCESS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.5,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "K8S_CGROUP_MEMORY_MAX_OOM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "AWS_EC2_T3_CPU_CREDIT_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "K8S_STRICT_CFS_QUOTA_THROTTLING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "FREEBSD_UFS_OUT_OF_INODES": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CEPH_MDS_INODE_QUOTA_BREACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "GKE_NODE_DISK_PRESSURE_NOTREADY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "VMWARE_LOST_NETWORK_HEARTBEAT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "NODEJS_SYNTAX_ERROR_CRASH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "GO_NIL_POINTER_INIT_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "NOMAD_ALLOC_DISK_EXCEEDED_EVICTION": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "K8S_HARD_EVICTION_NODEFS_LOW": {
+          "count": 20,
+          "pydantic_valid_rate": 0.4,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "CPP_MALLOC_UNFREED_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "RUST_ARC_CYCLE_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CELERY_WORKER_CONCURRENCY_REACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "PUMA_THREAD_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.65,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "LARAVEL_MEMBER_FUNCTION_ON_NULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "GO_HTTP_NIL_POINTER_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 0.55,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "RUST_SERDE_JSON_MISSING_FIELD": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "THRIFT_BAD_VERSION_IDENTIFIER": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.95,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "PYTHON_REGEX_CATASTROPHIC_BACKTRACKING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "NASHORN_JS_CALL_STACK_EXCEEDED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "PHP_DI_INVALID_DEFINITION_API_KEY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.3,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "DAGGER_MISSING_BINDING_GRAPH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "AZURE_AD_CLIENT_SECRET_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "SENDGRID_API_KEY_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "ISTIO_AUTHORIZATION_POLICY_DENIED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "KEYSTONE_IDENTITY_FORBIDDEN": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "OPENAI_API_KEY_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "REDIS_AUTH_URI_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "COGNITO_FAILED_ATTEMPTS_LOCKOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "REDIS_SLIDING_WINDOW_AUTH_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "CLOUDFLARE_CORS_HEADER_MISMATCH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "ENVOY_CORS_FILTER_REJECTED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "ENVOY_EGRESS_DENY_METADATA": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.45,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "PALOALTO_DNS_TUNNEL_DROPPED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "ROUTE53_ENI_PPS_THROTTLE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "UNBOUND_UPSTREAM_SERVFAIL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.95,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "GRPC_UNAVAILABLE_CONNECT_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "RUBY_ECONNREFUSED_443": {
+          "count": 20,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "OKHTTP_SOCKET_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "AIOHTTP_ASYNC_READ_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "ENVOY_SSL_DISALLOWED_TLS10": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CERT_MANAGER_ACME_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "CLOUDFLARE_524_ORIGIN_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CADDY_502_DIAL_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 0.6,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "OVN_GENEVE_MTU_DROP": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "VRRP_SPLIT_BRAIN_VIP": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "ACTIVEMQ_QUEUE_SIZE_ALARM": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AZURE_SERVICEBUS_ACTIVE_COUNT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "PULSAR_DLQ_QUOTA_BREACH": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "NSQ_DEAD_CHANNEL_BUFFER_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "LIBRDKAFKA_LEADER_NOT_AVAILABLE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "ZOOKEEPER_SESSION_EXPIRED_LEADERLESS": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AVRO_SCHEMA_REGISTRY_MISSING": {
+          "count": 20,
+          "pydantic_valid_rate": 0.7,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "SHORYUKEN_INVALID_UTF8_BYTE_SEQUENCE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.8,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "NATS_JETSTREAM_STORAGE_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.85,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "AWS_MSK_DATA_VOLUME_USED_ALERT": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "KAFKA_NON_IDEMPOTENT_RETRY_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "REDIS_STREAMS_XACK_LOST_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 0.9,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.35
+        }
+      },
+      "diagnostic_clarity": {
+        "CLEAR": {
+          "count": 470,
+          "pydantic_valid_rate": 0.8064,
+          "end_to_end_incident_type_accuracy": 0.4298,
+          "end_to_end_severity_accuracy": 0.1936
+        },
+        "EXPLICIT": {
+          "count": 472,
+          "pydantic_valid_rate": 0.7881,
+          "end_to_end_incident_type_accuracy": 0.4449,
+          "end_to_end_severity_accuracy": 0.1801
+        },
+        "AMBIGUOUS": {
+          "count": 498,
+          "pydantic_valid_rate": 0.8012,
+          "end_to_end_incident_type_accuracy": 0.4659,
+          "end_to_end_severity_accuracy": 0.1847
+        }
+      },
+      "noise_profile": {
+        "MEDIUM": {
+          "count": 598,
+          "pydantic_valid_rate": 0.7458,
+          "end_to_end_incident_type_accuracy": 0.4047,
+          "end_to_end_severity_accuracy": 0.1639
+        },
+        "LIGHT": {
+          "count": 583,
+          "pydantic_valid_rate": 0.7667,
+          "end_to_end_incident_type_accuracy": 0.4374,
+          "end_to_end_severity_accuracy": 0.1698
+        },
+        "NONE": {
+          "count": 259,
+          "pydantic_valid_rate": 0.9923,
+          "end_to_end_incident_type_accuracy": 0.5676,
+          "end_to_end_severity_accuracy": 0.2741
+        }
+      }
+    }
+  },
+  "E3": {
+    "total_records": 1440,
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.3937,
+      "end_to_end_incident_type_macro_f1": 0.3514,
+      "end_to_end_incident_type_micro_f1": 0.3971,
+      "end_to_end_severity_accuracy": 0.2972,
+      "end_to_end_severity_macro_f1": 0.2319,
+      "end_to_end_severity_micro_f1": 0.2997
+    },
+    "secondary_metrics": {
+      "valid_record_count": 1416,
+      "incident_type_accuracy_on_valid_outputs": 0.4004,
+      "incident_type_macro_f1_on_valid_outputs": 0.3535,
+      "severity_accuracy_on_valid_outputs": 0.3023,
+      "severity_macro_f1_on_valid_outputs": 0.2338
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.9833,
+      "json_extraction_success_rate": 0.9833,
+      "pydantic_valid_rate": 0.9833,
+      "missing_field_failure_rate": 0.0,
+      "extra_field_failure_rate": 0.0,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.9833,
+      "affected_service_normalized_exact_match": 0.9833,
+      "affected_service_log_grounded_rate": 0.9833
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.8711,
+      "evidence_token_f1_mean": 0.7331
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.5193,
+      "root_cause_semantic_similarity_median": 0.5147,
+      "suggested_action_semantic_similarity_mean": 0.4196,
+      "suggested_action_semantic_similarity_median": 0.4184,
+      "root_cause_token_f1_mean": 0.1793,
+      "suggested_action_token_f1_mean": 0.1349
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0014,
+      "unsupported_claim_rate": 0.3083,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "confidence_analysis": {
+      "mean_model_reported_confidence": 0.8121,
+      "confidence_correct_incident_type_mean": 0.8239,
+      "confidence_incorrect_incident_type_mean": 0.8043,
+      "confidence_correct_severity_mean": 0.8196,
+      "confidence_incorrect_severity_mean": 0.8089,
+      "confidence_by_diagnostic_clarity": {
+        "CLEAR": 0.8105,
+        "EXPLICIT": 0.8133,
+        "AMBIGUOUS": 0.8126
+      }
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 8.1276,
+        "min": 2.377,
+        "max": 13.5462,
+        "p50": 10.6709,
+        "p90": 11.688,
+        "p95": 11.9009
+      },
+      "tokens_per_second_mean": 27.71,
+      "prompt_tokens": {
+        "mean": 4007.3444,
+        "min": 3811,
+        "max": 4259,
+        "p50": 3984.0,
+        "p90": 4145.0,
+        "p95": 4172.0
+      },
+      "generated_tokens": {
+        "mean": 165.1729,
+        "min": 112,
+        "max": 384,
+        "p50": 162.0,
+        "p90": 198.0,
+        "p95": 210.0
+      },
+      "peak_vram_mb": 5150.81,
+      "samples_per_minute": 7.38
+    },
+    "slices": {
+      "incident_type": {
+        "DATABASE": {
+          "count": 240,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6042,
+          "end_to_end_severity_accuracy": 0.2833
+        },
+        "INFRASTRUCTURE": {
+          "count": 240,
+          "pydantic_valid_rate": 0.9792,
+          "end_to_end_incident_type_accuracy": 0.5958,
+          "end_to_end_severity_accuracy": 0.2625
+        },
+        "APPLICATION": {
+          "count": 240,
+          "pydantic_valid_rate": 0.9208,
+          "end_to_end_incident_type_accuracy": 0.8417,
+          "end_to_end_severity_accuracy": 0.3083
+        },
+        "SECURITY": {
+          "count": 240,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0708,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "NETWORK": {
+          "count": 240,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1917,
+          "end_to_end_severity_accuracy": 0.3542
+        },
+        "MESSAGING": {
+          "count": 240,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0583,
+          "end_to_end_severity_accuracy": 0.3
+        }
+      },
+      "incident_family": {
+        "DB_CONNECTION_POOL_STARVATION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "DB_DEADLOCK_OR_CONTENTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.225,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "DB_REPLICATION_LAG": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "DB_QUERY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.575,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "DB_STORAGE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "DB_INDEX_OR_DATA_CORRUPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.875,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "INFRA_POD_OOMKILLED": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.575,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "INFRA_CPU_THROTTLING": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.5,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "INFRA_INODE_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "INFRA_NODE_NOT_READY": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.875,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "INFRA_CRASHLOOP_BACKOFF": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "INFRA_STORAGE_EVICTION": {
+          "count": 40,
+          "pydantic_valid_rate": 0.875,
+          "end_to_end_incident_type_accuracy": 0.625,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "APP_MEMORY_LEAK": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "APP_THREAD_POOL_EXHAUSTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.875,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "APP_UNHANDLED_EXCEPTION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "APP_SERIALIZATION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "APP_STACK_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "APP_DEPENDENCY_INJECTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 0.525,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.125,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "SEC_PERMISSION_OR_RBAC_DENIED": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.125,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "SEC_SECRET_LEAKAGE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "SEC_BRUTE_FORCE_ATTACK": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "SEC_CORS_POLICY_BLOCK": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "SEC_SSRF_OR_EGRESS_VIOLATION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.025,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "NET_DNS_RESOLUTION_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "NET_CONNECTION_REFUSED": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "NET_SOCKET_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.175,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "NET_TLS_HANDSHAKE_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "NET_INGRESS_GATEWAY_TIMEOUT": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "NET_PARTITION_OR_BLACKHOLE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "MSG_CONSUMER_LAG_ACCUMULATION": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.075,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "MSG_DEAD_LETTER_QUEUE_OVERFLOW": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.225,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "MSG_PARTITION_LEADER_OFFLINE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "MSG_POISON_PILL_FAILURE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.375
+        },
+        "MSG_QUEUE_STORAGE_BACKPRESSURE": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.225
+        },
+        "MSG_DUPLICATE_DELIVERY_OR_IDEMPOTENCY": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        }
+      },
+      "severity": {
+        "P2_HIGH": {
+          "count": 369,
+          "pydantic_valid_rate": 0.9864,
+          "end_to_end_incident_type_accuracy": 0.439,
+          "end_to_end_severity_accuracy": 0.0217
+        },
+        "P1_CRITICAL": {
+          "count": 347,
+          "pydantic_valid_rate": 0.9769,
+          "end_to_end_incident_type_accuracy": 0.3804,
+          "end_to_end_severity_accuracy": 0.4928
+        },
+        "P4_LOW": {
+          "count": 339,
+          "pydantic_valid_rate": 0.9853,
+          "end_to_end_incident_type_accuracy": 0.413,
+          "end_to_end_severity_accuracy": 0.0177
+        },
+        "P3_MEDIUM": {
+          "count": 385,
+          "pydantic_valid_rate": 0.9844,
+          "end_to_end_incident_type_accuracy": 0.3455,
+          "end_to_end_severity_accuracy": 0.6312
+        }
+      },
+      "technology": {
+        "PostgreSQL": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Ruby on Rails": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "CockroachDB": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.375,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Neo4j": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Cassandra": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.475,
+          "end_to_end_severity_accuracy": 0.175
+        },
+        "ClickHouse": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.7,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "SQLite": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Elasticsearch": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Linux": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.5
+        },
+        "Kubernetes": {
+          "count": 60,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6167,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "AWS EC2": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "FreeBSD": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Ceph": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.95,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "GKE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "VMware": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Node.js": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Go": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.575,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "Nomad": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "C++": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Celery": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Ruby": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "PHP": {
+          "count": 40,
+          "pydantic_valid_rate": 0.525,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.125
+        },
+        "Rust/Serde": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Apache Thrift": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Python": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Java": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Java/Dagger": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Azure Active Directory": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "SendGrid API": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Istio Service Mesh": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "OpenStack Keystone": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "OpenAI SDK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.55
+        },
+        "Redis Client": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "AWS Cognito": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Redis RateLimiter": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "Cloudflare Workers": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Envoy Proxy": {
+          "count": 60,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2833
+        },
+        "Palo Alto Firewall": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "AWS Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Unbound DNS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.55
+        },
+        "gRPC Client": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Ruby TCPSocket": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "aiohttp": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "cert-manager": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Cloudflare Edge": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Caddy Server": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "OVN Kubernetes": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Keepalived VRRP": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Apache ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Azure Service Bus": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Apache Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Node librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Apache ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Apache Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Ruby Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NATS JetStream": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AWS MSK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Apache Kafka Producer": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Redis Streams": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        }
+      },
+      "runtime": {
+        ".NET": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Ruby": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.325
+        },
+        "Go": {
+          "count": 80,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2125,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "Java": {
+          "count": 80,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "C++": {
+          "count": 60,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.2833
+        },
+        "C": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "kernel-mm": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.5
+        },
+        "cgroups": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "cloudwatch": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "kubelet": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.525,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "UFS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CephFS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.95,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "k8s-node-controller": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "vSphere-HA": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "V8": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Go-runtime": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "nomad-client": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "valgrind": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "jemalloc": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Python": {
+          "count": 80,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3375,
+          "end_to_end_severity_accuracy": 0.3875
+        },
+        "Puma": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Laravel": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "net/http": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Rust": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "regex": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Nashorn": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "PHP-DI": {
+          "count": 20,
+          "pydantic_valid_rate": 0.05,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "JVM": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "C#/.NET": {
+          "count": 40,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.275
+        },
+        "Envoy/C++": {
+          "count": 80,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0125,
+          "end_to_end_severity_accuracy": 0.2875
+        },
+        "AWS/Java": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "JavaScript": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "PanOS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "AWS/Route53": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "C/Unbound": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.55
+        },
+        "Go/gRPC": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Java/OkHttp": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Python/asyncio": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Go/k8s": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Edge/Cloudflare": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Go/Caddy": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Linux/OVN": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "C/Keepalived": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Java/ActiveMQ": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Java/Pulsar": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Go/NSQ": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "C/librdkafka": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "Java/ZooKeeper": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "Java/Avro": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "Ruby/Shoryuken": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "Go/NATS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AWS/CloudWatch": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "Java/Kafka": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "Go/Redis": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        }
+      },
+      "signature_profile": {
+        "DOTNET_NPGSQL_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "RAILS_ACTIVERECORD_POOL_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "COCKROACHDB_TXN_RETRY": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NEO4J_GRAPH_DEADLOCK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "CASSANDRA_HINTS_REPL_LAG": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.05
+        },
+        "CLICKHOUSE_MERGETREE_REPL_DELAY": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "COCKROACHDB_STATEMENT_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.55,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "REDIS_SOCKET_SLOWLOG_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "CLICKHOUSE_DATA_BIN_DISK_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "SQLITE_WAL_DISK_IO_ERROR": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "CASSANDRA_SSTABLE_CRC_CORRUPT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "LUCENE_CORRUPT_INDEX_HEADER": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "KERNEL_OOM_KILL_PROCESS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.5
+        },
+        "K8S_CGROUP_MEMORY_MAX_OOM": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.8,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "AWS_EC2_T3_CPU_CREDIT_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "K8S_STRICT_CFS_QUOTA_THROTTLING": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.4,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "FREEBSD_UFS_OUT_OF_INODES": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CEPH_MDS_INODE_QUOTA_BREACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.95,
+          "end_to_end_severity_accuracy": 0.1
+        },
+        "GKE_NODE_DISK_PRESSURE_NOTREADY": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.85,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "VMWARE_LOST_NETWORK_HEARTBEAT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.9,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "NODEJS_SYNTAX_ERROR_CRASH": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "GO_NIL_POINTER_INIT_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.15,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NOMAD_ALLOC_DISK_EXCEEDED_EVICTION": {
+          "count": 20,
+          "pydantic_valid_rate": 0.75,
+          "end_to_end_incident_type_accuracy": 0.6,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "K8S_HARD_EVICTION_NODEFS_LOW": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "CPP_MALLOC_UNFREED_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "RUST_ARC_CYCLE_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.65,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "CELERY_WORKER_CONCURRENCY_REACHED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "PUMA_THREAD_POOL_EXHAUSTED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "LARAVEL_MEMBER_FUNCTION_ON_NULL": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "GO_HTTP_NIL_POINTER_PANIC": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "RUST_SERDE_JSON_MISSING_FIELD": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "THRIFT_BAD_VERSION_IDENTIFIER": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "PYTHON_REGEX_CATASTROPHIC_BACKTRACKING": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NASHORN_JS_CALL_STACK_EXCEEDED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "PHP_DI_INVALID_DEFINITION_API_KEY": {
+          "count": 20,
+          "pydantic_valid_rate": 0.05,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.0
+        },
+        "DAGGER_MISSING_BINDING_GRAPH": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 1.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "AZURE_AD_CLIENT_SECRET_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "SENDGRID_API_KEY_EXPIRED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "ISTIO_AUTHORIZATION_POLICY_DENIED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "KEYSTONE_IDENTITY_FORBIDDEN": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "OPENAI_API_KEY_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.55
+        },
+        "REDIS_AUTH_URI_LEAK": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "COGNITO_FAILED_ATTEMPTS_LOCKOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "REDIS_SLIDING_WINDOW_AUTH_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        },
+        "CLOUDFLARE_CORS_HEADER_MISMATCH": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "ENVOY_CORS_FILTER_REJECTED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "ENVOY_EGRESS_DENY_METADATA": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "PALOALTO_DNS_TUNNEL_DROPPED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "ROUTE53_ENI_PPS_THROTTLE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.75,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "UNBOUND_UPSTREAM_SERVFAIL": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.55
+        },
+        "GRPC_UNAVAILABLE_CONNECT_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "RUBY_ECONNREFUSED_443": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.2,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "OKHTTP_SOCKET_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.25,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "AIOHTTP_ASYNC_READ_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "ENVOY_SSL_DISALLOWED_TLS10": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "CERT_MANAGER_ACME_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "CLOUDFLARE_524_ORIGIN_TIMEOUT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "CADDY_502_DIAL_REFUSED": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.3,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "OVN_GENEVE_MTU_DROP": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "VRRP_SPLIT_BRAIN_VIP": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "ACTIVEMQ_QUEUE_SIZE_ALARM": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.05,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "AZURE_SERVICEBUS_ACTIVE_COUNT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "PULSAR_DLQ_QUOTA_BREACH": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.35,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NSQ_DEAD_CHANNEL_BUFFER_FULL": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "LIBRDKAFKA_LEADER_NOT_AVAILABLE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.4
+        },
+        "ZOOKEEPER_SESSION_EXPIRED_LEADERLESS": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AVRO_SCHEMA_REGISTRY_MISSING": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.45
+        },
+        "SHORYUKEN_INVALID_UTF8_BYTE_SEQUENCE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.3
+        },
+        "NATS_JETSTREAM_STORAGE_LIMIT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.2
+        },
+        "AWS_MSK_DATA_VOLUME_USED_ALERT": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.25
+        },
+        "KAFKA_NON_IDEMPOTENT_RETRY_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.0,
+          "end_to_end_severity_accuracy": 0.35
+        },
+        "REDIS_STREAMS_XACK_LOST_DUPLICATE": {
+          "count": 20,
+          "pydantic_valid_rate": 1.0,
+          "end_to_end_incident_type_accuracy": 0.1,
+          "end_to_end_severity_accuracy": 0.15
+        }
+      },
+      "diagnostic_clarity": {
+        "CLEAR": {
+          "count": 470,
+          "pydantic_valid_rate": 0.9872,
+          "end_to_end_incident_type_accuracy": 0.3894,
+          "end_to_end_severity_accuracy": 0.2723
+        },
+        "EXPLICIT": {
+          "count": 472,
+          "pydantic_valid_rate": 0.9809,
+          "end_to_end_incident_type_accuracy": 0.4237,
+          "end_to_end_severity_accuracy": 0.2903
+        },
+        "AMBIGUOUS": {
+          "count": 498,
+          "pydantic_valid_rate": 0.9819,
+          "end_to_end_incident_type_accuracy": 0.3695,
+          "end_to_end_severity_accuracy": 0.3273
+        }
+      },
+      "noise_profile": {
+        "MEDIUM": {
+          "count": 598,
+          "pydantic_valid_rate": 0.9833,
+          "end_to_end_incident_type_accuracy": 0.3211,
+          "end_to_end_severity_accuracy": 0.2692
+        },
+        "LIGHT": {
+          "count": 583,
+          "pydantic_valid_rate": 0.9811,
+          "end_to_end_incident_type_accuracy": 0.4014,
+          "end_to_end_severity_accuracy": 0.3173
+        },
+        "NONE": {
+          "count": 259,
+          "pydantic_valid_rate": 0.9884,
+          "end_to_end_incident_type_accuracy": 0.5444,
+          "end_to_end_severity_accuracy": 0.3166
+        }
+      }
+    }
+  }
+}

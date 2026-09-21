@@ -1,0 +1,578 @@
+[
+  {
+    "incident_id": "inc_app_memory_leak_app_leak_09_7e63d739ea",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "APPLICATION",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "auth-gateway",
+    "incident_family": "APP_MEMORY_LEAK",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-17T15:16:45.011Z] [INFO] [auth-gateway] Optional metrics telemetry flush to 203.0.113.77:8125 succeeded after 1 transient retry\n[2026-09-17T15:17:34.054Z] [ERROR] [auth-gateway] valgrind: 4440MB in 444 blocks are definitely lost in loss record 1 of 5 on 203.0.113.105\n[2026-09-17T15:17:34.054Z] [WARN] [auth-gateway] malloc() without free() ...",
+    "root_cause_ground_truth": "Progressive memory allocation accumulation causing application memory exhaustion in auth-gateway on 203.0.113.105.",
+    "suggested_action_ground_truth": "Analyze heap allocation profile for auth-gateway, inspect memory leak suspects, and release static collection references.",
+    "predicted_root_cause": "Heap memory capacity exhausted in auth-gateway, triggering OutOfMemoryError.",
+    "predicted_suggested_action": "Capture application heap dump and analyze memory leak suspects, unreleased references, and unbounded caches.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_app_memory_leak_app_leak_09_6232939e3e",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "APPLICATION",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "auth-gateway",
+    "incident_family": "APP_MEMORY_LEAK",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-08T06:34:51.973Z] [DEBUG] [auth-gateway] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-08T06:35:47.498Z] [DEBUG] [auth-gateway] Cache miss on key user_session:f6ef372c; falling back to secondary cache (resolved in 85ms)\n[2026-10-08T06:35:54.522Z] [DEBUG] [auth-gateway] Cache miss on key user_session:54682881; fa...",
+    "root_cause_ground_truth": "Progressive memory allocation accumulation causing application memory exhaustion in auth-gateway on 192.0.2.45.",
+    "suggested_action_ground_truth": "Analyze heap allocation profile for auth-gateway, inspect memory leak suspects, and release static collection references.",
+    "predicted_root_cause": "Heap memory saturation causing persistent memory allocation failures in auth-gateway.",
+    "predicted_suggested_action": "Capture application heap dump and analyze memory leak suspects, unreleased references, and unbounded caches.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_app_memory_leak_app_leak_09_7ff87e89b1",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "APPLICATION",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "notification-dispatcher",
+    "incident_family": "APP_MEMORY_LEAK",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-10-08T17:27:39.780Z] [DEBUG] [notification-dispatcher] Cache miss on key user_session:ec9045a8; falling back to secondary cache (resolved in 45ms)\n[2026-10-08T17:28:39.389Z] [ERROR] [notification-dispatcher] valgrind: 2820MB in 282 blocks are definitely lost in loss record 1 of 5 on 198.51.100.58\n[2026-10-08T17:28:39.389Z] [WARN] [notificatio...",
+    "root_cause_ground_truth": "Progressive memory allocation accumulation causing application memory exhaustion in notification-dispatcher on 198.51.100.58.",
+    "suggested_action_ground_truth": "Analyze heap allocation profile for notification-dispatcher, inspect memory leak suspects, and release static collection references.",
+    "predicted_root_cause": "Heap memory saturation causing persistent memory allocation failures in notification-dispatcher.",
+    "predicted_suggested_action": "Capture application heap dump and analyze memory leak suspects, unreleased references, and unbounded caches.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_app_memory_leak_app_leak_09_0ae1ee1272",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "APPLICATION",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "event-processor",
+    "incident_family": "APP_MEMORY_LEAK",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "NONE",
+    "raw_log_excerpt": "[2026-10-10T21:55:43.271Z] [ERROR] [event-processor] valgrind: 1630MB in 163 blocks are definitely lost in loss record 1 of 5 on 192.0.2.15\n[2026-10-10T21:55:43.271Z] [WARN] [event-processor] malloc() without free() in PacketParser::processPayload(id=699be6b8)\n[2026-10-10T21:55:43.271Z] [CRITICAL] [event-processor] CRITICAL: JVM heap exhaustion cau...",
+    "root_cause_ground_truth": "Progressive memory allocation accumulation causing application memory exhaustion in event-processor on 192.0.2.15.",
+    "suggested_action_ground_truth": "Analyze heap allocation profile for event-processor, inspect memory leak suspects, and release static collection references.",
+    "predicted_root_cause": "Heap memory capacity exhausted in event-processor, triggering OutOfMemoryError.",
+    "predicted_suggested_action": "Capture application heap dump and analyze memory leak suspects, unreleased references, and unbounded caches.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_db_connection_pool_starvation_db_conn_09_bdecae510d",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "DATABASE",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "event-processor",
+    "incident_family": "DB_CONNECTION_POOL_STARVATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-12T13:42:06.703Z] [INFO] [event-processor] Periodic heartbeat acknowledged by cluster orchestrator\n[2026-10-12T13:42:42.657Z] [DEBUG] [event-processor] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-12T13:43:11.358Z] [INFO] [event-processor] Optional metrics telemetry flush to 192.0.2.10:8125 succeeded after 1 tr...",
+    "root_cause_ground_truth": "Client connection acquisition timeout due to fully exhausted connection pool on 192.0.2.200.",
+    "suggested_action_ground_truth": "Verify application database connection release logic, inspect slow queries, and adjust pool ceiling for event-processor.",
+    "predicted_root_cause": "Database connection pool capacity exhausted, blocking new connection checkout requests in event-processor.",
+    "predicted_suggested_action": "Review connection-release behavior, terminate idle unreleased connections, and optimize slow query execution.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_db_connection_pool_starvation_db_conn_09_7674ec2a93",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "DATABASE",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "user-profile",
+    "incident_family": "DB_CONNECTION_POOL_STARVATION",
+    "diagnostic_clarity": "EXPLICIT",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-22T16:12:17.792Z] [DEBUG] [user-profile] Cache miss on key user_session:8d3b4a17; falling back to secondary cache (resolved in 31ms)\n[2026-09-22T16:13:33.350Z] [ERROR] [user-profile] Npgsql.NpgsqlException: The connection pool has reached its maximum size and no connections are currently available\n[2026-09-22T16:13:33.350Z] [WARN] [user-pr...",
+    "root_cause_ground_truth": "Client connection acquisition timeout due to fully exhausted connection pool on 198.51.100.24.",
+    "suggested_action_ground_truth": "Verify application database connection release logic, inspect slow queries, and adjust pool ceiling for user-profile.",
+    "predicted_root_cause": "Database connection pool capacity exhausted, blocking new connection checkout requests in user-profile.",
+    "predicted_suggested_action": "Review connection-release behavior, terminate idle unreleased connections, and optimize slow query execution.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_db_connection_pool_starvation_db_conn_09_740edd3f5d",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "DATABASE",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "catalog-api",
+    "incident_family": "DB_CONNECTION_POOL_STARVATION",
+    "diagnostic_clarity": "EXPLICIT",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-10-10T05:49:18.990Z] [INFO] [catalog-api] TLS session resumption ticket validated for peer 192.0.2.200\n[2026-10-10T05:51:03.214Z] [ERROR] [catalog-api] Npgsql.NpgsqlException: The connection pool has reached its maximum size and no connections are currently available\n[2026-10-10T05:51:03.214Z] [WARN] [catalog-api] Npgsql connection checkout w...",
+    "root_cause_ground_truth": "Client connection acquisition timeout due to fully exhausted connection pool on 203.0.113.19.",
+    "suggested_action_ground_truth": "Verify application database connection release logic, inspect slow queries, and adjust pool ceiling for catalog-api.",
+    "predicted_root_cause": "Database connection pool capacity exhausted, blocking new connection checkout requests in catalog-api.",
+    "predicted_suggested_action": "Review connection-release behavior, terminate idle unreleased connections, and optimize slow query execution.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_db_connection_pool_starvation_db_conn_09_14b9e57d6a",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "DATABASE",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "event-processor",
+    "incident_family": "DB_CONNECTION_POOL_STARVATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-22T03:55:57.763Z] [DEBUG] [event-processor] GC completed in 28ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-22T03:57:17.780Z] [ERROR] [event-processor] Npgsql.NpgsqlException: The connection pool has reached its maximum size and no connections are currently available\n[2026-09-22T03:57:17.780Z] [WARN] [event-processor] Npgsql connection ...",
+    "root_cause_ground_truth": "Client connection acquisition timeout due to fully exhausted connection pool on 203.0.113.105.",
+    "suggested_action_ground_truth": "Verify application database connection release logic, inspect slow queries, and adjust pool ceiling for event-processor.",
+    "predicted_root_cause": "Database connection pool capacity exhausted, blocking new connection checkout requests in event-processor.",
+    "predicted_suggested_action": "Review connection-release behavior, terminate idle unreleased connections, and optimize slow query execution.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_infra_pod_oomkilled_inf_oom_09_5eda84c814",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "INFRASTRUCTURE",
+    "severity_ground_truth": "P3_MEDIUM",
+    "affected_service_ground_truth": "catalog-api",
+    "incident_family": "INFRA_POD_OOMKILLED",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-06T19:12:40.081Z] [DEBUG] [catalog-api] GC completed in 61ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-10-06T19:14:08.236Z] [DEBUG] [catalog-api] Cache miss on key user_session:5f828f98; falling back to secondary cache (resolved in 61ms)\n[2026-10-06T19:14:15.956Z] [ALERT] [catalog-api] kernel: [2500.129] Out of memory: Kill process 50 (wo...",
+    "root_cause_ground_truth": "Memory threshold exceeded causing container cgroup eviction and SIGKILL on host 203.0.113.19.",
+    "suggested_action_ground_truth": "Inspect memory limit configuration in deployment specification for catalog-api.",
+    "predicted_root_cause": "Process resident memory exceeded container memory limits on host 203.0.113.19, triggering eviction.",
+    "predicted_suggested_action": "Review memory limits against peak workload demand and configure Horizontal Pod Autoscaler.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_infra_pod_oomkilled_inf_oom_09_43481dc29d",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "INFRASTRUCTURE",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "billing-aggregator",
+    "incident_family": "INFRA_POD_OOMKILLED",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-09-15T15:27:09.520Z] [INFO] [billing-aggregator] Successfully refreshed public JWKS key rotation cache from auth provider\n[2026-09-15T15:27:37.705Z] [INFO] [billing-aggregator] TLS session resumption ticket validated for peer 192.0.2.10\n[2026-09-15T15:28:33.450Z] [INFO] [billing-aggregator] Successfully refreshed public JWKS key rotation cach...",
+    "root_cause_ground_truth": "Memory threshold exceeded causing container cgroup eviction and SIGKILL on host 192.0.2.120.",
+    "suggested_action_ground_truth": "Inspect memory limit configuration in deployment specification for billing-aggregator.",
+    "predicted_root_cause": "Process resident memory exceeded container memory limits on host 192.0.2.120, triggering OutOfMemoryError.",
+    "predicted_suggested_action": "Review stream buffer closures, evaluate event listener retention, and optimize object lifecycle in billing-aggregator.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_infra_pod_oomkilled_inf_oom_09_7f2f2471cb",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "INFRASTRUCTURE",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "checkout-service",
+    "incident_family": "INFRA_POD_OOMKILLED",
+    "diagnostic_clarity": "EXPLICIT",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-05T15:18:16.535Z] [INFO] [checkout-service] Normal HTTP GET /healthz returned 200 in 62ms\n[2026-10-05T15:18:25.625Z] [INFO] [checkout-service] Successfully refreshed public JWKS key rotation cache from auth provider\n[2026-10-05T15:19:38.079Z] [DEBUG] [checkout-service] Cache miss on key user_session:ee64ac54; falling back to secondary cach...",
+    "root_cause_ground_truth": "Memory threshold exceeded causing container cgroup eviction and SIGKILL on host 192.0.2.10.",
+    "suggested_action_ground_truth": "Inspect memory limit configuration in deployment specification for checkout-service.",
+    "predicted_root_cause": "Process resident memory exceeded container memory limits on host 192.0.2.10, triggering eviction.",
+    "predicted_suggested_action": "Review memory limits against peak workload demand and configure Horizontal Pod Autoscaler.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_infra_pod_oomkilled_inf_oom_09_9ddbc13561",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "INFRASTRUCTURE",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "notification-dispatcher",
+    "incident_family": "INFRA_POD_OOMKILLED",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-28T00:29:16.491Z] [INFO] [notification-dispatcher] Successfully refreshed public JWKS key rotation cache from auth provider\n[2026-09-28T00:30:36.962Z] [ALERT] [notification-dispatcher] kernel: [42900.129] Out of memory: Kill process 858 (worker) score 950 or sacrifice child\n[2026-09-28T00:30:36.962Z] [CRITICAL] [notification-dispatcher] ke...",
+    "root_cause_ground_truth": "Memory threshold exceeded causing container cgroup eviction and SIGKILL on host 203.0.113.105.",
+    "suggested_action_ground_truth": "Inspect memory limit configuration in deployment specification for notification-dispatcher.",
+    "predicted_root_cause": "Process resident memory exceeded available physical memory on host 203.0.113.105, triggering OutOfMemoryError.",
+    "predicted_suggested_action": "Review heap memory allocation against peak workload demand and configure max heap size in notification-dispatcher.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_09_17fa3c52ac",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "MESSAGING",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "event-processor",
+    "incident_family": "MSG_CONSUMER_LAG_ACCUMULATION",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-04T04:10:28.805Z] [INFO] [event-processor] Normal HTTP GET /healthz returned 200 in 40ms\n[2026-10-04T04:10:32.898Z] [INFO] [event-processor] Periodic heartbeat acknowledged by cluster orchestrator\n[2026-10-04T04:10:47.104Z] [ERROR] [event-processor] org.apache.activemq.broker.region.Queue: Queue 'OrderQueue' queueSize=1698000 exceeds alarm...",
+    "root_cause_ground_truth": "Consumer group lag accumulation exceeding operational threshold across topic partitions on 203.0.113.77.",
+    "suggested_action_ground_truth": "Autoscale consumer group instances and evaluate partition assignment distribution for event-processor.",
+    "predicted_root_cause": "Message queue subscriber processing capacity overwhelmed by incoming event arrival rate in event-processor.",
+    "predicted_suggested_action": "Increase max.poll.interval.ms, inspect slow query execution on event-processor worker threads, and optimize downstream batch insert loads.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_09_ac4c50206b",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "MESSAGING",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "orders-service",
+    "incident_family": "MSG_CONSUMER_LAG_ACCUMULATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-10-08T01:46:46.489Z] [INFO] [orders-service] Connection to downstream recommendation-engine established (pool_size=10, idle=8)\n[2026-10-08T01:48:42.633Z] [ERROR] [orders-service] org.apache.activemq.broker.region.Queue: Queue 'OrderQueue' queueSize=1122000 exceeds alarm limit on 192.0.2.200:61616\n[2026-10-08T01:48:42.633Z] [WARN] [orders-serv...",
+    "root_cause_ground_truth": "Consumer group lag accumulation exceeding operational threshold across topic partitions on 192.0.2.200.",
+    "suggested_action_ground_truth": "Autoscale consumer group instances and evaluate partition assignment distribution for orders-service.",
+    "predicted_root_cause": "Message consumer group processing capacity overwhelmed by incoming event arrival rate in orders-service.",
+    "predicted_suggested_action": "Increase max.poll.interval.ms, inspect batch size and buffer limits on target topic.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_09_eb92ff7e3e",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "MESSAGING",
+    "severity_ground_truth": "P3_MEDIUM",
+    "affected_service_ground_truth": "search-indexer",
+    "incident_family": "MSG_CONSUMER_LAG_ACCUMULATION",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-26T09:38:54.098Z] [DEBUG] [search-indexer] GC completed in 78ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-26T09:40:31.593Z] [ERROR] [search-indexer] org.apache.activemq.broker.region.Queue: Queue 'OrderQueue' queueSize=1854000 exceeds alarm limit on 198.51.100.58:61616\n[2026-09-26T09:40:31.593Z] [WARN] [search-indexer] Consumer count 2...",
+    "root_cause_ground_truth": "Consumer group lag accumulation exceeding operational threshold across topic partitions on 198.51.100.58.",
+    "suggested_action_ground_truth": "Autoscale consumer group instances and evaluate partition assignment distribution for search-indexer.",
+    "predicted_root_cause": "Consumer offset commit failure or rebalance triggering at-least-once message redelivery on 198.51.100.58.",
+    "predicted_suggested_action": "Increase max.poll.interval.ms, inspect event listener execution duration, and tune logback filtering threshold in search-indexer.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_09_be50e454c7",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "MESSAGING",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "event-processor",
+    "incident_family": "MSG_CONSUMER_LAG_ACCUMULATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-09-18T09:31:32.554Z] [DEBUG] [event-processor] GC completed in 2ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-18T09:32:34.374Z] [INFO] [event-processor] Connection to downstream recommendation-engine established (pool_size=10, idle=8)\n[2026-09-18T09:33:21.731Z] [INFO] [event-processor] Connection to downstream recommendation-engine establi...",
+    "root_cause_ground_truth": "Consumer group lag accumulation exceeding operational threshold across topic partitions on 198.51.100.58.",
+    "suggested_action_ground_truth": "Autoscale consumer group instances and evaluate partition assignment distribution for event-processor.",
+    "predicted_root_cause": "Message queue subscriber processing capacity overwhelmed by incoming event arrival rate in event-processor.",
+    "predicted_suggested_action": "Increase max.poll.interval.ms, inspect batch size and buffer limits on target broker.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_net_dns_resolution_failure_net_dns_09_9287b69368",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "NETWORK",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "shipping-router",
+    "incident_family": "NET_DNS_RESOLUTION_FAILURE",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-09-15T09:59:40.460Z] [INFO] [shipping-router] Connection to downstream recommendation-engine established (pool_size=10, idle=8)\n[2026-09-15T10:01:06.319Z] [DEBUG] [shipping-router] GC completed in 50ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-15T10:01:37.431Z] [ERROR] [shipping-router] amazon-route53: Packet dropped: exceeded 1024 packet...",
+    "root_cause_ground_truth": "DNS resolver timeout or upstream failure preventing target hostname resolution on 203.0.113.19.",
+    "suggested_action_ground_truth": "Inspect local DNS resolver health, check upstream nameservers, and verify domain record existence for shipping-router.",
+    "predicted_root_cause": "DNS resolution failure: resolver unable to resolve downstream dependency hostname in shipping-router.",
+    "predicted_suggested_action": "Verify downstream Kubernetes Service name, upstream nameserver connectivity, and kube-dns endpoints.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_net_dns_resolution_failure_net_dns_09_d9a6a98ca8",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "NETWORK",
+    "severity_ground_truth": "P3_MEDIUM",
+    "affected_service_ground_truth": "user-profile",
+    "incident_family": "NET_DNS_RESOLUTION_FAILURE",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-10-01T23:58:55.925Z] [WARN] [user-profile] Configuration notice: Property 'client.read-timeout-ms' is deprecated and will be removed in v3.0\n[2026-10-01T23:59:05.023Z] [ERROR] [user-profile] amazon-route53: Packet dropped: exceeded 1024 packets-per-second per ENI limit to VPC DNS server 10.0.0.2:53\n[2026-10-01T23:59:05.023Z] [ERROR] [user-pro...",
+    "root_cause_ground_truth": "DNS resolver timeout or upstream failure preventing target hostname resolution on 192.0.2.10.",
+    "suggested_action_ground_truth": "Inspect local DNS resolver health, check upstream nameservers, and verify domain record existence for user-profile.",
+    "predicted_root_cause": "DNS resolution failure or failure to reach downstream endpoint response latency on user-profile.",
+    "predicted_suggested_action": "Investigate downstream node CPU and thread pool saturation on user-profile host.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_net_dns_resolution_failure_net_dns_09_51ed072e7d",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "NETWORK",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "catalog-api",
+    "incident_family": "NET_DNS_RESOLUTION_FAILURE",
+    "diagnostic_clarity": "EXPLICIT",
+    "noise_profile": "NONE",
+    "raw_log_excerpt": "[2026-10-02T14:09:54.934Z] [ERROR] [catalog-api] amazon-route53: Packet dropped: exceeded 1024 packets-per-second per ENI limit to VPC DNS server 10.0.0.2:53\n[2026-10-02T14:09:54.934Z] [ERROR] [catalog-api] DNS query timeout: lookup failed for s3.us-east-1.amazonaws.com on 192.0.2.15\n[2026-10-02T14:09:54.934Z] [CRITICAL] [catalog-api] HIGH ALERT: D...",
+    "root_cause_ground_truth": "DNS resolver timeout or upstream failure preventing target hostname resolution on 192.0.2.15.",
+    "suggested_action_ground_truth": "Inspect local DNS resolver health, check upstream nameservers, and verify domain record existence for catalog-api.",
+    "predicted_root_cause": "",
+    "predicted_suggested_action": "",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_net_dns_resolution_failure_net_dns_09_1274559d43",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "NETWORK",
+    "severity_ground_truth": "P3_MEDIUM",
+    "affected_service_ground_truth": "notification-dispatcher",
+    "incident_family": "NET_DNS_RESOLUTION_FAILURE",
+    "diagnostic_clarity": "AMBIGUOUS",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-10-04T04:04:46.474Z] [DEBUG] [notification-dispatcher] Cache miss on key user_session:06501492; falling back to secondary cache (resolved in 76ms)\n[2026-10-04T04:05:17.293Z] [DEBUG] [notification-dispatcher] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-04T04:06:09.679Z] [INFO] [notification-dispatcher] Optional me...",
+    "root_cause_ground_truth": "DNS resolver timeout or upstream failure preventing target hostname resolution on 198.51.100.24.",
+    "suggested_action_ground_truth": "Inspect local DNS resolver health, check upstream nameservers, and verify domain record existence for notification-dispatcher.",
+    "predicted_root_cause": "DNS resolution failure: resolver unable to resolve downstream dependency hostname in notification-dispatcher.",
+    "predicted_suggested_action": "Verify downstream Kubernetes Service name, upstream nameserver connectivity, and kube-dns endpoints.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_09_12a89987b3",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "SECURITY",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "catalog-api",
+    "incident_family": "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-10-06T12:07:46.849Z] [DEBUG] [catalog-api] In-memory queue drain completed with 0 remaining tasks in buffer\n[2026-10-06T12:08:12.939Z] [ERROR] [catalog-api] Azure.Identity.AuthenticationFailedException: AADSTS7000222: The provided client secret keys for app 8cc08e4d are expired.\n[2026-10-06T12:08:12.939Z] [ERROR] [catalog-api] Azure AD token ...",
+    "root_cause_ground_truth": "Client credentials or security token lifetime elapsed, causing rejected requests on 192.0.2.10.",
+    "suggested_action_ground_truth": "Issue fresh credentials from authorization server and confirm automated refresh daemon health for catalog-api.",
+    "predicted_root_cause": "Expired JWT authentication token rejected by downstream authorization server on 192.0.2.10.",
+    "predicted_suggested_action": "Trigger OAuth token refresh flow, verify automated rotation daemons, and inspect credential cache (localStorage) for catalog-api.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_09_c4bc061366",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "SECURITY",
+    "severity_ground_truth": "P1_CRITICAL",
+    "affected_service_ground_truth": "billing-aggregator",
+    "incident_family": "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "MEDIUM",
+    "raw_log_excerpt": "[2026-09-30T08:59:22.439Z] [DEBUG] [billing-aggregator] GC completed in 27ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-30T08:59:37.611Z] [INFO] [billing-aggregator] Connection to downstream recommendation-engine established (pool_size=10, idle=8)\n[2026-09-30T08:59:48.615Z] [ERROR] [billing-aggregator] Azure.Identity.AuthenticationFailedExceptio...",
+    "root_cause_ground_truth": "Client credentials or security token lifetime elapsed, causing rejected requests on 192.0.2.45.",
+    "suggested_action_ground_truth": "Issue fresh credentials from authorization server and confirm automated refresh daemon health for billing-aggregator.",
+    "predicted_root_cause": "Expired JWT authentication token rejected by downstream authorization server on 192.0.2.45.",
+    "predicted_suggested_action": "Trigger OAuth token refresh flow, verify automated rotation daemons, and inspect credential cache for billing-aggregator.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_09_824c583e8a",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "SECURITY",
+    "severity_ground_truth": "P2_HIGH",
+    "affected_service_ground_truth": "checkout-service",
+    "incident_family": "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION",
+    "diagnostic_clarity": "EXPLICIT",
+    "noise_profile": "NONE",
+    "raw_log_excerpt": "[2026-09-21T08:45:25.815Z] [ERROR] [checkout-service] Azure.Identity.AuthenticationFailedException: AADSTS7000222: The provided client secret keys for app 577ce9e4 are expired.\n[2026-09-21T08:45:25.815Z] [ERROR] [checkout-service] Azure AD token acquisition failed on 192.0.2.45\n[2026-09-21T08:45:25.815Z] [CRITICAL] [checkout-service] HIGH ALERT: JW...",
+    "root_cause_ground_truth": "Client credentials or security token lifetime elapsed, causing rejected requests on 192.0.2.45.",
+    "suggested_action_ground_truth": "Issue fresh credentials from authorization server and confirm automated refresh daemon health for checkout-service.",
+    "predicted_root_cause": "Expired JWT authentication token rejected by downstream authorization server on 192.0.2.45.",
+    "predicted_suggested_action": "Trigger OAuth token refresh flow, verify automated rotation daemons, and inspect credential cache for checkout-service.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  },
+  {
+    "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_09_459b8d4272",
+    "experiment_id": "E4",
+    "incident_type_ground_truth": "SECURITY",
+    "severity_ground_truth": "P4_LOW",
+    "affected_service_ground_truth": "search-indexer",
+    "incident_family": "SEC_CREDENTIAL_OR_TOKEN_EXPIRATION",
+    "diagnostic_clarity": "CLEAR",
+    "noise_profile": "LIGHT",
+    "raw_log_excerpt": "[2026-09-28T22:40:37.905Z] [DEBUG] [search-indexer] GC completed in 8ms. Eden: 12MB->0MB, Survivor: 2MB->2MB\n[2026-09-28T22:42:18.595Z] [ERROR] [search-indexer] Azure.Identity.AuthenticationFailedException: AADSTS7000222: The provided client secret keys for app 6a0bee16 are expired.\n[2026-09-28T22:42:18.595Z] [ERROR] [search-indexer] Azure AD token...",
+    "root_cause_ground_truth": "Client credentials or security token lifetime elapsed, causing rejected requests on 198.51.100.140.",
+    "suggested_action_ground_truth": "Issue fresh credentials from authorization server and confirm automated refresh daemon health for search-indexer.",
+    "predicted_root_cause": "Expired JWT authentication token rejected by downstream authorization server on 198.51.100.140.",
+    "predicted_suggested_action": "Trigger OAuth token refresh flow, verify automated rotation daemons, and inspect credential cache for search-indexer.",
+    "human_evaluation_scores": {
+      "root_cause_correctness_0_to_2": null,
+      "action_actionability_and_safety_0_to_2": null,
+      "reviewer_notes": ""
+    },
+    "scoring_rubric": {
+      "root_cause": "2 = correct & evidence-grounded; 1 = partially correct/vague; 0 = hallucinated/wrong",
+      "suggested_action": "2 = relevant, safe, actionable; 1 = partially useful/generic; 0 = irrelevant, unsafe, technically wrong"
+    }
+  }
+]

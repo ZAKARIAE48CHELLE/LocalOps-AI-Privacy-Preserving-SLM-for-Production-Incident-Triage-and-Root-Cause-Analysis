@@ -1,0 +1,25 @@
+# LocalOps AI - Synthetic Incident Dataset Configuration
+# Phase 3: Dataset Engineering
+
+generator_version: "1.0.0"
+seed: 42
+
+# Generation mode parameters
+examples_per_template: 20
+smoke_examples_per_template: 2
+
+# Template assignment count per IncidentFamily (must sum to 10)
+split:
+  train_templates: 6
+  validation_templates: 2
+  test_templates: 2
+
+# Noise profile proportions
+noise:
+  none: 0.20
+  light: 0.40
+  medium: 0.40
+
+# Output destinations
+output_dir: "data/generated"
+reports_dir: "reports"

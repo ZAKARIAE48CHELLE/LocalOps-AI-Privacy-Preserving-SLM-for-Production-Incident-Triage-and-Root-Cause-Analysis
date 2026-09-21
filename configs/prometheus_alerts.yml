@@ -1,0 +1,68 @@
+# LocalOps AI — Prometheus Alerting Rules
+# Operational incident thresholds for production monitoring
+
+groups:
+  - name: localops-ai-alerts
+    rules:
+      - alert: LocalOpsApiDown
+        expr: up{job="localops-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "LocalOps AI process is unreachable."
+          description: "Container or service process has terminated or network connectivity is severed."
+
+      - alert: LocalOpsHighErrorRate
+        expr: rate(localops_request_errors_total[5m]) / rate(localops_requests_total[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API error rate (>5%)."
+          description: "Over 5% of client requests are failing with 4xx/5xx status codes."
+
+      - alert: LocalOpsHighInferenceLatency
+        expr: histogram_quantile(0.95, rate(localops_inference_seconds_bucket[5m])) > 15.0
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "p95 inference latency exceeds 15 seconds."
+          description: "Autoregressive generation latency is elevated on the local GPU."
+
+      - alert: LocalOpsSchemaInvalidSpike
+        expr: rate(localops_schema_invalid_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High rate of model output schema invalidations."
+          description: "Model output failed Pydantic validation; check temperature, quantization, or adapter state."
+
+      - alert: LocalOpsGpuVramCritical
+        expr: localops_gpu_memory_used_bytes / localops_gpu_memory_total_bytes > 0.90
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "GPU VRAM utilization exceeds 90%."
+          description: "VRAM pressure is critical. Risk of CUDA Out-Of-Memory exceptions."
+
+      - alert: LocalOpsGpuThermalThrottle
+        expr: localops_gpu_temperature_celsius > 82.0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "GPU temperature exceeds 82°C."
+          description: "Laptop GPU thermal threshold exceeded; thermal throttling may reduce inference throughput."
+
+      - alert: LocalOpsRagHighNoHitRate
+        expr: rate(localops_rag_no_hit_total[10m]) / rate(localops_rag_requests_total[10m]) > 0.30
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "RAG no-hit rate exceeds 30%."
+          description: "More than 30% of incident queries are not matching any operational runbook; consider authoring new runbooks."

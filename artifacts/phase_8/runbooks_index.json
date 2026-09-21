@@ -1,0 +1,846 @@
+[
+  {
+    "chunk_id": "application_crashloop_backoff_symptoms",
+    "document": "application_crashloop_backoff.md",
+    "title": "Application CrashLoopBackOff",
+    "section": "Symptoms",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "payment-processor",
+      "auth-service",
+      "order-api",
+      "user-management"
+    ],
+    "keywords": [
+      "CrashLoopBackOff",
+      "back-off restarting failed container",
+      "exit code 1",
+      "UnhandledException",
+      "panic",
+      "runtime error"
+    ],
+    "content": "- Pod status shows `CrashLoopBackOff` in `kubectl get pods`.\n- Container restarts repeatedly immediately following startup probe or entrypoint execution.\n- Readiness checks consistently fail, preventing the pod from receiving traffic."
+  },
+  {
+    "chunk_id": "application_crashloop_backoff_root_cause_diagnosis",
+    "document": "application_crashloop_backoff.md",
+    "title": "Application CrashLoopBackOff",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "payment-processor",
+      "auth-service",
+      "order-api",
+      "user-management"
+    ],
+    "keywords": [
+      "CrashLoopBackOff",
+      "back-off restarting failed container",
+      "exit code 1",
+      "UnhandledException",
+      "panic",
+      "runtime error"
+    ],
+    "content": "1. Fetch previous container logs before termination:\n   `kubectl logs <pod_name> --previous`\n2. Check recent configuration map or secret changes that might contain syntax errors or missing environment variables.\n3. Validate downstream dependency reachability (e.g. database host unreachable during startup migration).\n4. Inspect entrypoint command and permission issues on mounted volumes."
+  },
+  {
+    "chunk_id": "application_crashloop_backoff_immediate_mitigation",
+    "document": "application_crashloop_backoff.md",
+    "title": "Application CrashLoopBackOff",
+    "section": "Immediate Mitigation",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "payment-processor",
+      "auth-service",
+      "order-api",
+      "user-management"
+    ],
+    "keywords": [
+      "CrashLoopBackOff",
+      "back-off restarting failed container",
+      "exit code 1",
+      "UnhandledException",
+      "panic",
+      "runtime error"
+    ],
+    "content": "1. If caused by a bad recent deployment, rollback to the previous stable release:\n   `kubectl rollout undo deployment/<deployment_name>`\n2. If due to a missing environment variable or secret key, update the Secret/ConfigMap and trigger a rolling restart.\n3. If database migrations failed halfway, run the manual schema reconciliation script."
+  },
+  {
+    "chunk_id": "application_crashloop_backoff_long-term_remediation",
+    "document": "application_crashloop_backoff.md",
+    "title": "Application CrashLoopBackOff",
+    "section": "Long-Term Remediation",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "payment-processor",
+      "auth-service",
+      "order-api",
+      "user-management"
+    ],
+    "keywords": [
+      "CrashLoopBackOff",
+      "back-off restarting failed container",
+      "exit code 1",
+      "UnhandledException",
+      "panic",
+      "runtime error"
+    ],
+    "content": "- Implement graceful degradation during startup when non-critical dependencies are temporarily unavailable.\n- Add pre-deployment integration tests validating configuration schemas and secrets.\n- Configure startup probes with appropriate initial delays to prevent premature kill signals."
+  },
+  {
+    "chunk_id": "application_jvm_thread_deadlock_symptoms",
+    "document": "application_jvm_thread_deadlock.md",
+    "title": "Application Thread Deadlock and CPU Starvation",
+    "section": "Symptoms",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "billing-engine",
+      "inventory-service",
+      "workflow-orchestrator"
+    ],
+    "keywords": [
+      "deadlock",
+      "found 1 deadlock",
+      "Thread-Deadlock",
+      "lock acquisition timeout",
+      "synchronized block starvation",
+      "CPU 100%"
+    ],
+    "content": "- JVM or process threads lock up; throughput plummets to zero while CPU or thread count remains elevated.\n- Logs display `Found 1 deadlock` in thread dump or `LockAcquisitionException`.\n- HTTP endpoints stop responding with `504 Gateway Timeout` or socket read timeouts."
+  },
+  {
+    "chunk_id": "application_jvm_thread_deadlock_root_cause_diagnosis",
+    "document": "application_jvm_thread_deadlock.md",
+    "title": "Application Thread Deadlock and CPU Starvation",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "billing-engine",
+      "inventory-service",
+      "workflow-orchestrator"
+    ],
+    "keywords": [
+      "deadlock",
+      "found 1 deadlock",
+      "Thread-Deadlock",
+      "lock acquisition timeout",
+      "synchronized block starvation",
+      "CPU 100%"
+    ],
+    "content": "1. Generate a thread dump on the running JVM:\n   `jcmd <pid> Thread.print > /tmp/threaddump.txt` or `kill -3 <pid>`\n2. Inspect the deadlock section at the bottom of the thread dump for cyclic lock dependencies (`waiting to lock <0x...> which is held by thread X`).\n3. Examine nested synchronization locks or inverse locking orders across concurrently executed codepaths."
+  },
+  {
+    "chunk_id": "application_jvm_thread_deadlock_immediate_mitigation",
+    "document": "application_jvm_thread_deadlock.md",
+    "title": "Application Thread Deadlock and CPU Starvation",
+    "section": "Immediate Mitigation",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "billing-engine",
+      "inventory-service",
+      "workflow-orchestrator"
+    ],
+    "keywords": [
+      "deadlock",
+      "found 1 deadlock",
+      "Thread-Deadlock",
+      "lock acquisition timeout",
+      "synchronized block starvation",
+      "CPU 100%"
+    ],
+    "content": "1. Restart the stalled container or pod instance to clear the deadlocked threads:\n   `kubectl delete pod <pod_name>`\n2. Drain traffic from the deadlocked node to prevent cascading client timeout buildup.\n3. Lower thread pool max limit temporarily if thread explosion is exacerbating contention."
+  },
+  {
+    "chunk_id": "application_jvm_thread_deadlock_long-term_remediation",
+    "document": "application_jvm_thread_deadlock.md",
+    "title": "Application Thread Deadlock and CPU Starvation",
+    "section": "Long-Term Remediation",
+    "incident_type": "APPLICATION",
+    "affected_services": [
+      "billing-engine",
+      "inventory-service",
+      "workflow-orchestrator"
+    ],
+    "keywords": [
+      "deadlock",
+      "found 1 deadlock",
+      "Thread-Deadlock",
+      "lock acquisition timeout",
+      "synchronized block starvation",
+      "CPU 100%"
+    ],
+    "content": "- Eliminate nested synchronous locks across shared mutable state.\n- Enforce strict hierarchical ordering of acquired locks across all calling services.\n- Replace coarse-grained synchronization with lock-free concurrency utilities (`java.util.concurrent`, atomic references, read-write locks with bounded timeouts)."
+  },
+  {
+    "chunk_id": "kafka_consumer_lag_symptoms",
+    "document": "kafka_consumer_lag.md",
+    "title": "Apache Kafka Consumer Group Lag and Partition Starvation",
+    "section": "Symptoms",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "stream-processor",
+      "telemetry-ingest",
+      "notification-service",
+      "event-hub"
+    ],
+    "keywords": [
+      "CommitFailedException",
+      "consumer poll timeout",
+      "max.poll.interval.ms exceeded",
+      "consumer group rebalance",
+      "consumer lag spike"
+    ],
+    "content": "- Consumer lag metrics (`kafka_consumergroup_lag`) climb continuously on primary topics.\n- Consumer instances log `org.apache.kafka.clients.consumer.CommitFailedException: Offset commit cannot be completed since the group has already rebalanced`.\n- Message processing latency increases; real-time event updates stall downstream."
+  },
+  {
+    "chunk_id": "kafka_consumer_lag_root_cause_diagnosis",
+    "document": "kafka_consumer_lag.md",
+    "title": "Apache Kafka Consumer Group Lag and Partition Starvation",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "stream-processor",
+      "telemetry-ingest",
+      "notification-service",
+      "event-hub"
+    ],
+    "keywords": [
+      "CommitFailedException",
+      "consumer poll timeout",
+      "max.poll.interval.ms exceeded",
+      "consumer group rebalance",
+      "consumer lag spike"
+    ],
+    "content": "1. Check consumer group offset and lag per partition:\n   `kafka-consumer-groups.sh --bootstrap-server <broker>:9092 --describe --group <group_id>`\n2. Inspect application logs for slow synchronous calls inside the message processing loop causing `max.poll.interval.ms` expiration.\n3. Check for unbalanced partition assignments where one slow consumer starves others.\n4. Verify broker I/O saturation or disk latency using broker metrics."
+  },
+  {
+    "chunk_id": "kafka_consumer_lag_immediate_mitigation",
+    "document": "kafka_consumer_lag.md",
+    "title": "Apache Kafka Consumer Group Lag and Partition Starvation",
+    "section": "Immediate Mitigation",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "stream-processor",
+      "telemetry-ingest",
+      "notification-service",
+      "event-hub"
+    ],
+    "keywords": [
+      "CommitFailedException",
+      "consumer poll timeout",
+      "max.poll.interval.ms exceeded",
+      "consumer group rebalance",
+      "consumer lag spike"
+    ],
+    "content": "1. Increase `max.poll.interval.ms` or decrease `max.poll.records` to ensure poll loops complete before rebalance timeouts.\n2. Scale up consumer replica count to match partition count:\n   `kubectl scale deployment/<consumer_app> --replicas=<num_partitions>`\n3. If an individual poison-pill message is blocking the group, seek the offset forward past the problematic message to restore throughput."
+  },
+  {
+    "chunk_id": "kafka_consumer_lag_long-term_remediation",
+    "document": "kafka_consumer_lag.md",
+    "title": "Apache Kafka Consumer Group Lag and Partition Starvation",
+    "section": "Long-Term Remediation",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "stream-processor",
+      "telemetry-ingest",
+      "notification-service",
+      "event-hub"
+    ],
+    "keywords": [
+      "CommitFailedException",
+      "consumer poll timeout",
+      "max.poll.interval.ms exceeded",
+      "consumer group rebalance",
+      "consumer lag spike"
+    ],
+    "content": "- Offload heavy IO operations from the message consumption thread to an asynchronous worker thread pool.\n- Implement a Dead Letter Queue (DLQ) pattern for non-transient message parsing errors.\n- Ensure topic partition counts align with expected peak consumer horizontal scale."
+  },
+  {
+    "chunk_id": "kubernetes_container_oom_symptoms",
+    "document": "kubernetes_container_oom.md",
+    "title": "Kubernetes Container OOMKilled",
+    "section": "Symptoms",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "data-ingest",
+      "ml-worker",
+      "report-generator",
+      "search-indexer"
+    ],
+    "keywords": [
+      "OOMKilled",
+      "exit code 137",
+      "terminated with exit code 137",
+      "Memory cgroup out of memory",
+      "memory limit exceeded"
+    ],
+    "content": "- Pod status transitions to `OOMKilled` with exit code 137.\n- `kubectl describe pod <pod_name>` shows `Last State: Terminated, Reason: OOMKilled, Exit Code: 137`.\n- Container restarts abruptly during large batch processing or memory spikes.\n- Service intermittently loses processing capacity as pods flap."
+  },
+  {
+    "chunk_id": "kubernetes_container_oom_root_cause_diagnosis",
+    "document": "kubernetes_container_oom.md",
+    "title": "Kubernetes Container OOMKilled",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "data-ingest",
+      "ml-worker",
+      "report-generator",
+      "search-indexer"
+    ],
+    "keywords": [
+      "OOMKilled",
+      "exit code 137",
+      "terminated with exit code 137",
+      "Memory cgroup out of memory",
+      "memory limit exceeded"
+    ],
+    "content": "1. Inspect container termination status and exit code:\n   `kubectl get pods -l app=<service> -o jsonpath='{range .items[*]}{.metadata.name}{\"\\t\"}{.status.containerStatuses[*].lastState.terminated.reason}{\"\\n\"}{end}'`\n2. Compare historical memory consumption against configured limits in Prometheus: `container_memory_working_set_bytes`.\n3. Check for application memory leaks (unbounded collections, uncollected heap buffers, native memory leaks).\n4. Verify if recent batch payloads or chunk sizes exceeded expected ingestion limits."
+  },
+  {
+    "chunk_id": "kubernetes_container_oom_immediate_mitigation",
+    "document": "kubernetes_container_oom.md",
+    "title": "Kubernetes Container OOMKilled",
+    "section": "Immediate Mitigation",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "data-ingest",
+      "ml-worker",
+      "report-generator",
+      "search-indexer"
+    ],
+    "keywords": [
+      "OOMKilled",
+      "exit code 137",
+      "terminated with exit code 137",
+      "Memory cgroup out of memory",
+      "memory limit exceeded"
+    ],
+    "content": "1. Patch the deployment's memory limits temporarily to restore availability:\n   `kubectl set resources deployment/<deployment_name> --limits=memory=4Gi --requests=memory=2Gi`\n2. Scale up replica count to distribute high-volume payloads across more pods:\n   `kubectl scale deployment/<deployment_name> --replicas=<count>`\n3. Pause heavy non-essential background batch workers."
+  },
+  {
+    "chunk_id": "kubernetes_container_oom_long-term_remediation",
+    "document": "kubernetes_container_oom.md",
+    "title": "Kubernetes Container OOMKilled",
+    "section": "Long-Term Remediation",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "data-ingest",
+      "ml-worker",
+      "report-generator",
+      "search-indexer"
+    ],
+    "keywords": [
+      "OOMKilled",
+      "exit code 137",
+      "terminated with exit code 137",
+      "Memory cgroup out of memory",
+      "memory limit exceeded"
+    ],
+    "content": "- Set appropriate JVM heap flags (`-XX:MaxRAMPercentage=75.0`) or memory limits in container runtimes.\n- Implement memory-efficient streaming processing rather than loading entire payloads into RAM.\n- Establish Vertical Pod Autoscaler (VPA) in recommendation mode to establish baseline resource sizing."
+  },
+  {
+    "chunk_id": "kubernetes_disk_pressure_symptoms",
+    "document": "kubernetes_disk_pressure.md",
+    "title": "Kubernetes Node Disk Pressure",
+    "section": "Symptoms",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "kubelet",
+      "node-exporter",
+      "logging-agent",
+      "cluster-nodes"
+    ],
+    "keywords": [
+      "NodeHasDiskPressure",
+      "DiskPressure",
+      "eviction manager",
+      "ephemeral-storage limit exceeded",
+      "no space left on device"
+    ],
+    "content": "- Node condition reports `DiskPressure: True` in `kubectl describe node <node_name>`.\n- Kubelet initiates aggressive pod eviction: `The node had condition: [NodeHasDiskPressure]`.\n- System logs record `write /var/lib/docker/...: no space left on device`.\n- Pod scheduling on the affected node ceases due to taint `node.kubernetes.io/disk-pressure`."
+  },
+  {
+    "chunk_id": "kubernetes_disk_pressure_root_cause_diagnosis",
+    "document": "kubernetes_disk_pressure.md",
+    "title": "Kubernetes Node Disk Pressure",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "kubelet",
+      "node-exporter",
+      "logging-agent",
+      "cluster-nodes"
+    ],
+    "keywords": [
+      "NodeHasDiskPressure",
+      "DiskPressure",
+      "eviction manager",
+      "ephemeral-storage limit exceeded",
+      "no space left on device"
+    ],
+    "content": "1. Check disk utilization per filesystem on the node: `df -h /var/lib/kubelet /var/log /var/lib/containerd`.\n2. Inspect large unrotated container log files under `/var/log/pods/` and `/var/log/containers/`.\n3. Check orphaned container images or dangling layers: `crictl images` or `docker system df`.\n4. Identify pods consuming high ephemeral storage with `kubectl top pods --containers`."
+  },
+  {
+    "chunk_id": "kubernetes_disk_pressure_immediate_mitigation",
+    "document": "kubernetes_disk_pressure.md",
+    "title": "Kubernetes Node Disk Pressure",
+    "section": "Immediate Mitigation",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "kubelet",
+      "node-exporter",
+      "logging-agent",
+      "cluster-nodes"
+    ],
+    "keywords": [
+      "NodeHasDiskPressure",
+      "DiskPressure",
+      "eviction manager",
+      "ephemeral-storage limit exceeded",
+      "no space left on device"
+    ],
+    "content": "1. Prune unused images and stopped containers on the node:\n   `crictl rmi --prune`\n2. Truncate unrotated log files:\n   `find /var/log/pods/ -name \"*.log\" -size +1G -exec truncate -s 100M {} \\;`\n3. Remove stale build caches or temporary debug artifacts from host volumes."
+  },
+  {
+    "chunk_id": "kubernetes_disk_pressure_long-term_remediation",
+    "document": "kubernetes_disk_pressure.md",
+    "title": "Kubernetes Node Disk Pressure",
+    "section": "Long-Term Remediation",
+    "incident_type": "INFRASTRUCTURE",
+    "affected_services": [
+      "kubelet",
+      "node-exporter",
+      "logging-agent",
+      "cluster-nodes"
+    ],
+    "keywords": [
+      "NodeHasDiskPressure",
+      "DiskPressure",
+      "eviction manager",
+      "ephemeral-storage limit exceeded",
+      "no space left on device"
+    ],
+    "content": "- Configure kubelet eviction thresholds properly (`imageGCHighThresholdPercent: 80`, `imageGCLowThresholdPercent: 70`).\n- Ensure container log rotation is enforced in `/etc/docker/daemon.json` or containerd config.\n- Enforce `ephemeral-storage` resource requests and limits in pod specs."
+  },
+  {
+    "chunk_id": "nats_jetstream_storage_limit_symptoms",
+    "document": "nats_jetstream_storage_limit.md",
+    "title": "NATS JetStream Storage Limit and Stream Starvation",
+    "section": "Symptoms",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "event-router",
+      "telemetry-collector",
+      "async-dispatcher"
+    ],
+    "keywords": [
+      "nats: maximum bytes exceeded",
+      "storage limit reached",
+      "JetStream stream limit",
+      "NATS JetStream publish timeout"
+    ],
+    "content": "- Producers fail to publish messages with `nats: maximum bytes exceeded` or `nats: insufficient storage`.\n- NATS server logs warn that stream file storage has reached 100% of configured `max_bytes`.\n- Asynchronous message delivery drops or blocks across critical workflows."
+  },
+  {
+    "chunk_id": "nats_jetstream_storage_limit_root_cause_diagnosis",
+    "document": "nats_jetstream_storage_limit.md",
+    "title": "NATS JetStream Storage Limit and Stream Starvation",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "event-router",
+      "telemetry-collector",
+      "async-dispatcher"
+    ],
+    "keywords": [
+      "nats: maximum bytes exceeded",
+      "storage limit reached",
+      "JetStream stream limit",
+      "NATS JetStream publish timeout"
+    ],
+    "content": "1. Inspect JetStream account and stream utilization:\n   `nats stream info <stream_name>`\n2. Check storage retention policy (`LimitsPolicy`, `InterestPolicy`, `WorkQueuePolicy`).\n3. Verify if consumer delivery acknowledgment is stalling, causing messages to remain un-purged.\n4. Check volume disk space on NATS JetStream storage mount: `df -h /data/nats`."
+  },
+  {
+    "chunk_id": "nats_jetstream_storage_limit_immediate_mitigation",
+    "document": "nats_jetstream_storage_limit.md",
+    "title": "NATS JetStream Storage Limit and Stream Starvation",
+    "section": "Immediate Mitigation",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "event-router",
+      "telemetry-collector",
+      "async-dispatcher"
+    ],
+    "keywords": [
+      "nats: maximum bytes exceeded",
+      "storage limit reached",
+      "JetStream stream limit",
+      "NATS JetStream publish timeout"
+    ],
+    "content": "1. Purge obsolete message historical ranges if permissible:\n   `nats stream purge <stream_name> --force`\n2. Dynamically expand the stream storage limit:\n   `nats stream edit <stream_name> --max-bytes=<expanded_size>`\n3. Restart or unblock stalled consumers to allow work-queue streams to drain."
+  },
+  {
+    "chunk_id": "nats_jetstream_storage_limit_long-term_remediation",
+    "document": "nats_jetstream_storage_limit.md",
+    "title": "NATS JetStream Storage Limit and Stream Starvation",
+    "section": "Long-Term Remediation",
+    "incident_type": "MESSAGING",
+    "affected_services": [
+      "event-router",
+      "telemetry-collector",
+      "async-dispatcher"
+    ],
+    "keywords": [
+      "nats: maximum bytes exceeded",
+      "storage limit reached",
+      "JetStream stream limit",
+      "NATS JetStream publish timeout"
+    ],
+    "content": "- Set appropriate message TTLs (`max_age`) on transient event streams.\n- Configure JetStream file storage volumes with automated resize alarms.\n- Deploy cluster monitoring on NATS storage watermark metrics (`jetstream_stream_bytes`)."
+  },
+  {
+    "chunk_id": "network_dns_resolution_failure_symptoms",
+    "document": "network_dns_resolution_failure.md",
+    "title": "DNS Resolution and CoreDNS Failure",
+    "section": "Symptoms",
+    "incident_type": "NETWORK",
+    "affected_services": [
+      "coredns",
+      "kube-dns",
+      "egress-proxy",
+      "api-clients"
+    ],
+    "keywords": [
+      "dial tcp: lookup: no such host",
+      "Temporary failure in name resolution",
+      "CoreDNS upstream timeout",
+      "SERVFAIL",
+      "NXDOMAIN"
+    ],
+    "content": "- Applications throw `lookup <service_name>: no such host` or `Temporary failure in name resolution`.\n- Inter-pod communication halts across namespaces.\n- CoreDNS pod logs report `[ERROR] plugin/errors: 2 <host> A: read udp <ip>: i/o timeout`."
+  },
+  {
+    "chunk_id": "network_dns_resolution_failure_root_cause_diagnosis",
+    "document": "network_dns_resolution_failure.md",
+    "title": "DNS Resolution and CoreDNS Failure",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "NETWORK",
+    "affected_services": [
+      "coredns",
+      "kube-dns",
+      "egress-proxy",
+      "api-clients"
+    ],
+    "keywords": [
+      "dial tcp: lookup: no such host",
+      "Temporary failure in name resolution",
+      "CoreDNS upstream timeout",
+      "SERVFAIL",
+      "NXDOMAIN"
+    ],
+    "content": "1. Verify CoreDNS pod status and resource utilization:\n   `kubectl get pods -n kube-system -l k8s-app=kube-dns`\n   `kubectl top pods -n kube-system -l k8s-app=kube-dns`\n2. Test internal cluster resolution from a diagnostic pod:\n   `kubectl run -it --rm --restart=Never dns-test --image=busybox:1.28 -- nslookup kubernetes.default`\n3. Check upstream nameserver connectivity configured in `/etc/resolv.conf` or CoreDNS Corefile.\n4. Inspect Conntrack table utilization on cluster worker nodes:\n   `sysctl net.netfilter.nf_conntrack_count`"
+  },
+  {
+    "chunk_id": "network_dns_resolution_failure_immediate_mitigation",
+    "document": "network_dns_resolution_failure.md",
+    "title": "DNS Resolution and CoreDNS Failure",
+    "section": "Immediate Mitigation",
+    "incident_type": "NETWORK",
+    "affected_services": [
+      "coredns",
+      "kube-dns",
+      "egress-proxy",
+      "api-clients"
+    ],
+    "keywords": [
+      "dial tcp: lookup: no such host",
+      "Temporary failure in name resolution",
+      "CoreDNS upstream timeout",
+      "SERVFAIL",
+      "NXDOMAIN"
+    ],
+    "content": "1. Scale up CoreDNS deployment replicas to absorb query spikes:\n   `kubectl scale deployment/coredns -n kube-system --replicas=5`\n2. Restart unresponsive CoreDNS pods:\n   `kubectl rollout restart deployment/coredns -n kube-system`\n3. Enable NodeLocal DNSCache if not already enabled to reduce UDP connection tracking saturation."
+  },
+  {
+    "chunk_id": "network_dns_resolution_failure_long-term_remediation",
+    "document": "network_dns_resolution_failure.md",
+    "title": "DNS Resolution and CoreDNS Failure",
+    "section": "Long-Term Remediation",
+    "incident_type": "NETWORK",
+    "affected_services": [
+      "coredns",
+      "kube-dns",
+      "egress-proxy",
+      "api-clients"
+    ],
+    "keywords": [
+      "dial tcp: lookup: no such host",
+      "Temporary failure in name resolution",
+      "CoreDNS upstream timeout",
+      "SERVFAIL",
+      "NXDOMAIN"
+    ],
+    "content": "- Deploy NodeLocal DNSCache across all cluster nodes to serve DNS lookups locally over TCP.\n- Tune `ndots:5` in application pod `dnsConfig` to reduce repetitive iterative search path lookups.\n- Configure upstream recursive resolvers with robust redundancy and health monitoring."
+  },
+  {
+    "chunk_id": "postgres_connection_exhaustion_symptoms",
+    "document": "postgres_connection_exhaustion.md",
+    "title": "PostgreSQL Connection Pool Exhaustion",
+    "section": "Symptoms",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "event-processor",
+      "user-service",
+      "order-service",
+      "api-gateway"
+    ],
+    "keywords": [
+      "Npgsql",
+      "NpgsqlException",
+      "connection pool has reached its maximum size",
+      "FATAL: remaining connection slots are reserved",
+      "max_connections",
+      "HikariPool"
+    ],
+    "content": "- Applications reporting `Npgsql.NpgsqlException: The connection pool has reached its maximum size`.\n- PostgreSQL rejecting new connections with `FATAL: remaining connection slots are reserved for non-replication superuser connections`.\n- Spikes in HTTP 500/504 errors on downstream APIs.\n- Service latency climbs sharply as threads block waiting for available connections."
+  },
+  {
+    "chunk_id": "postgres_connection_exhaustion_root_cause_diagnosis",
+    "document": "postgres_connection_exhaustion.md",
+    "title": "PostgreSQL Connection Pool Exhaustion",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "event-processor",
+      "user-service",
+      "order-service",
+      "api-gateway"
+    ],
+    "keywords": [
+      "Npgsql",
+      "NpgsqlException",
+      "connection pool has reached its maximum size",
+      "FATAL: remaining connection slots are reserved",
+      "max_connections",
+      "HikariPool"
+    ],
+    "content": "1. Run `SELECT count(*), state FROM pg_stat_activity GROUP BY state;` to check idle vs active client connections.\n2. Identify long-running transactions:\n   ```sql\n   SELECT pid, now() - xact_start AS duration, query \n   FROM pg_stat_activity \n   WHERE state <> 'idle' \n   ORDER BY duration DESC LIMIT 10;\n   ```\n3. Check application connection pool leaks (unclosed sessions, missing `using` / try-with-resources blocks).\n4. Verify if a microservice scaled out its replica count without proportional PgBouncer connection pooling."
+  },
+  {
+    "chunk_id": "postgres_connection_exhaustion_immediate_mitigation",
+    "document": "postgres_connection_exhaustion.md",
+    "title": "PostgreSQL Connection Pool Exhaustion",
+    "section": "Immediate Mitigation",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "event-processor",
+      "user-service",
+      "order-service",
+      "api-gateway"
+    ],
+    "keywords": [
+      "Npgsql",
+      "NpgsqlException",
+      "connection pool has reached its maximum size",
+      "FATAL: remaining connection slots are reserved",
+      "max_connections",
+      "HikariPool"
+    ],
+    "content": "1. Terminate hanging idle-in-transaction connections:\n   ```sql\n   SELECT pg_terminate_backend(pid) \n   FROM pg_stat_activity \n   WHERE state = 'idle in transaction' \n     AND now() - state_change > interval '5 minutes';\n   ```\n2. Rate-limit or restart offending application pods consuming excessive connections.\n3. If PgBouncer is deployed, reload pool configurations or temporarily route non-critical traffic away from the primary instance."
+  },
+  {
+    "chunk_id": "postgres_connection_exhaustion_long-term_remediation",
+    "document": "postgres_connection_exhaustion.md",
+    "title": "PostgreSQL Connection Pool Exhaustion",
+    "section": "Long-Term Remediation",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "event-processor",
+      "user-service",
+      "order-service",
+      "api-gateway"
+    ],
+    "keywords": [
+      "Npgsql",
+      "NpgsqlException",
+      "connection pool has reached its maximum size",
+      "FATAL: remaining connection slots are reserved",
+      "max_connections",
+      "HikariPool"
+    ],
+    "content": "- Deploy PgBouncer in transaction pooling mode between microservices and PostgreSQL.\n- Configure `idle_in_transaction_session_timeout = '60s'` in postgresql.conf.\n- Cap application pool sizes per replica (e.g. `maximumPoolSize = 10` in HikariCP) rather than relying on large defaults.\n- Implement circuit breaking on database queries in service data access layers."
+  },
+  {
+    "chunk_id": "redis_timeout_eviction_symptoms",
+    "document": "redis_timeout_eviction.md",
+    "title": "Redis Timeout and Key Eviction",
+    "section": "Symptoms",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "cache-service",
+      "session-service",
+      "rate-limiter",
+      "product-catalog"
+    ],
+    "keywords": [
+      "RedisTimeoutException",
+      "OOM command not allowed when used memory",
+      "maxmemory-policy",
+      "volatile-lru",
+      "allkeys-lru",
+      "Redis command timed out"
+    ],
+    "content": "- Applications log `StackExchange.Redis.RedisTimeoutException: Timeout performing GET`.\n- Redis throws `OOM command not allowed when used memory > 'maxmemory'`.\n- Hit ratios drop precipitously in cache metrics dashboards.\n- Upstream databases experience secondary overload due to cache-stampede."
+  },
+  {
+    "chunk_id": "redis_timeout_eviction_root_cause_diagnosis",
+    "document": "redis_timeout_eviction.md",
+    "title": "Redis Timeout and Key Eviction",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "cache-service",
+      "session-service",
+      "rate-limiter",
+      "product-catalog"
+    ],
+    "keywords": [
+      "RedisTimeoutException",
+      "OOM command not allowed when used memory",
+      "maxmemory-policy",
+      "volatile-lru",
+      "allkeys-lru",
+      "Redis command timed out"
+    ],
+    "content": "1. Execute `redis-cli info memory` to inspect `used_memory`, `used_memory_rss`, and `mem_fragmentation_ratio`.\n2. Check eviction metrics: `redis-cli info stats | grep evicted_keys`.\n3. Identify top memory-consuming keys or missing TTLs using `redis-cli --bigkeys` or `redis-cli --hotkeys`.\n4. Inspect slow log: `redis-cli slowlog get 10` to find non-O(1) operations (e.g. `KEYS *`, `SMEMBERS` on giant sets)."
+  },
+  {
+    "chunk_id": "redis_timeout_eviction_immediate_mitigation",
+    "document": "redis_timeout_eviction.md",
+    "title": "Redis Timeout and Key Eviction",
+    "section": "Immediate Mitigation",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "cache-service",
+      "session-service",
+      "rate-limiter",
+      "product-catalog"
+    ],
+    "keywords": [
+      "RedisTimeoutException",
+      "OOM command not allowed when used memory",
+      "maxmemory-policy",
+      "volatile-lru",
+      "allkeys-lru",
+      "Redis command timed out"
+    ],
+    "content": "1. Change eviction policy dynamically to evict expired or volatile keys:\n   `CONFIG SET maxmemory-policy allkeys-lru`\n2. Temporarily increase maxmemory ceiling if node RAM permits:\n   `CONFIG SET maxmemory <increased_bytes>`\n3. Terminate runaway blocking operations or flush volatile caches if safe."
+  },
+  {
+    "chunk_id": "redis_timeout_eviction_long-term_remediation",
+    "document": "redis_timeout_eviction.md",
+    "title": "Redis Timeout and Key Eviction",
+    "section": "Long-Term Remediation",
+    "incident_type": "DATABASE",
+    "affected_services": [
+      "cache-service",
+      "session-service",
+      "rate-limiter",
+      "product-catalog"
+    ],
+    "keywords": [
+      "RedisTimeoutException",
+      "OOM command not allowed when used memory",
+      "maxmemory-policy",
+      "volatile-lru",
+      "allkeys-lru",
+      "Redis command timed out"
+    ],
+    "content": "- Audit application caching code to enforce mandatory TTLs on all written keys.\n- Replace unbounded `KEYS` or `HGETALL` operations with `SCAN` or paginated lookups.\n- Scale Redis to cluster mode or shard read traffic across read-replicas."
+  },
+  {
+    "chunk_id": "tls_certificate_expiration_symptoms",
+    "document": "tls_certificate_expiration.md",
+    "title": "TLS Certificate Expiration and Handshake Failure",
+    "section": "Symptoms",
+    "incident_type": "SECURITY",
+    "affected_services": [
+      "ingress-nginx",
+      "edge-proxy",
+      "api-gateway",
+      "payment-gateway"
+    ],
+    "keywords": [
+      "CERT_HAS_EXPIRED",
+      "certificate has expired",
+      "SSL handshake failed",
+      "SEC_ERROR_EXPIRED_CERTIFICATE",
+      "x509: certificate has expired"
+    ],
+    "content": "- Clients and external consumers receive `SSL handshake failed: CERT_HAS_EXPIRED` or `x509: certificate has expired`.\n- External traffic to edge proxies or internal mTLS between microservices is completely blocked.\n- Browser and mobile clients fail with security warnings."
+  },
+  {
+    "chunk_id": "tls_certificate_expiration_root_cause_diagnosis",
+    "document": "tls_certificate_expiration.md",
+    "title": "TLS Certificate Expiration and Handshake Failure",
+    "section": "Root Cause Diagnosis",
+    "incident_type": "SECURITY",
+    "affected_services": [
+      "ingress-nginx",
+      "edge-proxy",
+      "api-gateway",
+      "payment-gateway"
+    ],
+    "keywords": [
+      "CERT_HAS_EXPIRED",
+      "certificate has expired",
+      "SSL handshake failed",
+      "SEC_ERROR_EXPIRED_CERTIFICATE",
+      "x509: certificate has expired"
+    ],
+    "content": "1. Inspect the certificate expiration timestamp on the target endpoint:\n   `echo | openssl s_client -servername <hostname> -connect <hostname>:443 2>/dev/null | openssl x509 -noout -dates`\n2. Check automated cert-manager or Let's Encrypt renewal logs in Kubernetes:\n   `kubectl get certificate,certificaterequest,order,challenge -A`\n   `kubectl logs -n cert-manager deploy/cert-manager`\n3. Verify if ACME challenge validation failed due to DNS record drift or firewall rules blocking port 80."
+  },
+  {
+    "chunk_id": "tls_certificate_expiration_immediate_mitigation",
+    "document": "tls_certificate_expiration.md",
+    "title": "TLS Certificate Expiration and Handshake Failure",
+    "section": "Immediate Mitigation",
+    "incident_type": "SECURITY",
+    "affected_services": [
+      "ingress-nginx",
+      "edge-proxy",
+      "api-gateway",
+      "payment-gateway"
+    ],
+    "keywords": [
+      "CERT_HAS_EXPIRED",
+      "certificate has expired",
+      "SSL handshake failed",
+      "SEC_ERROR_EXPIRED_CERTIFICATE",
+      "x509: certificate has expired"
+    ],
+    "content": "1. Force cert-manager to renew the expired certificate immediately:\n   `cmctl renew <certificate_name> -n <namespace>`\n2. If cert-manager is failing ACME challenges, manually inject a valid wildcard fallback certificate into the secret:\n   `kubectl create secret tls <tls-secret-name> --cert=cert.pem --key=key.pem --dry-run=client -o yaml | kubectl apply -f -`\n3. Reload ingress controller pods to pick up the updated secret without full cluster restart:\n   `kubectl rollout restart deployment/ingress-nginx-controller -n ingress-nginx`"
+  },
+  {
+    "chunk_id": "tls_certificate_expiration_long-term_remediation",
+    "document": "tls_certificate_expiration.md",
+    "title": "TLS Certificate Expiration and Handshake Failure",
+    "section": "Long-Term Remediation",
+    "incident_type": "SECURITY",
+    "affected_services": [
+      "ingress-nginx",
+      "edge-proxy",
+      "api-gateway",
+      "payment-gateway"
+    ],
+    "keywords": [
+      "CERT_HAS_EXPIRED",
+      "certificate has expired",
+      "SSL handshake failed",
+      "SEC_ERROR_EXPIRED_CERTIFICATE",
+      "x509: certificate has expired"
+    ],
+    "content": "- Set Prometheus alerts on `certmanager_certificate_expiration_timestamp_seconds` at 30, 14, and 7 days prior to expiry.\n- Enable automatic renewal 30 days before expiration in cert-manager spec (`renewBefore: 720h`).\n- Establish automated smoke tests checking SSL endpoint validity across staging and production domains."
+  }
+]

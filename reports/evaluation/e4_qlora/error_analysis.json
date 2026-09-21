@@ -1,0 +1,331 @@
+{
+  "total_evaluated_records": 1440,
+  "error_summary": {
+    "schema_invalid": 13,
+    "misclassified_incident_type": 9,
+    "misclassified_severity": 0,
+    "messaging_misclassified": 4,
+    "p4_low_misclassified": 0,
+    "unsupported_root_cause": 0,
+    "unsupported_claims": 0,
+    "incompatible_or_unsafe_action": 0,
+    "affected_service_mismatch": 0,
+    "ungrounded_evidence": 144
+  },
+  "sample_errors": {
+    "schema_invalid": [
+      {
+        "incident_id": "inc_infra_cpu_throttling_inf_cpu_10_23165a4d56",
+        "errors": [
+          "Failed to parse or extract JSON from model output."
+        ],
+        "raw_output": "{\"incident_type\":\"INFRASTRUCTURE\",\"severity\":\"P3_MEDIUM\",\"affected_service\":\"payment-worker\",\"root_cause\":\"CPU quota limit reached on host 192.0.2.45, causing CFS scheduler throttling of container thr"
+      },
+      {
+        "incident_id": "inc_infra_cpu_throttling_inf_cpu_10_f770db8847",
+        "errors": [
+          "Failed to parse or extract JSON from model output."
+        ],
+        "raw_output": "{\"incident_type\":\"INFRASTRUCTURE\",\"severity\":\"P3_MEDIUM\",\"affected_service\":\"orders-service\",\"root_cause\":\"CPU quota limit reached on host 203.0.113.8, causing CFS scheduler throttling of container th"
+      },
+      {
+        "incident_id": "inc_infra_cpu_throttling_inf_cpu_10_27732295e2",
+        "errors": [
+          "Failed to parse or extract JSON from model output."
+        ],
+        "raw_output": "{\"incident_type\":\"INFRASTRUCTURE\",\"severity\":\"P3_MEDIUM\",\"affected_service\":\"notification-dispatcher\",\"root_cause\":\"CPU quota limit reached on host 192.0.2.10, causing CFS scheduler throttling of cont"
+      },
+      {
+        "incident_id": "inc_infra_inode_exhaustion_inf_ino_09_243cf199ca",
+        "errors": [
+          "Field 'incident_type': Input should be 'DATABASE', 'INFRASTRUCTURE', 'APPLICATION', 'SECURITY', 'NETWORK' or 'MESSAGING'"
+        ],
+        "raw_output": "{\"incident_type\":\"FILE_SYSTEM\",\"severity\":\"P1_CRITICAL\",\"affected_service\":\"user-profile\",\"root_cause\":\"Filesystem inode table reached maximum capacity on host 203.0.113.19, preventing new file creati"
+      },
+      {
+        "incident_id": "inc_app_dependency_injection_failure_app_di_09_335bfba460",
+        "errors": [
+          "Failed to parse or extract JSON from model output."
+        ],
+        "raw_output": "{\"incident_type\":\"APPLICATION\",\"severity\":\"P2_HIGH\",\"affected_service\":\"inventory-manager\",\"root_cause\":\"Dependency injection container failure caused by circular bean dependency or missing bean defin"
+      }
+    ],
+    "misclassified_incident_type": [
+      {
+        "incident_id": "inc_sec_ssrf_or_egress_violation_sec_ssr_09_404c7653b9",
+        "ground_truth_type": "SECURITY",
+        "predicted_type": "NETWORK",
+        "incident_family": "SEC_SSRF_OR_EGRESS_VIOLATION"
+      },
+      {
+        "incident_id": "inc_sec_ssrf_or_egress_violation_sec_ssr_09_e3e7e511d4",
+        "ground_truth_type": "SECURITY",
+        "predicted_type": "NETWORK",
+        "incident_family": "SEC_SSRF_OR_EGRESS_VIOLATION"
+      },
+      {
+        "incident_id": "inc_sec_ssrf_or_egress_violation_sec_ssr_09_e612bd5de0",
+        "ground_truth_type": "SECURITY",
+        "predicted_type": "NETWORK",
+        "incident_family": "SEC_SSRF_OR_EGRESS_VIOLATION"
+      },
+      {
+        "incident_id": "inc_sec_ssrf_or_egress_violation_sec_ssr_09_90dcf06504",
+        "ground_truth_type": "SECURITY",
+        "predicted_type": "NETWORK",
+        "incident_family": "SEC_SSRF_OR_EGRESS_VIOLATION"
+      },
+      {
+        "incident_id": "inc_sec_ssrf_or_egress_violation_sec_ssr_09_8e855ab6b9",
+        "ground_truth_type": "SECURITY",
+        "predicted_type": "NETWORK",
+        "incident_family": "SEC_SSRF_OR_EGRESS_VIOLATION"
+      }
+    ],
+    "misclassified_severity": [],
+    "messaging_misclassified": [
+      {
+        "incident_id": "inc_msg_poison_pill_failure_msg_psn_10_5feb452d08",
+        "ground_truth_type": "MESSAGING",
+        "predicted_type": "APPLICATION",
+        "incident_family": "MSG_POISON_PILL_FAILURE"
+      },
+      {
+        "incident_id": "inc_msg_poison_pill_failure_msg_psn_10_d2bff0d3c9",
+        "ground_truth_type": "MESSAGING",
+        "predicted_type": "APPLICATION",
+        "incident_family": "MSG_POISON_PILL_FAILURE"
+      },
+      {
+        "incident_id": "inc_msg_poison_pill_failure_msg_psn_10_89579a3eea",
+        "ground_truth_type": "MESSAGING",
+        "predicted_type": "APPLICATION",
+        "incident_family": "MSG_POISON_PILL_FAILURE"
+      },
+      {
+        "incident_id": "inc_msg_poison_pill_failure_msg_psn_10_f388bd2728",
+        "ground_truth_type": "MESSAGING",
+        "predicted_type": "APPLICATION",
+        "incident_family": "MSG_POISON_PILL_FAILURE"
+      }
+    ],
+    "p4_low_misclassified": [],
+    "unsupported_root_cause": [],
+    "unsupported_claims": [],
+    "incompatible_or_unsafe_action": [],
+    "affected_service_mismatch": [],
+    "ungrounded_evidence": [
+      {
+        "incident_id": "inc_db_connection_pool_starvation_db_conn_09_a3dd9503af",
+        "ungrounded_evidence": "No connections are currently available",
+        "raw_log_snippet": "[2026-09-22T09:04:45.863Z] [DEBUG] [auth-gateway] Cache miss on key user_session:21e22ea5; falling back to secondary cache (resolved in 33ms)\n[2026-09-22T09:06:23.754Z] [ERROR] [au..."
+      },
+      {
+        "incident_id": "inc_db_connection_pool_starvation_db_conn_09_239b4e4e81",
+        "ungrounded_evidence": "No connections are currently available",
+        "raw_log_snippet": "[2026-10-11T22:58:50.257Z] [INFO] [user-profile] TLS session resumption ticket validated for peer 192.0.2.10\n[2026-10-11T23:00:27.181Z] [ERROR] [user-profile] Npgsql.NpgsqlExceptio..."
+      },
+      {
+        "incident_id": "inc_db_connection_pool_starvation_db_conn_09_9ca33f900c",
+        "ungrounded_evidence": "NOTICE: Intermitntent pool wait timeouts in background batch worker; auto-retrying request",
+        "raw_log_snippet": "[2026-10-07T02:38:09.223Z] [WARN] [event-processor] Configuration notice: Property 'client.read-timeout-ms' is deprecated and will be removed in v3.0\n[2026-10-07T02:39:31.539Z] [ER..."
+      },
+      {
+        "incident_id": "inc_db_connection_pool_starvation_db_conn_10_4c42380b14",
+        "ungrounded_evidence": "ActiveConnectionPoolException: no available connection in checkout-service",
+        "raw_log_snippet": "[2026-09-25T20:26:52.230Z] [INFO] [checkout-service] Normal HTTP GET /healthz returned 200 in 76ms\n[2026-09-25T20:27:46.927Z] [INFO] [checkout-service] Non-blocking notice: Rate li..."
+      },
+      {
+        "incident_id": "inc_db_connection_pool_starvation_db_conn_10_0c30c279bd",
+        "ungrounded_evidence": "NOTICE: Intermitntent pool wait timeouts in background batch worker; auto-retrying request",
+        "raw_log_snippet": "[2026-10-04T08:33:10.899Z] [FATAL] [shipping-router] ActiveRecord::ConnectionTimeoutError: could not obtain a connection from the pool within 5.000 seconds (size=15, occupied=15)\n[..."
+      }
+    ]
+  },
+  "all_incident_ids_by_error_type": {
+    "schema_invalid": [
+      "inc_infra_cpu_throttling_inf_cpu_10_23165a4d56",
+      "inc_infra_cpu_throttling_inf_cpu_10_f770db8847",
+      "inc_infra_cpu_throttling_inf_cpu_10_27732295e2",
+      "inc_infra_inode_exhaustion_inf_ino_09_243cf199ca",
+      "inc_app_dependency_injection_failure_app_di_09_335bfba460",
+      "inc_app_dependency_injection_failure_app_di_09_76d5e68b36",
+      "inc_app_dependency_injection_failure_app_di_09_c1e7d3769a",
+      "inc_app_dependency_injection_failure_app_di_09_072f23c2e6",
+      "inc_app_dependency_injection_failure_app_di_09_4f59703f4d",
+      "inc_app_dependency_injection_failure_app_di_09_45cf17c1b1",
+      "inc_app_dependency_injection_failure_app_di_09_68f2d66d15",
+      "inc_net_dns_resolution_failure_net_dns_09_51ed072e7d",
+      "inc_net_dns_resolution_failure_net_dns_09_1b85b05adc"
+    ],
+    "misclassified_incident_type": [
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_09_404c7653b9",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_09_e3e7e511d4",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_09_e612bd5de0",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_09_90dcf06504",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_09_8e855ab6b9",
+      "inc_msg_poison_pill_failure_msg_psn_10_5feb452d08",
+      "inc_msg_poison_pill_failure_msg_psn_10_d2bff0d3c9",
+      "inc_msg_poison_pill_failure_msg_psn_10_89579a3eea",
+      "inc_msg_poison_pill_failure_msg_psn_10_f388bd2728"
+    ],
+    "misclassified_severity": [],
+    "messaging_misclassified": [
+      "inc_msg_poison_pill_failure_msg_psn_10_5feb452d08",
+      "inc_msg_poison_pill_failure_msg_psn_10_d2bff0d3c9",
+      "inc_msg_poison_pill_failure_msg_psn_10_89579a3eea",
+      "inc_msg_poison_pill_failure_msg_psn_10_f388bd2728"
+    ],
+    "p4_low_misclassified": [],
+    "unsupported_root_cause": [],
+    "unsupported_claims": [],
+    "incompatible_or_unsafe_action": [],
+    "affected_service_mismatch": [],
+    "ungrounded_evidence": [
+      "inc_db_connection_pool_starvation_db_conn_09_a3dd9503af",
+      "inc_db_connection_pool_starvation_db_conn_09_239b4e4e81",
+      "inc_db_connection_pool_starvation_db_conn_09_9ca33f900c",
+      "inc_db_connection_pool_starvation_db_conn_10_4c42380b14",
+      "inc_db_connection_pool_starvation_db_conn_10_0c30c279bd",
+      "inc_db_connection_pool_starvation_db_conn_10_56af5d4b79",
+      "inc_db_connection_pool_starvation_db_conn_10_d8df069d24",
+      "inc_db_connection_pool_starvation_db_conn_10_90cdb824b3",
+      "inc_db_connection_pool_starvation_db_conn_10_26a53a62d6",
+      "inc_db_connection_pool_starvation_db_conn_10_26a53a62d6",
+      "inc_db_connection_pool_starvation_db_conn_10_b89da007ae",
+      "inc_db_connection_pool_starvation_db_conn_10_030ad60cff",
+      "inc_db_connection_pool_starvation_db_conn_10_3a1da7eb88",
+      "inc_db_connection_pool_starvation_db_conn_10_e7d11f0075",
+      "inc_db_connection_pool_starvation_db_conn_10_e7d11f0075",
+      "inc_db_connection_pool_starvation_db_conn_10_60af9aae7f",
+      "inc_db_connection_pool_starvation_db_conn_10_377c34b490",
+      "inc_db_index_or_data_corruption_db_corr_10_8d04e9ee63",
+      "inc_db_index_or_data_corruption_db_corr_10_4fbd98a5f8",
+      "inc_db_index_or_data_corruption_db_corr_10_6c903fc9a3",
+      "inc_db_index_or_data_corruption_db_corr_10_c838d83fdd",
+      "inc_db_index_or_data_corruption_db_corr_10_55a668e8e9",
+      "inc_db_index_or_data_corruption_db_corr_10_cf6acb3963",
+      "inc_db_index_or_data_corruption_db_corr_10_195d028727",
+      "inc_db_index_or_data_corruption_db_corr_10_56632a92ee",
+      "inc_db_index_or_data_corruption_db_corr_10_461bc93345",
+      "inc_db_index_or_data_corruption_db_corr_10_e4f9da47ae",
+      "inc_db_index_or_data_corruption_db_corr_10_d188c2190b",
+      "inc_db_index_or_data_corruption_db_corr_10_1ebbab4201",
+      "inc_db_index_or_data_corruption_db_corr_10_c901404090",
+      "inc_db_index_or_data_corruption_db_corr_10_d0ca776bb6",
+      "inc_db_index_or_data_corruption_db_corr_10_ae51f1e85d",
+      "inc_db_index_or_data_corruption_db_corr_10_e6f83c29ea",
+      "inc_db_index_or_data_corruption_db_corr_10_f7570d300f",
+      "inc_infra_pod_oomkilled_inf_oom_09_43481dc29d",
+      "inc_infra_pod_oomkilled_inf_oom_09_43481dc29d",
+      "inc_infra_pod_oomkilled_inf_oom_09_43481dc29d",
+      "inc_infra_pod_oomkilled_inf_oom_09_7f2f2471cb",
+      "inc_infra_pod_oomkilled_inf_oom_09_9ddbc13561",
+      "inc_infra_pod_oomkilled_inf_oom_09_9d32985734",
+      "inc_infra_pod_oomkilled_inf_oom_09_9d32985734",
+      "inc_infra_pod_oomkilled_inf_oom_09_9d32985734",
+      "inc_infra_pod_oomkilled_inf_oom_09_15e37a96fb",
+      "inc_infra_pod_oomkilled_inf_oom_09_e144ff903f",
+      "inc_infra_pod_oomkilled_inf_oom_09_2639ffc057",
+      "inc_infra_pod_oomkilled_inf_oom_09_1b842c51eb",
+      "inc_infra_pod_oomkilled_inf_oom_09_fdfc385356",
+      "inc_infra_pod_oomkilled_inf_oom_09_01a329c166",
+      "inc_infra_pod_oomkilled_inf_oom_09_441cb0047e",
+      "inc_infra_pod_oomkilled_inf_oom_09_25877327f6",
+      "inc_infra_pod_oomkilled_inf_oom_10_9a1d59c95c",
+      "inc_infra_pod_oomkilled_inf_oom_10_03d89e311e",
+      "inc_infra_cpu_throttling_inf_cpu_09_ddf4064c09",
+      "inc_infra_cpu_throttling_inf_cpu_09_161180af10",
+      "inc_infra_cpu_throttling_inf_cpu_09_ae53da046d",
+      "inc_infra_cpu_throttling_inf_cpu_10_c85e56cf8f",
+      "inc_infra_cpu_throttling_inf_cpu_10_a13b3cd67b",
+      "inc_infra_inode_exhaustion_inf_ino_09_89e6490ca4",
+      "inc_infra_node_not_ready_inf_nnr_09_60254d60cd",
+      "inc_infra_node_not_ready_inf_nnr_09_fb6855d1eb",
+      "inc_app_memory_leak_app_leak_09_d6ea978782",
+      "inc_app_memory_leak_app_leak_09_e8146c59dc",
+      "inc_app_unhandled_exception_app_exc_10_ab65b19581",
+      "inc_app_dependency_injection_failure_app_di_10_eef036b60b",
+      "inc_app_dependency_injection_failure_app_di_10_fac9e99764",
+      "inc_app_dependency_injection_failure_app_di_10_fac9e99764",
+      "inc_app_dependency_injection_failure_app_di_10_ac8f150826",
+      "inc_app_dependency_injection_failure_app_di_10_35cc2cefbe",
+      "inc_app_dependency_injection_failure_app_di_10_35cc2cefbe",
+      "inc_app_dependency_injection_failure_app_di_10_0b76f34741",
+      "inc_app_dependency_injection_failure_app_di_10_3770e7e5b5",
+      "inc_app_dependency_injection_failure_app_di_10_f534206fec",
+      "inc_app_dependency_injection_failure_app_di_10_ed11d45698",
+      "inc_app_dependency_injection_failure_app_di_10_6bbb86a0e2",
+      "inc_app_dependency_injection_failure_app_di_10_6bbb86a0e2",
+      "inc_app_dependency_injection_failure_app_di_10_cdd6deacb3",
+      "inc_app_dependency_injection_failure_app_di_10_06850490da",
+      "inc_app_dependency_injection_failure_app_di_10_5f9be45aa0",
+      "inc_app_dependency_injection_failure_app_di_10_33deb8452d",
+      "inc_app_dependency_injection_failure_app_di_10_aaae6df681",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_12a89987b3",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_c4bc061366",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_824c583e8a",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_7c162904b6",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_4776f4d2fc",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_ba063b9d56",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_9fa78bd8f1",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_fdf5b533c2",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_77e460d347",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_126c5357ad",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_f3344fbdf2",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_b9d1f1c65f",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_4eb12e0f19",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_891b4f4d86",
+      "inc_sec_credential_or_token_expiration_sec_tok_09_76d8da2d09",
+      "inc_sec_secret_leakage_sec_lak_10_a8f651521f",
+      "inc_sec_secret_leakage_sec_lak_10_5c400c0cb7",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_10_9da22f232c",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_10_ee65683ea1",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_10_14e6140a39",
+      "inc_sec_ssrf_or_egress_violation_sec_ssr_10_d7dcf66229",
+      "inc_net_dns_resolution_failure_net_dns_09_d9a6a98ca8",
+      "inc_net_dns_resolution_failure_net_dns_09_1274559d43",
+      "inc_net_dns_resolution_failure_net_dns_09_bfd081e186",
+      "inc_net_dns_resolution_failure_net_dns_09_92c82300a2",
+      "inc_net_dns_resolution_failure_net_dns_09_970f3869c7",
+      "inc_net_dns_resolution_failure_net_dns_10_2f6633421c",
+      "inc_net_dns_resolution_failure_net_dns_10_df618fe3ed",
+      "inc_net_dns_resolution_failure_net_dns_10_d6cbf706ae",
+      "inc_net_dns_resolution_failure_net_dns_10_16cc78f491",
+      "inc_net_dns_resolution_failure_net_dns_10_b58174a575",
+      "inc_net_partition_or_blackhole_net_par_09_a6122b7b62",
+      "inc_net_partition_or_blackhole_net_par_09_337bfbc49d",
+      "inc_net_partition_or_blackhole_net_par_09_040cdb80f5",
+      "inc_net_partition_or_blackhole_net_par_09_71cdb847f0",
+      "inc_net_partition_or_blackhole_net_par_09_c64d6324a6",
+      "inc_net_partition_or_blackhole_net_par_10_6eaae8eac6",
+      "inc_net_partition_or_blackhole_net_par_10_1784226451",
+      "inc_net_partition_or_blackhole_net_par_10_4edde42178",
+      "inc_net_partition_or_blackhole_net_par_10_9f2ae7d670",
+      "inc_net_partition_or_blackhole_net_par_10_d737241514",
+      "inc_net_partition_or_blackhole_net_par_10_f1e6dfdd4b",
+      "inc_msg_consumer_lag_accumulation_msg_lag_10_90c7e50329",
+      "inc_msg_dead_letter_queue_overflow_msg_dlq_09_433dc0ab96",
+      "inc_msg_dead_letter_queue_overflow_msg_dlq_09_ec9dd148e3",
+      "inc_msg_dead_letter_queue_overflow_msg_dlq_09_d454fc33f1",
+      "inc_msg_dead_letter_queue_overflow_msg_dlq_09_dcc6c52aca",
+      "inc_msg_poison_pill_failure_msg_psn_09_6398fa382b",
+      "inc_msg_poison_pill_failure_msg_psn_09_b326faf4bb",
+      "inc_msg_poison_pill_failure_msg_psn_09_1f54d0bc64",
+      "inc_msg_poison_pill_failure_msg_psn_10_b353d01ee8",
+      "inc_msg_poison_pill_failure_msg_psn_10_b1e38d7c76",
+      "inc_msg_poison_pill_failure_msg_psn_10_5feb452d08",
+      "inc_msg_poison_pill_failure_msg_psn_10_89579a3eea",
+      "inc_msg_poison_pill_failure_msg_psn_10_fd295ab9b5",
+      "inc_msg_poison_pill_failure_msg_psn_10_ec106f19ab",
+      "inc_msg_poison_pill_failure_msg_psn_10_df4f1fc437",
+      "inc_msg_poison_pill_failure_msg_psn_10_7d697940e0",
+      "inc_msg_poison_pill_failure_msg_psn_10_0ca5550dd6",
+      "inc_msg_poison_pill_failure_msg_psn_10_4ce3c406b9",
+      "inc_msg_poison_pill_failure_msg_psn_10_3c8ecd0b5d",
+      "inc_msg_poison_pill_failure_msg_psn_10_f388bd2728",
+      "inc_msg_poison_pill_failure_msg_psn_10_c64a4610c0",
+      "inc_msg_poison_pill_failure_msg_psn_10_5ff65332cf"
+    ]
+  }
+}

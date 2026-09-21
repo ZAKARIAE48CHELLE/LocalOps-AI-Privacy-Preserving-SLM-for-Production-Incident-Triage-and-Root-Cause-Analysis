@@ -1,0 +1,41 @@
+services:
+  localops-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: localops-ai:latest
+    container_name: localops-api
+    ports:
+      - "${LOCALOPS_PORT:-8000}:8000"
+    environment:
+      - LOCALOPS_HOST=0.0.0.0
+      - LOCALOPS_PORT=8000
+      - LOCALOPS_LOG_LEVEL=${LOCALOPS_LOG_LEVEL:-INFO}
+      - LOCALOPS_LOG_RAW_PAYLOADS=${LOCALOPS_LOG_RAW_PAYLOADS:-false}
+      - LOCALOPS_RAG_ENABLED=${LOCALOPS_RAG_ENABLED:-true}
+      - HF_HOME=/app/cache/huggingface
+      - TRANSFORMERS_CACHE=/app/cache/huggingface
+      - HF_HUB_OFFLINE=${HF_HUB_OFFLINE:-0}
+    volumes:
+      # Persistent HuggingFace model cache (mounted from host)
+      - ${HF_CACHE_DIR:-./cache/huggingface}:/app/cache/huggingface
+      # Frozen adapter weights mounted read-only
+      - ./artifacts/phase_5/final_adapter:/app/artifacts/phase_5/final_adapter:ro
+      # Operational runbooks mounted read-only
+      - ./runbooks:/app/runbooks:ro
+      # Phase 8 pre-built runbook index mounted read-only
+      - ./artifacts/phase_8:/app/artifacts/phase_8:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 45s

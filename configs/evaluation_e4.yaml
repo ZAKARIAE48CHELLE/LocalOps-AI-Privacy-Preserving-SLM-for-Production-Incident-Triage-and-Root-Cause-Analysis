@@ -1,0 +1,29 @@
+# LocalOps AI — Phase 6: E4 Fine-Tuned Model Evaluation Configuration
+# Evaluates checkpoint-100 adapter on held-out test split (test.jsonl)
+
+model:
+  model_id: "Qwen/Qwen2.5-1.5B-Instruct"
+  adapter_path: "artifacts/phase_5/final_adapter"
+  adapter_source_checkpoint: "checkpoint-100"
+  quantization: "nf4"
+  bnb_quant_type: "nf4"
+  bnb_compute_dtype: "bfloat16"
+  bnb_use_double_quant: true
+  device: "cuda"
+
+generation:
+  seed: 42
+  max_new_tokens: 384
+  do_sample: false
+  temperature: 0.0
+
+evaluation:
+  batch_size: 16  # Initial hypothesis, smoke-tested before full test run
+  vram_safety_ceiling_mb: 6800  # Trigger automatic batch reduction if exceeded
+  checkpoint_frequency: 50
+  semantic_embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  validation_path: "data/generated/validation.jsonl"
+  test_path: "data/generated/test.jsonl"
+  test_split_sha256: "a1c79a8beb9ca4868d358aa9bba1dd3c762466bd58249d460987a1e692f817b9"
+  results_dir: "reports/evaluation/e4_qlora"
+  smoke_records_per_family: 1  # 36 records for stratified pre-flight smoke test

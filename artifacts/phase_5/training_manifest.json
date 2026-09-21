@@ -1,0 +1,95 @@
+{
+  "phase": 5,
+  "mode": "full_training",
+  "start_timestamp": "2026-09-17T11:40:40.822322+00:00",
+  "end_timestamp": "2026-09-17T15:11:38.501862+00:00",
+  "duration": "3:30:57.679544",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "official_final_adapter": {
+    "source_checkpoint": "checkpoint-100",
+    "source_path": "artifacts/phase_5/checkpoints/checkpoint-100",
+    "target_path": "artifacts/phase_5/final_adapter/",
+    "selection_rule": "Predeclared validation-only minimum eval_loss (metric_for_best_model: eval_loss). Protects against train-validation divergence/overfitting observed after step 100.",
+    "eval_loss": 1.0444,
+    "selection_source": "validation_only",
+    "test_split_used": false
+  },
+  "dataset": {
+    "train_file": "data/generated/train.jsonl",
+    "train_sha256": "081b337a9bce2a1a07e8c1fd00ccfbf4af717c32c6efe364824ad92d5a24d039",
+    "train_record_count": 4320,
+    "validation_file": "data/generated/validation.jsonl",
+    "validation_sha256": "b1d9b273b2278220a2e2668a67268ca805425d6f82200f738d08fb033ba2315c",
+    "validation_record_count": 1440,
+    "canonical_incident_types": [
+      "DATABASE",
+      "INFRASTRUCTURE",
+      "APPLICATION",
+      "SECURITY",
+      "NETWORK",
+      "MESSAGING"
+    ],
+    "test_split_isolated": true
+  },
+  "qlora_config": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "quantization": "nf4",
+    "double_quant": true
+  },
+  "parameters": {
+    "trainable_parameters": 18464768,
+    "total_parameters": 907081216,
+    "trainable_percentage": 2.0356,
+    "frozen_parameters": 888616448
+  },
+  "hyperparameters": {
+    "learning_rate": 0.00015,
+    "epochs": 3.0,
+    "per_device_batch_size": 8,
+    "gradient_accumulation_steps": 2,
+    "effective_batch_size": 16,
+    "max_length": 1024,
+    "optimizer": "paged_adamw_8bit",
+    "scheduler": "cosine",
+    "seed": 42,
+    "assistant_only_loss": true,
+    "assistant_only_loss_test_verified": "tests/test_training_phase5.py::TestAssistantLossMasking::test_assistant_only_loss_masking_mechanism (PASSED)"
+  },
+  "hardware": {
+    "device": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "cuda_available": true,
+    "peak_vram_mb": 4152.24,
+    "average_power_w": 42.7,
+    "total_energy_wh": 150.13,
+    "total_energy_kwh": 0.1501,
+    "carbon_co2_g": 57.8,
+    "estimated_cost_usd": 0.0225,
+    "assumptions": {
+      "grid_carbon_intensity_g_per_kwh": 385.0,
+      "commercial_electricity_price_usd_per_kwh": 0.15
+    }
+  },
+  "best_checkpoint": "artifacts/phase_5/checkpoints/checkpoint-100",
+  "best_eval_loss": 1.0444,
+  "final_generation_metrics": {
+    "validation_sample_count": 48,
+    "schema_valid_count": 48,
+    "schema_valid_rate": 1.0,
+    "incident_type_macro_f1": 1.0,
+    "severity_macro_f1": 1.0,
+    "messaging_recall": 1.0,
+    "p4_low_recall": 1.0,
+    "note": "The selected adapter achieved perfect performance on the 48-sample stratified validation-generation slice. Generalization to the sealed test split remains to be established in Phase 6."
+  }
+}

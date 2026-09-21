@@ -1,0 +1,19 @@
+{
+  "experiment_id": "E4",
+  "timestamp": "2026-09-18T16:55:40.130045+00:00",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "adapter_path": "D:\\PROJECTS\\LocalOps-AI-Privacy-Preserving-SLM-for-Production-Incident-Triage-and-Root-Cause-Analysis\\artifacts\\phase_5\\final_adapter",
+  "adapter_source_checkpoint": "checkpoint-100",
+  "adapter_weights_sha256": "86ec3c28877e09b75468f95cd9f19eaa66c940d7ec079804d11491aa866c645f",
+  "dataset_path": "D:\\PROJECTS\\LocalOps-AI-Privacy-Preserving-SLM-for-Production-Incident-Triage-and-Root-Cause-Analysis\\data\\generated\\validation.jsonl",
+  "dataset_sha256": "b1d9b273b2278220a2e2668a67268ca805425d6f82200f738d08fb033ba2315c",
+  "dataset_record_count": 36,
+  "frozen_batch_size": 16,
+  "prompt_sha256": "9a3dfceb49fa4bb2146d19c793343179361750c6a97e2d5dc579f274fa9e2397",
+  "generation_config": {
+    "seed": 42,
+    "max_new_tokens": 384,
+    "do_sample": false,
+    "temperature": 0.0
+  }
+}

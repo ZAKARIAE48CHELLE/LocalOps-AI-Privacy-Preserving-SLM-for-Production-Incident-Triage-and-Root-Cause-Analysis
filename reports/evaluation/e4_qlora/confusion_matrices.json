@@ -1,0 +1,202 @@
+{
+  "end_to_end_incident_type_7x7": {
+    "labels": [
+      "DATABASE",
+      "INFRASTRUCTURE",
+      "APPLICATION",
+      "SECURITY",
+      "NETWORK",
+      "MESSAGING",
+      "INVALID_OR_MISSING"
+    ],
+    "matrix": {
+      "DATABASE": {
+        "DATABASE": 240,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0,
+        "INVALID_OR_MISSING": 0
+      },
+      "INFRASTRUCTURE": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 236,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0,
+        "INVALID_OR_MISSING": 4
+      },
+      "APPLICATION": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 233,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0,
+        "INVALID_OR_MISSING": 7
+      },
+      "SECURITY": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 235,
+        "NETWORK": 5,
+        "MESSAGING": 0,
+        "INVALID_OR_MISSING": 0
+      },
+      "NETWORK": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 238,
+        "MESSAGING": 0,
+        "INVALID_OR_MISSING": 2
+      },
+      "MESSAGING": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 4,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 236,
+        "INVALID_OR_MISSING": 0
+      }
+    }
+  },
+  "end_to_end_severity_5x5": {
+    "labels": [
+      "P1_CRITICAL",
+      "P2_HIGH",
+      "P3_MEDIUM",
+      "P4_LOW",
+      "INVALID_OR_MISSING"
+    ],
+    "matrix": {
+      "P1_CRITICAL": {
+        "P1_CRITICAL": 344,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 0,
+        "INVALID_OR_MISSING": 3
+      },
+      "P2_HIGH": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 365,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 0,
+        "INVALID_OR_MISSING": 4
+      },
+      "P3_MEDIUM": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 382,
+        "P4_LOW": 0,
+        "INVALID_OR_MISSING": 3
+      },
+      "P4_LOW": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 336,
+        "INVALID_OR_MISSING": 3
+      }
+    }
+  },
+  "valid_only_incident_type_6x6": {
+    "labels": [
+      "DATABASE",
+      "INFRASTRUCTURE",
+      "APPLICATION",
+      "SECURITY",
+      "NETWORK",
+      "MESSAGING"
+    ],
+    "matrix": {
+      "DATABASE": {
+        "DATABASE": 240,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0
+      },
+      "INFRASTRUCTURE": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 236,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0
+      },
+      "APPLICATION": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 233,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 0
+      },
+      "SECURITY": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 235,
+        "NETWORK": 5,
+        "MESSAGING": 0
+      },
+      "NETWORK": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 0,
+        "SECURITY": 0,
+        "NETWORK": 238,
+        "MESSAGING": 0
+      },
+      "MESSAGING": {
+        "DATABASE": 0,
+        "INFRASTRUCTURE": 0,
+        "APPLICATION": 4,
+        "SECURITY": 0,
+        "NETWORK": 0,
+        "MESSAGING": 236
+      }
+    }
+  },
+  "valid_only_severity_4x4": {
+    "labels": [
+      "P1_CRITICAL",
+      "P2_HIGH",
+      "P3_MEDIUM",
+      "P4_LOW"
+    ],
+    "matrix": {
+      "P1_CRITICAL": {
+        "P1_CRITICAL": 344,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 0
+      },
+      "P2_HIGH": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 365,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 0
+      },
+      "P3_MEDIUM": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 382,
+        "P4_LOW": 0
+      },
+      "P4_LOW": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 0,
+        "P4_LOW": 336
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "project_name": "localops-ai",
+  "release_version": "1.0.0",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "quantization": "4-bit NF4",
+  "official_adapter_source": "Phase 5 checkpoint-100",
+  "schema_contract": "Phase 2 LogTriageOutput (extra=forbid)",
+  "benchmark_summary": {
+    "incident_type_macro_f1": 0.9892,
+    "severity_macro_f1": 0.9955,
+    "pydantic_schema_validity_rate": 0.991,
+    "exact_affected_service_match": 0.991,
+    "evidence_verbatim_grounding_rate": 0.9675
+  },
+  "checksums": {
+    "api_config_sha256": "d9149c953382f1c32bfefcbd181144562984344a607ca0e0d354da6ff74393c7",
+    "adapter_config_sha256": "fbcbe0c3863afba8fa68d4d28025cd04e0b7976c400529471d1aff1616da7532",
+    "rag_index_sha256": "1c859a1eb321578946ad0c01cd4fe36b4503b4076076d0905b39490c0515e6bd",
+    "baseline_comparison_sha256": "8bd167b89e00660c2dfaad75bd6921136e7bbc2ae5b48c87691cc28d885e0c9e",
+    "e4_metrics_sha256": "ff98359fe4c65ce39b03ee6697f0cb212b24b38e290f2bd8d52618853888023a"
+  },
+  "status": "PRODUCTION_READY"
+}

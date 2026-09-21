@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-09-15T11:21:31.678665+00:00",
+  "generation_config_sha256": "5fe8980c91fac3137072a0c2e6571401bdbc983db8b7fee802d4ba2eaca368a6",
+  "experiments": {
+    "E1": {
+      "prompt_id": "prompt_e1_zero_shot",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "7199df81336bd378b86901edfbefc215a11d367f7e90ff6c971cb34f33b27aac",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    },
+    "E2": {
+      "prompt_id": "prompt_e2_structured",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "5079db841efff5292d0e021f689b917235581e3502302473064faafde1cfa86f",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    },
+    "E3": {
+      "prompt_id": "prompt_e3_few_shot",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "44df424e4f7637dec07abc73dd9273de60374e3772312c7f6eccc236e095210a",
+      "demonstration_count": 6,
+      "demonstration_ids": [
+        "inc_db_connection_pool_starvation_db_conn_01_b7c8cbbb9e",
+        "inc_infra_pod_oomkilled_inf_oom_01_ac6b9b0e35",
+        "inc_app_memory_leak_app_leak_01_27f014eb8a",
+        "inc_sec_credential_or_token_expiration_sec_tok_01_1fb4e3f713",
+        "inc_net_dns_resolution_failure_net_dns_01_183a640821",
+        "inc_msg_consumer_lag_accumulation_msg_lag_01_e34a8cf9e1"
+      ]
+    }
+  }
+}

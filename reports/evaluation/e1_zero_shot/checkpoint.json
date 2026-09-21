@@ -1,0 +1,7 @@
+{
+  "experiment_id": "E1",
+  "total_records": 1440,
+  "completed_records": 1440,
+  "last_incident_id": "inc_msg_duplicate_delivery_or_idempotency_msg_idm_10_bcce534f19",
+  "timestamp": 1789484903.4779449
+}

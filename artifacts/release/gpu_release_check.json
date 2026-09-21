@@ -1,0 +1,23 @@
+{
+  "timestamp": 1789757009.9321678,
+  "cuda_available": true,
+  "device_name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+  "cuda_version": "12.4",
+  "torch_version": "2.6.0+cu124",
+  "checks": {
+    "cuda_presence": true,
+    "model_loading_seconds": 19.69,
+    "model_is_ready": true,
+    "inference_latency_ms": 9141.1,
+    "raw_generation_length": 506,
+    "pydantic_schema_valid": true,
+    "predicted_incident_type": "DATABASE",
+    "predicted_severity": "P3_MEDIUM",
+    "predicted_affected_service": "event-processor",
+    "rag_match_success": true,
+    "rag_runbook": "postgres_connection_exhaustion.md",
+    "rag_score": 0.798,
+    "peak_vram_mb": 1211.4
+  },
+  "vram_total_gb": 8.0
+}

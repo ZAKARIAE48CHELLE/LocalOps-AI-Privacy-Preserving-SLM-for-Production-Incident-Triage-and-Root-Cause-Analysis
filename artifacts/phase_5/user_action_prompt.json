@@ -1,0 +1,23 @@
+{
+  "id": "accelerate_training_vram",
+  "badge": "⚡ INTERACTIVE CONTROL · MOBILE ACTION",
+  "title": "Accelerate QLoRA Training?",
+  "message": "Current VRAM usage is only 3.31 GB / 8.00 GB (41%). Training currently uses batch size 2 with 8 accumulation steps (~8s/step, ~1h 45m total). How would you like to accelerate?",
+  "options": [
+    {
+      "id": "batch8",
+      "label": "🚀 Recommended: Boost Batch Size to 8 (Accum 2) · ~4.6 GB VRAM · ~3x Faster",
+      "btnClass": "btn-primary"
+    },
+    {
+      "id": "batch16",
+      "label": "⚡ Maximum Speed: Batch Size 16 (Accum 1) · ~6.2 GB VRAM · ~4x Faster",
+      "btnClass": "btn-accent"
+    },
+    {
+      "id": "keep",
+      "label": "🛡️ Keep Current Batch Size 2 (Accum 8) · 3.31 GB VRAM · Conservative Pace",
+      "btnClass": "btn-secondary"
+    }
+  ]
+}

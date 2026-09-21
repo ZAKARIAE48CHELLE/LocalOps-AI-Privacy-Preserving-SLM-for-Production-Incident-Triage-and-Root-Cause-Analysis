@@ -1,0 +1,197 @@
+{
+  "benchmark_metadata": {
+    "project": "LocalOps AI",
+    "version": "1.0.0",
+    "date": "2026-09-18",
+    "test_split_records": 1440,
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "adapter": "artifacts/phase_5/final_adapter/ (checkpoint-100)",
+    "canonical_source": "reports/evaluation/e4_qlora/metrics.json",
+    "target_hardware": "NVIDIA GeForce RTX 3070 Laptop GPU (8GB VRAM)"
+  },
+  "canonical_comparison_table": {
+    "pydantic_validity_rate": {
+      "metric_name": "Pydantic Schema Validity Rate",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.7986,
+      "E3_FewShot": 0.9833,
+      "E4_QLoRA": 0.991,
+      "delta_vs_best_baseline": 0.0077
+    },
+    "incident_type_accuracy": {
+      "metric_name": "IncidentType Accuracy",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.4472,
+      "E3_FewShot": 0.3937,
+      "E4_QLoRA": 0.9847,
+      "delta_vs_best_baseline": 0.5375
+    },
+    "incident_type_macro_f1": {
+      "metric_name": "IncidentType Macro-F1",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.4679,
+      "E3_FewShot": 0.3514,
+      "E4_QLoRA": 0.9892,
+      "delta_vs_best_baseline": 0.5213
+    },
+    "severity_accuracy": {
+      "metric_name": "Severity Accuracy",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.1861,
+      "E3_FewShot": 0.2972,
+      "E4_QLoRA": 0.991,
+      "delta_vs_best_baseline": 0.6938
+    },
+    "severity_macro_f1": {
+      "metric_name": "Severity Macro-F1",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.0895,
+      "E3_FewShot": 0.2319,
+      "E4_QLoRA": 0.9955,
+      "delta_vs_best_baseline": 0.7636
+    },
+    "affected_service_exact_match": {
+      "metric_name": "Affected Service Exact Match",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.6208,
+      "E3_FewShot": 0.9833,
+      "E4_QLoRA": 0.991,
+      "delta_vs_best_baseline": 0.0077
+    },
+    "evidence_verbatim_rate": {
+      "metric_name": "Evidence Verbatim Rate",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.9769,
+      "E3_FewShot": 0.8711,
+      "E4_QLoRA": 0.9675,
+      "delta_vs_best_baseline": -0.0094
+    },
+    "evidence_token_f1_mean": {
+      "metric_name": "Evidence Token F1 Mean",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.5098,
+      "E3_FewShot": 0.7331,
+      "E4_QLoRA": 0.8599,
+      "delta_vs_best_baseline": 0.1268
+    },
+    "root_cause_semantic_similarity_mean": {
+      "metric_name": "Root Cause Semantic Similarity Mean",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.4838,
+      "E3_FewShot": 0.5193,
+      "E4_QLoRA": 0.5781,
+      "delta_vs_best_baseline": 0.0588
+    },
+    "suggested_action_semantic_similarity_mean": {
+      "metric_name": "Suggested Action Semantic Similarity Mean",
+      "E1_ZeroShot": 0.0,
+      "E2_StructuredPrompt": 0.3741,
+      "E3_FewShot": 0.4196,
+      "E4_QLoRA": 0.4755,
+      "delta_vs_best_baseline": 0.0559
+    },
+    "mean_latency_seconds": {
+      "metric_name": "Mean Latency (Offline Batched bs=16, s)",
+      "E1_ZeroShot": 5.5769,
+      "E2_StructuredPrompt": 1.7257,
+      "E3_FewShot": 8.1276,
+      "E4_QLoRA": 0.9926,
+      "delta_vs_best_baseline": -0.7331
+    },
+    "p50_latency_seconds": {
+      "metric_name": "p50 Latency (Offline Batched bs=16, s)",
+      "E1_ZeroShot": 3.3929,
+      "E2_StructuredPrompt": 1.6676,
+      "E3_FewShot": 10.6709,
+      "E4_QLoRA": 0.97,
+      "delta_vs_best_baseline": -0.6976
+    },
+    "p95_latency_seconds": {
+      "metric_name": "p95 Latency (Offline Batched bs=16, s)",
+      "E1_ZeroShot": 20.5138,
+      "E2_StructuredPrompt": 2.77,
+      "E3_FewShot": 11.9009,
+      "E4_QLoRA": 1.1659,
+      "delta_vs_best_baseline": -1.6041
+    },
+    "peak_vram_mb": {
+      "metric_name": "Peak VRAM (MB)",
+      "E1_ZeroShot": 1585.16,
+      "E2_StructuredPrompt": 3029.82,
+      "E3_FewShot": 5150.81,
+      "E4_QLoRA": 2620.14,
+      "delta_vs_best_baseline": 1034.98
+    }
+  },
+  "experiment_definitions": {
+    "E1": "Zero-Shot (no system prompt, raw log only)",
+    "E2": "Structured Prompt (Pydantic schema in system prompt)",
+    "E3": "Few-Shot (in-context 2 exemplar demonstrations)",
+    "E4": "QLoRA Fine-Tuned (4-bit NF4, rank=16, alpha=32, checkpoint-100)"
+  },
+  "e4_canonical_summary": {
+    "pydantic_valid_rate": 0.991,
+    "valid_record_count": 1427,
+    "total_records": 1440,
+    "incident_type_accuracy": 0.9847,
+    "incident_type_macro_f1": 0.9892,
+    "severity_accuracy": 0.991,
+    "severity_macro_f1": 0.9955,
+    "affected_service_exact_match": 0.991,
+    "evidence_verbatim_rate": 0.9675,
+    "evidence_token_f1_mean": 0.8599,
+    "root_cause_semantic_similarity_mean": 0.5781,
+    "suggested_action_semantic_similarity_mean": 0.4755
+  },
+  "latency_profiles": {
+    "offline_batched_evaluation_bs16": {
+      "description": "Phase 6 batched inference over 1,440 test records (batch size 16)",
+      "mean_latency_seconds": 0.9926,
+      "p50_latency_seconds": 0.97,
+      "p95_latency_seconds": 1.1659,
+      "tokens_per_second_mean": 122.42,
+      "peak_vram_mb": 2620.14
+    },
+    "production_single_request_api": {
+      "description": "Phase 7 real-time single-request HTTP triage inference via FastAPI",
+      "latency_seconds": 9.12,
+      "p50_latency_seconds": 9.12,
+      "p95_latency_seconds": 11.02,
+      "resident_vram_mb": 1243.64
+    },
+    "production_concurrent_load_test": {
+      "description": "Phase 11 concurrent stress test (10 requests, concurrency 2)",
+      "mean_latency_seconds": 11.01,
+      "p50_latency_seconds": 11.02,
+      "p95_latency_seconds": 12.34,
+      "error_rate": 0.0
+    }
+  },
+  "energy_telemetry": {
+    "run_energy_wh": 29.01,
+    "run_energy_kwh": 0.029,
+    "average_power_w": 72.5,
+    "validated_peak_power_w": 85.0,
+    "raw_sensor_spike_w": 752.7,
+    "rejection_reason": "Hardware sensor/parser corruption spike; clamped to the 85.0W hardware TGP ceiling for the NVIDIA GeForce RTX 3070 Laptop GPU",
+    "run_duration_seconds": 1439.91
+  },
+  "retrieval_augmented_generation": {
+    "corpus_runbooks_count": 10,
+    "indexed_chunks_count": 40,
+    "retrieval_strategy": "Deterministic, source-grounded runbook retrieval via weighted lexical matching, incident-type affinity, affected service matching, and keyword overlap",
+    "dense_embeddings_used": false,
+    "recall_at_1": 0.85,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "mean_reciprocal_rank": 0.9167,
+    "no_hit_rate": 0.0,
+    "latency_p50_ms": 4.38,
+    "latency_p95_ms": 8.12
+  },
+  "serving_parity": {
+    "status": "PASSED",
+    "exact_parity_rate": 1.0,
+    "schema_validity_rate": 1.0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-09-18T16:57:09.172430+00:00",
+  "generation_config_sha256": "5fe8980c91fac3137072a0c2e6571401bdbc983db8b7fee802d4ba2eaca368a6",
+  "experiments": {
+    "E1": {
+      "prompt_id": "prompt_e1_zero_shot",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "7199df81336bd378b86901edfbefc215a11d367f7e90ff6c971cb34f33b27aac",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    },
+    "E2": {
+      "prompt_id": "prompt_e2_structured",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "5079db841efff5292d0e021f689b917235581e3502302473064faafde1cfa86f",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    },
+    "E3": {
+      "prompt_id": "prompt_e3_few_shot",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "5079db841efff5292d0e021f689b917235581e3502302473064faafde1cfa86f",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    },
+    "E4": {
+      "prompt_id": "prompt_e4_qlora",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "9a3dfceb49fa4bb2146d19c793343179361750c6a97e2d5dc579f274fa9e2397",
+      "demonstration_count": 0,
+      "demonstration_ids": []
+    }
+  }
+}

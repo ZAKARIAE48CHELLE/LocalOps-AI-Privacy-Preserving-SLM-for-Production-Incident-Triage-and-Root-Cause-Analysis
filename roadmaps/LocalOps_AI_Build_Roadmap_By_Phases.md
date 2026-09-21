@@ -1,3 +1,4 @@
+
 # LocalOps AI — Build Roadmap by Phases
 
 > **Goal:** Build a production-grade private SLM system for log triage, root-cause analysis, and runbook-grounded remediation.
@@ -588,13 +589,13 @@ Valid JSON?
 
 Compare:
 
-| System | Schema Validity | Type F1 | Severity F1 | p95 Latency |
-|---|---:|---:|---:|---:|
-| Zero-shot | measured | measured | measured | measured |
-| Prompted | measured | measured | measured | measured |
-| Few-shot | measured | measured | measured | measured |
-| QLoRA | measured | measured | measured | measured |
-| QLoRA + structured output | measured | measured | measured | measured |
+| System                    | Schema Validity |  Type F1 | Severity F1 | p95 Latency |
+| ------------------------- | --------------: | -------: | ----------: | ----------: |
+| Zero-shot                 |        measured | measured |    measured |    measured |
+| Prompted                  |        measured | measured |    measured |    measured |
+| Few-shot                  |        measured | measured |    measured |    measured |
+| QLoRA                     |        measured | measured |    measured |    measured |
+| QLoRA + structured output |        measured | measured |    measured |    measured |
 
 ## Deliverables
 
@@ -969,13 +970,13 @@ Make a recruiter understand the project quickly.
 
 ## Final Experiment Matrix
 
-| ID | System |
-|---|---|
-| E1 | Base zero-shot |
-| E2 | Base + strong prompt |
-| E3 | Base + few-shot |
-| E4 | QLoRA |
-| E5 | QLoRA + structured output |
+| ID | System                          |
+| -- | ------------------------------- |
+| E1 | Base zero-shot                  |
+| E2 | Base + strong prompt            |
+| E3 | Base + few-shot                 |
+| E4 | QLoRA                           |
+| E5 | QLoRA + structured output       |
 | E6 | QLoRA + structured output + RAG |
 
 ## Final README Structure

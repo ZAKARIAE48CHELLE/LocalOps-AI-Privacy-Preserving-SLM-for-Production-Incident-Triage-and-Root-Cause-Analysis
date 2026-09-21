@@ -1,0 +1,26 @@
+# LocalOps AI — Phase 4: Baseline Evaluation Configuration
+# Single source of truth for baseline evaluation experiments
+
+model:
+  model_id: "Qwen/Qwen2.5-1.5B-Instruct"
+  quantization: "nf4"
+  bnb_quant_type: "nf4"
+  bnb_compute_dtype: "bfloat16"
+  bnb_use_double_quant: true
+  device: "cuda"
+
+generation:
+  seed: 42
+  max_new_tokens: 384
+  do_sample: false
+  temperature: 0.0
+
+evaluation:
+  batch_size: 8
+  checkpoint_frequency: 50
+  semantic_embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  train_path: "data/generated/train.jsonl"
+  validation_path: "data/generated/validation.jsonl"
+  test_path: "data/generated/test.jsonl"
+  results_dir: "reports/evaluation"
+  smoke_records_per_family: 1  # 36 records (1 per IncidentFamily) for stratified smoke

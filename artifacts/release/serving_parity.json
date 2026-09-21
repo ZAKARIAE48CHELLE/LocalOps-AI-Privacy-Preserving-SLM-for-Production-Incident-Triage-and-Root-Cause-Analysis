@@ -1,0 +1,88 @@
+{
+  "status": "PASSED",
+  "sample_count": 6,
+  "schema_validity_rate": 1.0,
+  "exact_parity_rate": 1.0,
+  "mean_latency_seconds": 11.123,
+  "peak_vram_mb": 1256.2,
+  "records": [
+    {
+      "incident_id": "inc_db_connection_pool_starvation_db_conn_09_bdecae510d",
+      "target_incident_type": "DATABASE",
+      "e4_incident_type": "DATABASE",
+      "serving_incident_type": "DATABASE",
+      "e4_severity": "P2_HIGH",
+      "serving_severity": "P2_HIGH",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 10.825,
+      "schema_valid": true
+    },
+    {
+      "incident_id": "inc_infra_pod_oomkilled_inf_oom_09_5eda84c814",
+      "target_incident_type": "INFRASTRUCTURE",
+      "e4_incident_type": "INFRASTRUCTURE",
+      "serving_incident_type": "INFRASTRUCTURE",
+      "e4_severity": "P3_MEDIUM",
+      "serving_severity": "P3_MEDIUM",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 9.964,
+      "schema_valid": true
+    },
+    {
+      "incident_id": "inc_app_memory_leak_app_leak_09_7e63d739ea",
+      "target_incident_type": "APPLICATION",
+      "e4_incident_type": "APPLICATION",
+      "serving_incident_type": "APPLICATION",
+      "e4_severity": "P2_HIGH",
+      "serving_severity": "P2_HIGH",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 11.266,
+      "schema_valid": true
+    },
+    {
+      "incident_id": "inc_sec_credential_or_token_expiration_sec_tok_09_12a89987b3",
+      "target_incident_type": "SECURITY",
+      "e4_incident_type": "SECURITY",
+      "serving_incident_type": "SECURITY",
+      "e4_severity": "P4_LOW",
+      "serving_severity": "P4_LOW",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 12.48,
+      "schema_valid": true
+    },
+    {
+      "incident_id": "inc_net_dns_resolution_failure_net_dns_09_9287b69368",
+      "target_incident_type": "NETWORK",
+      "e4_incident_type": "NETWORK",
+      "serving_incident_type": "NETWORK",
+      "e4_severity": "P4_LOW",
+      "serving_severity": "P4_LOW",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 11.353,
+      "schema_valid": true
+    },
+    {
+      "incident_id": "inc_msg_consumer_lag_accumulation_msg_lag_09_17fa3c52ac",
+      "target_incident_type": "MESSAGING",
+      "e4_incident_type": "MESSAGING",
+      "serving_incident_type": "MESSAGING",
+      "e4_severity": "P4_LOW",
+      "serving_severity": "P4_LOW",
+      "incident_type_match": true,
+      "severity_match": true,
+      "exact_parity": true,
+      "latency_seconds": 10.849,
+      "schema_valid": true
+    }
+  ]
+}

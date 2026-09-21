@@ -1,0 +1,371 @@
+{
+  "E1": {
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.0,
+      "end_to_end_incident_type_macro_f1": 0.0,
+      "end_to_end_incident_type_micro_f1": 0.0,
+      "end_to_end_severity_accuracy": 0.0,
+      "end_to_end_severity_macro_f1": 0.0,
+      "end_to_end_severity_micro_f1": 0.0
+    },
+    "secondary_metrics": {
+      "valid_record_count": 0,
+      "incident_type_accuracy_on_valid_outputs": 0.0,
+      "incident_type_macro_f1_on_valid_outputs": 0.0,
+      "severity_accuracy_on_valid_outputs": 0.0,
+      "severity_macro_f1_on_valid_outputs": 0.0
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.0,
+      "json_extraction_success_rate": 0.0014,
+      "pydantic_valid_rate": 0.0,
+      "missing_field_failure_rate": 0.0014,
+      "extra_field_failure_rate": 0.0014,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.0,
+      "affected_service_normalized_exact_match": 0.0,
+      "affected_service_log_grounded_rate": 0.0
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.0,
+      "evidence_token_f1_mean": 0.0
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.0,
+      "root_cause_semantic_similarity_median": 0.0,
+      "suggested_action_semantic_similarity_mean": 0.0,
+      "suggested_action_semantic_similarity_median": 0.0,
+      "root_cause_token_f1_mean": 0.0,
+      "suggested_action_token_f1_mean": 0.0
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0,
+      "unsupported_claim_rate": 0.0,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 5.5769,
+        "min": 2.6468,
+        "max": 61.4494,
+        "p50": 3.3929,
+        "p90": 17.4931,
+        "p95": 20.5138
+      },
+      "tokens_per_second_mean": 97.97,
+      "prompt_tokens": {
+        "mean": 398.3444,
+        "min": 202,
+        "max": 650,
+        "p50": 375.0,
+        "p90": 536.0,
+        "p95": 563.0
+      },
+      "generated_tokens": {
+        "mean": 365.134,
+        "min": 219,
+        "max": 384,
+        "p50": 384.0,
+        "p90": 384.0,
+        "p95": 384.0
+      },
+      "peak_vram_mb": 1585.16,
+      "samples_per_minute": 10.76
+    }
+  },
+  "E2": {
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.4472,
+      "end_to_end_incident_type_macro_f1": 0.4679,
+      "end_to_end_incident_type_micro_f1": 0.4973,
+      "end_to_end_severity_accuracy": 0.1861,
+      "end_to_end_severity_macro_f1": 0.0895,
+      "end_to_end_severity_micro_f1": 0.2069
+    },
+    "secondary_metrics": {
+      "valid_record_count": 1150,
+      "incident_type_accuracy_on_valid_outputs": 0.56,
+      "incident_type_macro_f1_on_valid_outputs": 0.5259,
+      "severity_accuracy_on_valid_outputs": 0.233,
+      "severity_macro_f1_on_valid_outputs": 0.0945
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.0,
+      "json_extraction_success_rate": 0.7986,
+      "pydantic_valid_rate": 0.7986,
+      "missing_field_failure_rate": 0.0,
+      "extra_field_failure_rate": 0.0,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.6208,
+      "affected_service_normalized_exact_match": 0.6208,
+      "affected_service_log_grounded_rate": 0.759
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.9769,
+      "evidence_token_f1_mean": 0.5098
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.4838,
+      "root_cause_semantic_similarity_median": 0.4899,
+      "suggested_action_semantic_similarity_mean": 0.3741,
+      "suggested_action_semantic_similarity_median": 0.376,
+      "root_cause_token_f1_mean": 0.1622,
+      "suggested_action_token_f1_mean": 0.1369
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0014,
+      "unsupported_claim_rate": 0.091,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 1.7257,
+        "min": 1.198,
+        "max": 4.4208,
+        "p50": 1.6676,
+        "p90": 2.0037,
+        "p95": 2.77
+      },
+      "tokens_per_second_mean": 187.98,
+      "prompt_tokens": {
+        "mean": 620.3444,
+        "min": 424,
+        "max": 872,
+        "p50": 597.0,
+        "p90": 758.0,
+        "p95": 785.0
+      },
+      "generated_tokens": {
+        "mean": 306.2799,
+        "min": 180,
+        "max": 384,
+        "p50": 294.5,
+        "p90": 384.0,
+        "p95": 384.0
+      },
+      "peak_vram_mb": 3029.82,
+      "samples_per_minute": 34.77
+    }
+  },
+  "E3": {
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.3937,
+      "end_to_end_incident_type_macro_f1": 0.3514,
+      "end_to_end_incident_type_micro_f1": 0.3971,
+      "end_to_end_severity_accuracy": 0.2972,
+      "end_to_end_severity_macro_f1": 0.2319,
+      "end_to_end_severity_micro_f1": 0.2997
+    },
+    "secondary_metrics": {
+      "valid_record_count": 1416,
+      "incident_type_accuracy_on_valid_outputs": 0.4004,
+      "incident_type_macro_f1_on_valid_outputs": 0.3535,
+      "severity_accuracy_on_valid_outputs": 0.3023,
+      "severity_macro_f1_on_valid_outputs": 0.2338
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.9833,
+      "json_extraction_success_rate": 0.9833,
+      "pydantic_valid_rate": 0.9833,
+      "missing_field_failure_rate": 0.0,
+      "extra_field_failure_rate": 0.0,
+      "invalid_incident_type_rate": 0.0,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.9833,
+      "affected_service_normalized_exact_match": 0.9833,
+      "affected_service_log_grounded_rate": 0.9833
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.8711,
+      "evidence_token_f1_mean": 0.7331
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.5193,
+      "root_cause_semantic_similarity_median": 0.5147,
+      "suggested_action_semantic_similarity_mean": 0.4196,
+      "suggested_action_semantic_similarity_median": 0.4184,
+      "root_cause_token_f1_mean": 0.1793,
+      "suggested_action_token_f1_mean": 0.1349
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0014,
+      "unsupported_claim_rate": 0.3083,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 8.1276,
+        "min": 2.377,
+        "max": 13.5462,
+        "p50": 10.6709,
+        "p90": 11.688,
+        "p95": 11.9009
+      },
+      "tokens_per_second_mean": 27.71,
+      "prompt_tokens": {
+        "mean": 4007.3444,
+        "min": 3811,
+        "max": 4259,
+        "p50": 3984.0,
+        "p90": 4145.0,
+        "p95": 4172.0
+      },
+      "generated_tokens": {
+        "mean": 165.1729,
+        "min": 112,
+        "max": 384,
+        "p50": 162.0,
+        "p90": 198.0,
+        "p95": 210.0
+      },
+      "peak_vram_mb": 5150.81,
+      "samples_per_minute": 7.38
+    }
+  },
+  "E4": {
+    "primary_metrics": {
+      "end_to_end_incident_type_accuracy": 0.9847,
+      "end_to_end_incident_type_macro_f1": 0.9892,
+      "end_to_end_incident_type_micro_f1": 0.9892,
+      "end_to_end_severity_accuracy": 0.991,
+      "end_to_end_severity_macro_f1": 0.9955,
+      "end_to_end_severity_micro_f1": 0.9955
+    },
+    "secondary_metrics": {
+      "valid_record_count": 1427,
+      "incident_type_accuracy_on_valid_outputs": 0.9937,
+      "incident_type_macro_f1_on_valid_outputs": 0.9937,
+      "severity_accuracy_on_valid_outputs": 1.0,
+      "severity_macro_f1_on_valid_outputs": 1.0
+    },
+    "contract_metrics": {
+      "raw_json_valid_rate": 0.9917,
+      "json_extraction_success_rate": 0.9917,
+      "pydantic_valid_rate": 0.991,
+      "missing_field_failure_rate": 0.0,
+      "extra_field_failure_rate": 0.0,
+      "invalid_incident_type_rate": 0.0007,
+      "invalid_severity_rate": 0.0,
+      "invalid_confidence_rate": 0.0,
+      "invalid_evidence_rate": 0.0
+    },
+    "affected_service_metrics": {
+      "affected_service_exact_match": 0.991,
+      "affected_service_normalized_exact_match": 0.991,
+      "affected_service_log_grounded_rate": 0.991
+    },
+    "evidence_metrics": {
+      "evidence_verbatim_rate": 0.9675,
+      "record_level_full_evidence_grounding_rate": 0.8972,
+      "evidence_token_f1_mean": 0.8599,
+      "ungrounded_evidence_count": 144,
+      "total_predicted_evidence_count": 4426,
+      "verbatim_evidence_count": 4282
+    },
+    "semantic_metrics": {
+      "root_cause_semantic_similarity_mean": 0.5781,
+      "root_cause_semantic_similarity_median": 0.5945,
+      "suggested_action_semantic_similarity_mean": 0.4755,
+      "suggested_action_semantic_similarity_median": 0.4929,
+      "root_cause_token_f1_mean": 0.2872,
+      "suggested_action_token_f1_mean": 0.2
+    },
+    "heuristic_metrics": {
+      "unsupported_root_cause_rate": 0.0,
+      "unsupported_claim_rate": 0.0938,
+      "technology_action_compatibility_rate": 1.0,
+      "unsafe_or_destructive_action_rate": 0.0
+    },
+    "telemetry": {
+      "latency_seconds": {
+        "mean": 0.9926,
+        "min": 0.8352,
+        "max": 1.2265,
+        "p50": 0.97,
+        "p90": 1.1125,
+        "p95": 1.1659
+      },
+      "tokens_per_second_mean": 122.42,
+      "prompt_tokens": {
+        "mean": 354.4604,
+        "min": 158,
+        "max": 606,
+        "p50": 331.0,
+        "p90": 492.1,
+        "p95": 519.05
+      },
+      "generated_tokens": {
+        "mean": 121.1083,
+        "min": 65,
+        "max": 163,
+        "p50": 120.0,
+        "p90": 140.0,
+        "p95": 148.0
+      },
+      "peak_vram_mb": 2620.14,
+      "samples_per_minute": 60.45
+    },
+    "energy_telemetry": {
+      "run_energy_wh": 29.01,
+      "run_energy_kwh": 0.029,
+      "run_average_power_w": 72.5,
+      "run_peak_power_w": 85.0,
+      "run_duration_seconds": 1439.91,
+      "carbon_co2_g": 11.168,
+      "estimated_cost_usd": 0.0044,
+      "cumulative_lifetime_telemetry": {
+        "current_power_w": 37.5,
+        "power_limit_w": 85.0,
+        "power_pct": 44.1,
+        "average_power_w": 44.2,
+        "peak_power_w": 752.7,
+        "energy_wh": 1497.86,
+        "energy_kwh": 1.4979,
+        "active_duration_formatted": "34h 41m 11s",
+        "active_duration_seconds": 124871.7,
+        "wh_per_100_samples": 104.02,
+        "projected_total_kwh": 1.498,
+        "carbon_co2_g": 576.68,
+        "estimated_cost_usd": 0.225
+      },
+      "average_power_w": 72.5,
+      "validated_peak_power_w": 85.0,
+      "outlier_filtering_rule": "Raw telemetry sample spike of 752.7 W was rejected as hardware sensor/parser corruption; clamped to the 85.0 W hardware power ceiling (NVML Max Power Limit for NVIDIA GeForce RTX 3070 Laptop GPU)."
+    }
+  },
+  "deltas_e4_vs_e2": {
+    "end_to_end_incident_type_accuracy": 0.5375,
+    "end_to_end_incident_type_macro_f1": 0.5213,
+    "end_to_end_severity_accuracy": 0.8049,
+    "end_to_end_severity_macro_f1": 0.906,
+    "affected_service_exact_match": 0.3702,
+    "root_cause_semantic_similarity_mean": 0.0943,
+    "suggested_action_semantic_similarity_mean": 0.1014
+  },
+  "deltas_e4_vs_e3": {
+    "end_to_end_incident_type_accuracy": 0.591,
+    "end_to_end_incident_type_macro_f1": 0.6378,
+    "end_to_end_severity_accuracy": 0.6938,
+    "end_to_end_severity_macro_f1": 0.7636,
+    "affected_service_exact_match": 0.0077,
+    "root_cause_semantic_similarity_mean": 0.0588,
+    "suggested_action_semantic_similarity_mean": 0.0559
+  }
+}

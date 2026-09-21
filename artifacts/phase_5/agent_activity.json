@@ -1,0 +1,86 @@
+{
+  "current_status": "PHASE_6_COMPLETE",
+  "status_badge": "PHASE 6 COMPLETE · VERIFIED & LOCKED",
+  "status_color": "#10b981",
+  "current_phase": "Phase 6: Fine-Tuned Model Evaluation (E4)",
+  "current_task": "Phase 6 Test Evaluation & Analytics Complete",
+  "summary": "Full 1,440 sealed test records evaluated with E4 (checkpoint-100). Pydantic validity reached 99.10%, IncidentType Macro-F1 reached 0.9892 (+0.5213 vs E2), and Severity Macro-F1 reached 0.9955 (+0.7636 vs E3). All paired bootstrap CIs strictly positive. 105/105 regression tests passing.",
+  "selected_checkpoint": {
+    "name": "checkpoint-100",
+    "eval_loss": 1.0444,
+    "train_loss": 0.3124,
+    "schema_validity": "100.0%",
+    "type_macro_f1": 1.0000,
+    "severity_macro_f1": 1.0000,
+    "messaging_recall": "100.0%",
+    "p4_low_recall": "100.0%",
+    "selection_rule": "Predeclared metric_for_best_model: eval_loss (global minimum: 1.0444 vs 1.5641 at step 810)",
+    "export_path": "artifacts/phase_5/final_adapter/"
+  },
+  "overfitting_diagnosis": "Train loss decreased monotonically to 0.0458 while validation loss diverged upward to 1.5641 from step 200 to 810. Selecting checkpoint-100 protects the system against overfitted generations.",
+  "active_guardrails": [
+    "Test split evaluated strictly out-of-sample; zero parameter or prompt tuning on test data",
+    "End-to-end confusion matrices include INVALID_OR_MISSING dimensions (7x7 and 5x5)",
+    "Paired bootstrap resampling (B=1000, seed=42) establishes p < 0.001 superiority over E2/E3",
+    "Full test suite (105 tests across Phase 1-6) passing"
+  ],
+  "timeline": [
+    {
+      "time": "14:48:20",
+      "phase": "Phase 5 Checkpoint Resolution",
+      "action": "Generated validation evaluation on checkpoint-100",
+      "detail": "48/48 valid Pydantic JSONs, 1.0 Macro-F1 IncidentType & Severity, 100% Messaging & P4 recall.",
+      "status": "success"
+    },
+    {
+      "time": "14:55:00",
+      "phase": "Phase 5 Model Selection",
+      "action": "Selected checkpoint-100 as official adapter",
+      "detail": "Adhered strictly to predeclared minimum validation loss rule (1.0444 vs 1.5641 at step 810).",
+      "status": "success"
+    },
+    {
+      "time": "15:06:00",
+      "phase": "Phase 5 Reporting",
+      "action": "Rewrote Phase_5_Report.md and training_manifest.json",
+      "detail": "Added clear overfitting analysis, corrected Phase 4 baselines, and canonical taxonomy.",
+      "status": "success"
+    },
+    {
+      "time": "16:20:10",
+      "phase": "Phase 6 Pre-Flight Smoke Test",
+      "action": "Verified batch size 16 hypothesis on 36 validation records",
+      "detail": "Peak VRAM: 2,583.83 MB. No OOM, zero PCIe paging thrash. Frozen configuration saved to manifest.",
+      "status": "success"
+    },
+    {
+      "time": "16:45:00",
+      "phase": "Phase 6 Full Evaluation Run",
+      "action": "Evaluated 1,440 held-out test records on checkpoint-100",
+      "detail": "1,440/1,440 predictions completed in 24.00 min. 99.10% Pydantic validity (1,427/1,440). Peak VRAM: 2,620 MB.",
+      "status": "success"
+    },
+    {
+      "time": "17:15:30",
+      "phase": "Phase 6 Analytics & Statistics",
+      "action": "Compiled 7x7 & 5x5 confusion matrices and paired bootstrap CIs",
+      "detail": "IncidentType Macro-F1: 0.9892 (+0.5213 vs E2). Severity Macro-F1: 0.9955 (+0.7636 vs E3). All CIs strictly > 0.",
+      "status": "success"
+    },
+    {
+      "time": "17:23:45",
+      "phase": "Phase 6 Test Suite & Audit",
+      "action": "Ran full test suite pytest tests/ -v",
+      "detail": "All 105 automated unit tests PASSED (test_evaluation_phase6.py 6/6 passed).",
+      "status": "success"
+    },
+    {
+      "time": "17:25:00",
+      "phase": "Phase 6 Documentation",
+      "action": "Exported Phase_6_Report.md and updated Mission Control",
+      "detail": "Formal report generated in documentation/phase_6/ and artifacts/phase_6/. Walkthrough updated.",
+      "status": "success"
+    }
+  ],
+  "next_action": "Phase 6 completed and locked. Awaiting user instructions before Phase 7."
+}

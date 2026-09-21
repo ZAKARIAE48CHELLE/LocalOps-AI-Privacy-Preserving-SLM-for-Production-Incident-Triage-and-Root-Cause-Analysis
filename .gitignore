@@ -21,14 +21,29 @@ cache/
 
 # Datasets and generated reports
 data/*.jsonl
+data/**/*.jsonl
+data/generated/
 reports/*.json
 reports/*.csv
 !reports/.gitkeep
+!reports/smoke_test_baseline.json
 
 # Testing & coverage
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Node & Frontend
+node_modules/
+dashboard/node_modules/
+scratch/
+
+# Intermediate Training Checkpoints & Optimizer states
+artifacts/phase_5/checkpoints/
+*.pt
+
+# Logs & Temporary Files
+*.log
 
 # IDE
 .vscode/
