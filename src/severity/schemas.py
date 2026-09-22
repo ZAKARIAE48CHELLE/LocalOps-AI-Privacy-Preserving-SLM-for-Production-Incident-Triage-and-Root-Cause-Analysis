@@ -66,6 +66,7 @@ class EnvironmentType(str, Enum):
 
 class SignalSource(str, Enum):
     EXPLICIT = "EXPLICIT"
+    DERIVED_SAFE = "DERIVED_SAFE"
     DERIVED = "DERIVED"
     UNKNOWN = "UNKNOWN"
 
@@ -102,6 +103,8 @@ class ImpactAssessment(BaseModel):
     data_integrity: DataIntegrity = DataIntegrity.UNKNOWN
     security_exposure: SecurityExposure = SecurityExposure.NONE
     environment: EnvironmentType = EnvironmentType.PRODUCTION
+    service_error_observed: bool = False
+    transaction_contention: bool = False
     workaround_available: Optional[bool] = None
     incident_duration_minutes: Optional[float] = None
     affected_users_estimate: Optional[int] = None

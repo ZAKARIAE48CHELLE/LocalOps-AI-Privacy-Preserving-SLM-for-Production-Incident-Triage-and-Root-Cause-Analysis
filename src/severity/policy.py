@@ -133,6 +133,17 @@ class SeverityPolicyEngine:
             )
 
         if (
+            impact.transaction_contention
+            and impact.environment == EnvironmentType.PRODUCTION
+        ):
+            return SeverityDecision(
+                severity=Severity.P2_HIGH,
+                reason_code="DATABASE_TRANSACTION_CONTENTION",
+                policy_version=self.VERSION,
+                evidence_signals=impact.impact_evidence,
+            )
+
+        if (
             impact.service_availability in (ServiceAvailability.DOWN, ServiceAvailability.PARTIAL, ServiceAvailability.DEGRADED)
             and impact.customer_impact in (CustomerImpact.HIGH, CustomerImpact.SEVERE)
         ):
@@ -163,6 +174,18 @@ class SeverityPolicyEngine:
             return SeverityDecision(
                 severity=Severity.P2_HIGH,
                 reason_code="MULTI_SERVICE_DEGRADATION",
+                policy_version=self.VERSION,
+                evidence_signals=impact.impact_evidence,
+            )
+
+        if (
+            impact.blast_radius == BlastRadius.SINGLE_SERVICE
+            and impact.service_availability in (ServiceAvailability.DEGRADED, ServiceAvailability.PARTIAL)
+            and impact.environment == EnvironmentType.PRODUCTION
+        ):
+            return SeverityDecision(
+                severity=Severity.P2_HIGH,
+                reason_code="SINGLE_SERVICE_DEGRADATION",
                 policy_version=self.VERSION,
                 evidence_signals=impact.impact_evidence,
             )

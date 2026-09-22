@@ -1,0 +1,273 @@
+{
+  "evaluation_phase": "Phase 14 Grounding & Severity Safety Patch",
+  "timestamp": "2026-09-21T18:04:51.831135+00:00",
+  "manual_logs_sha256": "d8a1a2915a1942ca837ae3a85e89e6fa5eb1742116a5d1012ca2ea091ac15a81",
+  "total_records": 12,
+  "metrics": {
+    "incident_type_accuracy": 0.8333,
+    "schema_validity_rate": 1.0,
+    "unsupported_ip_rate": 0.0,
+    "unsupported_hostname_rate": 0.0,
+    "unsupported_numeric_claim_rate": 0.0,
+    "severity_unsupported_reason_rate": 0.0,
+    "severity_distribution": {
+      "P1_CRITICAL": 0,
+      "P2_HIGH": 6,
+      "P3_MEDIUM": 5,
+      "P4_LOW": 1
+    }
+  },
+  "comparison_table": {
+    "incident_type_accuracy": {
+      "before_phase14": 1.0,
+      "after_phase14": 0.8333,
+      "after_grounding_patch": 0.8333
+    },
+    "unsupported_ip_rate": {
+      "before_phase14": 0.3333,
+      "after_phase14": 0.4167,
+      "after_grounding_patch": 0.0
+    },
+    "unsupported_hostname_rate": {
+      "before_phase14": 0.1667,
+      "after_phase14": 0.25,
+      "after_grounding_patch": 0.0
+    },
+    "unsupported_numeric_claim_rate": {
+      "before_phase14": 0.25,
+      "after_phase14": 0.25,
+      "after_grounding_patch": 0.0
+    },
+    "severity_unsupported_reason_rate": {
+      "before_phase14": 0.0,
+      "after_phase14": 0.25,
+      "after_grounding_patch": 0.0
+    },
+    "severity_distribution": {
+      "before_phase14": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 0,
+        "P3_MEDIUM": 12,
+        "P4_LOW": 0
+      },
+      "after_phase14": {
+        "P2_HIGH": 6,
+        "P3_MEDIUM": 4,
+        "P1_CRITICAL": 1,
+        "P4_LOW": 1
+      },
+      "after_grounding_patch": {
+        "P1_CRITICAL": 0,
+        "P2_HIGH": 6,
+        "P3_MEDIUM": 5,
+        "P4_LOW": 1
+      }
+    },
+    "schema_validity": {
+      "before_phase14": 1.0,
+      "after_phase14": 0.8333,
+      "after_grounding_patch": 1.0
+    }
+  },
+  "target_verification": {
+    "unsupported_ip_rate_target_met": true,
+    "unsupported_hostname_rate_target_met": true,
+    "unsupported_severity_reason_rate_target_met": true
+  },
+  "results": [
+    {
+      "request_id": "test-db-001",
+      "predicted_incident_type": "APPLICATION",
+      "expected_incident_type": "DATABASE",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "REDUNDANCY_DEPLETED",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "System error",
+      "sanitized_suggested_action": "Inspect logs",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-db-002",
+      "predicted_incident_type": "DATABASE",
+      "expected_incident_type": "DATABASE",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "DATABASE_TRANSACTION_CONTENTION",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault DB_LOCK_ACQUIRE_TIMEOUT in billing-service leading to total service outage and SLA breach risks.",
+      "sanitized_suggested_action": "Declare P2 major incident, execute emergency failover procedures, and mobilize on-call incident response team.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-infra-001",
+      "predicted_incident_type": "INFRASTRUCTURE",
+      "expected_incident_type": "INFRASTRUCTURE",
+      "predicted_severity": "P3_MEDIUM",
+      "expected_severity": "P3_MEDIUM",
+      "severity_decision_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault INFRA_CONTAINER_OOM_KILLED in ml-worker leading to transient pool leak or temporary technical fault in worker pool.",
+      "sanitized_suggested_action": "Inspect failed container diagnostics, rotate worker instance, and monitor pool metrics.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-infra-002",
+      "predicted_incident_type": "INFRASTRUCTURE",
+      "expected_incident_type": "INFRASTRUCTURE",
+      "predicted_severity": "P3_MEDIUM",
+      "expected_severity": "P3_MEDIUM",
+      "severity_decision_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault INFRA_STORAGE_DISK_PRESSURE in log-collector leading to temporary service outage.",
+      "sanitized_suggested_action": "Inspect failed container diagnostics, rotate worker instance, and monitor pool metrics.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-app-001",
+      "predicted_incident_type": "APPLICATION",
+      "expected_incident_type": "APPLICATION",
+      "predicted_severity": "P3_MEDIUM",
+      "expected_severity": "P1_CRITICAL",
+      "severity_decision_reason": "INSUFFICIENT_IMPACT_EVIDENCE",
+      "severity_source": "MODEL",
+      "is_insufficient_evidence": true,
+      "sanitized_root_cause": "Technical fault APP_CRASH in checkout-api leading to total service outage across all production instances with severe customer impact.",
+      "sanitized_suggested_action": "Declare P3 Major Incident, execute emergency failover procedures, and mobilize on-call incident response team.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-app-002",
+      "predicted_incident_type": "APPLICATION",
+      "expected_incident_type": "APPLICATION",
+      "predicted_severity": "P3_MEDIUM",
+      "expected_severity": "P3_MEDIUM",
+      "severity_decision_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault APP_STACK_OVERFLOW in report-generator leading to total service outage and SLA breach risks.",
+      "sanitized_suggested_action": "Declare P3 Medium urgency, execute emergency failover procedures, and mobilize on-call incident response team.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": [
+        "Removed unsupported IP: 202.170.100.1"
+      ]
+    },
+    {
+      "request_id": "test-sec-001",
+      "predicted_incident_type": "APPLICATION",
+      "expected_incident_type": "SECURITY",
+      "predicted_severity": "P4_LOW",
+      "expected_severity": "P4_LOW",
+      "severity_decision_reason": "NO_OPERATIONAL_IMPACT",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "System error",
+      "sanitized_suggested_action": "Inspect logs",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-sec-002",
+      "predicted_incident_type": "SECURITY",
+      "expected_incident_type": "SECURITY",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "CONFIRMED_SECURITY_EVENT",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault SEC_ATTACK in identity-gateway leading to temporary service outage and customer SLA breach risks on production workload.",
+      "sanitized_suggested_action": "Declare P3 Medium emergency incident, execute emergency failover procedures, and mobilize on-call security response team.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-net-001",
+      "predicted_incident_type": "NETWORK",
+      "expected_incident_type": "NETWORK",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "SINGLE_SERVICE_DEGRADATION",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault NET_RT_UNREACHABLE in inventory-service isolated to single worker instance while cluster redundancy maintained service availability.",
+      "sanitized_suggested_action": "Inspect failed container diagnostics, rotate worker instance, and monitor pool metrics.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-net-002",
+      "predicted_incident_type": "NETWORK",
+      "expected_incident_type": "NETWORK",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "SINGLE_SERVICE_DEGRADATION",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault NET_CONNECTION_REFUSED in api-gateway isolated to single worker instance with zero customer or operational impact.",
+      "sanitized_suggested_action": "Inspect failed container diagnostics, rotate worker instance, and monitor pool metrics.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-msg-001",
+      "predicted_incident_type": "MESSAGING",
+      "expected_incident_type": "MESSAGING",
+      "predicted_severity": "P2_HIGH",
+      "expected_severity": "P2_HIGH",
+      "severity_decision_reason": "MAJOR_SERVICE_DEGRADATION",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault MSG_PARTITION_LEAGUE_OF_LEGEND in notification-consumer leading to SLA breach and customer outage risk on 2026-09-18T22:40:05Z.",
+      "sanitized_suggested_action": "Declare P3 Medium urgency, execute emergency failover procedures, and mobilize on-call incident response team.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    },
+    {
+      "request_id": "test-msg-002",
+      "predicted_incident_type": "MESSAGING",
+      "expected_incident_type": "MESSAGING",
+      "predicted_severity": "P3_MEDIUM",
+      "expected_severity": "P3_MEDIUM",
+      "severity_decision_reason": "LOCALIZED_INSTANCE_FAILURE",
+      "severity_source": "POLICY_ENGINE",
+      "is_insufficient_evidence": false,
+      "sanitized_root_cause": "Technical fault MSG_DELIVERY_FAILURE in event-handler leading to total or partial message re-delivery in consumer queue.",
+      "sanitized_suggested_action": "Inspect failed and unreleased message queues, rotate worker instance, and monitor pool metrics.",
+      "unsupported_ips_in_output": [],
+      "unsupported_hostnames_in_output": [],
+      "unsupported_numbers_in_output": [],
+      "grounding_corrections_applied": []
+    }
+  ]
+}

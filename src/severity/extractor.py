@@ -1,124 +1,412 @@
 """LocalOps AI — Impact Signal Extractor (Phase 14).
 
-Extracts operational impact signals from raw logs and model diagnostic context
-without hallucinating unsupported numbers, hostnames, or metrics.
+Extracts operational impact signals from raw logs and diagnostic context
+under strict grounding rules:
+- Only facts explicitly supported by raw log telemetry are extracted.
+- A single HTTP 500 does NOT imply widespread outage or DOWN availability.
+- A database deadlock does NOT automatically imply DATA_INTEGRITY_AT_RISK.
+- A single UnknownHostException does NOT imply MULTI_SERVICE_DEGRADATION.
+- Every signal stores value, source (EXPLICIT | DERIVED_SAFE | UNKNOWN), and evidence.
 """
 
 from __future__ import annotations
 
 import re
-from typing import List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from src.severity.schemas import (
     BlastRadius,
     CustomerImpact,
     DataIntegrity,
     EnvironmentType,
+    GroundedSignal,
     ImpactAssessment,
     RedundancyState,
     SecurityExposure,
     ServiceAvailability,
+    SignalSource,
 )
 
 
 class ImpactExtractor:
-    """Extracts grounded operational impact indicators from log text and diagnostic output."""
+    """Extracts strictly grounded operational impact indicators from raw logs."""
+
+    def _find_span(self, text: str, pattern: str) -> Tuple[Optional[str], Optional[int], Optional[int]]:
+        """Finds first regex match span and substring in text."""
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            return match.group(0), match.start(), match.end()
+        return None, None, None
 
     def extract(self, raw_log: str, root_cause: str = "", suggested_action: str = "") -> ImpactAssessment:
-        combined_text = f"{raw_log}\n{root_cause}\n{suggested_action}".lower()
+        combined_text = f"{raw_log}\n{root_cause}\n{suggested_action}"
+        raw_log_lower = raw_log.lower()
         impact_evidence: List[str] = []
+        grounded_signals: Dict[str, GroundedSignal] = {}
 
+        # ---------------------------------------------------------------------
         # 1. Environment Detection
+        # ---------------------------------------------------------------------
         env = EnvironmentType.PRODUCTION
-        if re.search(r"\b(staging|stage|dev|development|qa|sandbox|non-prod)\b", combined_text):
+        env_source = SignalSource.DERIVED_SAFE
+        env_evidence = "default production environment"
+        env_sub, env_s, env_e = self._find_span(raw_log, r"\b(staging|stage|dev|development|qa|sandbox|non-prod)\b")
+        if env_sub:
             env = EnvironmentType.STAGING
-            impact_evidence.append("non-production environment detected")
+            env_source = SignalSource.EXPLICIT
+            env_evidence = f"non-production environment marker: '{env_sub}'"
+            impact_evidence.append(env_evidence)
+        elif "production" in raw_log_lower:
+            env_source = SignalSource.EXPLICIT
+            env_evidence = "explicit production environment marker"
+            impact_evidence.append(env_evidence)
 
+        grounded_signals["environment"] = GroundedSignal(
+            value=env.value,
+            evidence=env_evidence,
+            substring=env_sub,
+            evidence_start=env_s,
+            evidence_end=env_e,
+            source=env_source,
+        )
+
+        # ---------------------------------------------------------------------
         # 2. Security Exposure Detection
-        security = SecurityExposure.NONE
-        if re.search(r"\b(active compromise|data exfiltration|privilege escalation achieved|remote code execution|cve-)\b", combined_text):
-            security = SecurityExposure.ACTIVE_COMPROMISE
-            impact_evidence.append("active security compromise detected")
-        elif re.search(r"\b(brute force|failed login attempts|account.*locked|unauthorized access attempt|credential stuffing|\d+ failed.*attempts)\b", combined_text):
-            security = SecurityExposure.CONFIRMED
-            impact_evidence.append("confirmed security anomaly / attack detected")
-        elif re.search(r"\b(token expired|jwt expired|expiredjwtexception|invalid_token|401 unauthorized|signature verification failed)\b", combined_text):
-            # Expired token rejected by perimeter defense without unauthorized breach
-            security = SecurityExposure.NONE
-            impact_evidence.append("routine authentication perimeter rejection")
-        elif re.search(r"\b(jwt validation failed|permission.*denied|403 forbidden)\b", combined_text):
-            security = SecurityExposure.SUSPICIOUS
-            impact_evidence.append("authentication/authorization anomaly detected")
+        # ---------------------------------------------------------------------
+        sec = SecurityExposure.NONE
+        sec_source = SignalSource.UNKNOWN
+        sec_evidence = "no security anomalies observed"
+        sec_sub, sec_s, sec_e = self._find_span(
+            raw_log,
+            r"\b(active compromise|data exfiltration|privilege escalation achieved|remote code execution|cve-)\b",
+        )
+        if sec_sub:
+            sec = SecurityExposure.ACTIVE_COMPROMISE
+            sec_source = SignalSource.EXPLICIT
+            sec_evidence = f"active compromise: '{sec_sub}'"
+            impact_evidence.append(sec_evidence)
+        else:
+            sec_sub, sec_s, sec_e = self._find_span(
+                raw_log,
+                r"\b(brute force|failed login attempts|account.*locked|unauthorized access attempt|credential stuffing|\d+ failed.*attempts)\b",
+            )
+            if sec_sub:
+                sec = SecurityExposure.CONFIRMED
+                sec_source = SignalSource.EXPLICIT
+                sec_evidence = f"confirmed security event: '{sec_sub}'"
+                impact_evidence.append(sec_evidence)
+            else:
+                sec_sub, sec_s, sec_e = self._find_span(
+                    raw_log,
+                    r"\b(token expired|jwt expired|expiredjwtexception|invalid_token|401 unauthorized|request rejected status=401)\b",
+                )
+                if sec_sub:
+                    sec = SecurityExposure.NONE
+                    sec_source = SignalSource.EXPLICIT
+                    sec_evidence = f"routine defense perimeter rejection: '{sec_sub}'"
+                    impact_evidence.append(sec_evidence)
+                else:
+                    sec_sub, sec_s, sec_e = self._find_span(
+                        raw_log,
+                        r"\b(jwt validation failed|permission.*denied|403 forbidden)\b",
+                    )
+                    if sec_sub:
+                        sec = SecurityExposure.SUSPICIOUS
+                        sec_source = SignalSource.EXPLICIT
+                        sec_evidence = f"suspicious security event: '{sec_sub}'"
+                        impact_evidence.append(sec_evidence)
 
-        # 3. Data Integrity Detection
+        grounded_signals["security_exposure"] = GroundedSignal(
+            value=sec.value,
+            evidence=sec_evidence,
+            substring=sec_sub,
+            evidence_start=sec_s,
+            evidence_end=sec_e,
+            source=sec_source,
+        )
+
+        # ---------------------------------------------------------------------
+        # 3. Data Integrity & Deadlock Contention Rules
+        # Deadlock alone must NOT automatically produce DATA_INTEGRITY_AT_RISK.
+        # ---------------------------------------------------------------------
         data_integrity = DataIntegrity.INTACT
-        if re.search(r"\b(data loss|corruption detected|unrecoverable.*data|database corruption|permanent loss|lost records)\b", combined_text):
+        data_source = SignalSource.DERIVED_SAFE
+        data_evidence = "data integrity intact"
+        transaction_contention = False
+
+        data_sub, data_s, data_e = self._find_span(
+            raw_log,
+            r"\b(data loss|unrecoverable.*data|database corruption|permanent loss|lost records|wal corruption)\b",
+        )
+        if data_sub:
             data_integrity = DataIntegrity.LOST_OR_CORRUPTED
-            impact_evidence.append("data loss or corruption indicated")
-        elif re.search(r"\b(deadlock|transaction aborted|commit failed|split-brain|replication lag|poison pill|deserialization failure)\b", combined_text):
-            data_integrity = DataIntegrity.AT_RISK
-            impact_evidence.append("data integrity at risk or transaction aborted")
+            data_source = SignalSource.EXPLICIT
+            data_evidence = f"data loss or corruption: '{data_sub}'"
+            impact_evidence.append(data_evidence)
+        else:
+            # Only assign AT_RISK if explicit corruption/integrity risk words occur
+            data_sub, data_s, data_e = self._find_span(
+                raw_log,
+                r"\b(corruption|lost writes|inconsistent records|failed recovery|data mismatch|partial commit|integrity constraint violation with damaged state)\b",
+            )
+            if data_sub:
+                data_integrity = DataIntegrity.AT_RISK
+                data_source = SignalSource.EXPLICIT
+                data_evidence = f"data integrity at risk: '{data_sub}'"
+                impact_evidence.append(data_evidence)
+            else:
+                # Check for database deadlock / transaction contention
+                tx_sub, tx_s, tx_e = self._find_span(
+                    raw_log,
+                    r"\b(deadlock detected|deadlock|transaction aborted|transaction rollback|lock timeout|sharelock)\b",
+                )
+                if tx_sub:
+                    transaction_contention = True
+                    data_integrity = DataIntegrity.INTACT
+                    data_source = SignalSource.DERIVED_SAFE
+                    data_evidence = f"transaction contention without corruption: '{tx_sub}'"
+                    impact_evidence.append(data_evidence)
 
-        # 4. Service Availability Detection
-        availability = ServiceAvailability.UNKNOWN
-        if re.search(r"\b(complete outage|100% (requests|traffic) fail|no healthy|fatal exception in interrupt|kernel panic|all replicas oomkilled|down and unreachable|status=500.*path=/checkout|checkout-api.*status=500)\b", combined_text):
-            availability = ServiceAvailability.DOWN
-            impact_evidence.append("service down or critical checkout failure indicated")
-        elif re.search(r"\b(degraded|connection is not available|pool\.idle=0|too many clients|timeout|high latency|lag increasing|diskpressure|circuitbreaker.*open|refused|connection refused|502 bad gateway|response_status=502)\b", combined_text):
-            availability = ServiceAvailability.DEGRADED
-            impact_evidence.append("service degradation detected")
-        elif re.search(r"\b(restarted automatically|healthy replicas absorbed|self-healed|pod status.*running|request rejected status=401)\b", combined_text):
-            availability = ServiceAvailability.AVAILABLE
-            impact_evidence.append("service healthy or routine defense active")
+        grounded_signals["data_integrity"] = GroundedSignal(
+            value=data_integrity.value,
+            evidence=data_evidence,
+            substring=data_sub,
+            evidence_start=data_s,
+            evidence_end=data_e,
+            source=data_source,
+        )
 
-        # 5. Blast Radius Detection
+        # ---------------------------------------------------------------------
+        # 4. Service Availability & Service Error Observed
+        # A single HTTP 500 or NPE must NOT infer service DOWN.
+        # ---------------------------------------------------------------------
+        service_error_observed = bool(
+            re.search(r"\b(status=500|error|exception|fatal|panic|oomkill|timeout|refused|fail)\b", raw_log, re.IGNORECASE)
+        )
+        avail = ServiceAvailability.UNKNOWN
+        avail_source = SignalSource.UNKNOWN
+        avail_evidence = "availability unknown from context"
+
+        # Explicit DOWN requires total outage proof
+        avail_sub, avail_s, avail_e = self._find_span(
+            raw_log,
+            r"\b(complete outage|100% (requests|traffic) fail|all replicas unavailable|checkout unavailable|global outage|error rate 95%|all replicas oomkilled|fatal exception in interrupt|kernel panic|down and unreachable)\b",
+        )
+        if avail_sub:
+            avail = ServiceAvailability.DOWN
+            avail_source = SignalSource.EXPLICIT
+            avail_evidence = f"service down: '{avail_sub}'"
+            impact_evidence.append(avail_evidence)
+        else:
+            # Explicit DEGRADED requires verified service degradation
+            avail_sub, avail_s, avail_e = self._find_span(
+                raw_log,
+                r"\b(connection is not available|pool\.idle=0|pool\.waiting=\d+|fatal: sorry, too many clients|diskpressure|circuitbreaker.*open|connect\(\) failed.*connection refused|502 bad gateway|response_status=502|kafka consumer group.*lag increasing|i/o timeout|read udp.*timeout)\b",
+            )
+            if avail_sub:
+                avail = ServiceAvailability.DEGRADED
+                avail_source = SignalSource.EXPLICIT
+                avail_evidence = f"service degradation: '{avail_sub}'"
+                impact_evidence.append(avail_evidence)
+            else:
+                avail_sub, avail_s, avail_e = self._find_span(
+                    raw_log,
+                    r"\b(restarted automatically|healthy replicas absorbed|self-healed|pod status.*running|request rejected status=401)\b",
+                )
+                if avail_sub:
+                    avail = ServiceAvailability.AVAILABLE
+                    avail_source = SignalSource.EXPLICIT
+                    avail_evidence = f"service available: '{avail_sub}'"
+                    impact_evidence.append(avail_evidence)
+                elif service_error_observed:
+                    # An error was observed but without proof of outage or persistent degradation
+                    avail = ServiceAvailability.UNKNOWN
+                    avail_source = SignalSource.DERIVED_SAFE
+                    avail_evidence = "service error observed without outage proof"
+                    impact_evidence.append(avail_evidence)
+
+        grounded_signals["service_availability"] = GroundedSignal(
+            value=avail.value,
+            evidence=avail_evidence,
+            substring=avail_sub,
+            evidence_start=avail_s,
+            evidence_end=avail_e,
+            source=avail_source,
+        )
+
+        # ---------------------------------------------------------------------
+        # 5. Blast Radius
+        # A single UnknownHostException must NOT imply MULTI_SERVICE_DEGRADATION.
+        # ---------------------------------------------------------------------
         blast = BlastRadius.UNKNOWN
-        if re.search(r"\b(global|multi-region|cross-region|all regions|worldwide)\b", combined_text):
+        blast_source = SignalSource.UNKNOWN
+        blast_evidence = "blast radius unknown"
+
+        blast_sub, blast_s, blast_e = self._find_span(
+            raw_log,
+            r"\b(global outage|multi-region|cross-region|all regions|worldwide)\b",
+        )
+        if blast_sub:
             blast = BlastRadius.GLOBAL
-            impact_evidence.append("global blast radius")
-        elif re.search(r"\b(multi-service|cascade|cascading|evicting.*pods|cluster-wide|network partition|unknownhostexception.*cluster\.local|upstream_service=)\b", combined_text):
-            blast = BlastRadius.MULTI_SERVICE
-            impact_evidence.append("multi-service or inter-service failure")
-        elif re.search(r"\b(1 of \d+|single pod|single instance|single container|isolated to|worker-\d+|container ml-worker terminated|evicting pod|document graph|delivery_tag=)\b", combined_text):
-            blast = BlastRadius.SINGLE_INSTANCE
-            impact_evidence.append("single instance / localized blast radius")
-        elif re.search(r"\b(service|api|consumer|database|pool)\b", combined_text):
-            blast = BlastRadius.SINGLE_SERVICE
+            blast_source = SignalSource.EXPLICIT
+            blast_evidence = f"global blast radius: '{blast_sub}'"
+            impact_evidence.append(blast_evidence)
+        else:
+            # Multi-service requires multiple services explicitly impacted
+            blast_sub, blast_s, blast_e = self._find_span(
+                raw_log,
+                r"\b(multi-service cascade|cascading failure|cluster-wide partition|multiple downstream services unavailable)\b",
+            )
+            if blast_sub:
+                blast = BlastRadius.MULTI_SERVICE
+                blast_source = SignalSource.EXPLICIT
+                blast_evidence = f"multi-service cascade: '{blast_sub}'"
+                impact_evidence.append(blast_evidence)
+            else:
+                # Single instance failure
+                blast_sub, blast_s, blast_e = self._find_span(
+                    raw_log,
+                    r"\b(oomkilling container|container.*terminated.*oomkilled|exitcode=137|single pod|single instance|single container|isolated to|worker-\d+|evicting pod|document graph|delivery_tag=)\b",
+                )
+                if blast_sub:
+                    blast = BlastRadius.SINGLE_INSTANCE
+                    blast_source = SignalSource.EXPLICIT
+                    blast_evidence = f"single instance failure: '{blast_sub}'"
+                    impact_evidence.append(blast_evidence)
+                else:
+                    # Single service or dependency
+                    blast_sub, blast_s, blast_e = self._find_span(
+                        raw_log,
+                        r"\b(unknownhostexception|upstream_service=|502.*upstream|connect\(\) failed.*connection refused|hikaripool|pool\.active|fatal: sorry, too many clients|transaction aborted after \d+ retries)\b",
+                    )
+                    if blast_sub:
+                        blast = BlastRadius.SINGLE_SERVICE
+                        blast_source = SignalSource.DERIVED_SAFE
+                        blast_evidence = f"single service failure: '{blast_sub}'"
+                        impact_evidence.append(blast_evidence)
 
+        grounded_signals["blast_radius"] = GroundedSignal(
+            value=blast.value,
+            evidence=blast_evidence,
+            substring=blast_sub,
+            evidence_start=blast_s,
+            evidence_end=blast_e,
+            source=blast_source,
+        )
+
+        # ---------------------------------------------------------------------
         # 6. Customer Impact Detection
-        customer_impact = CustomerImpact.UNKNOWN
-        if re.search(r"\b(widespread.*customer|all users|checkout failing|status=500.*checkout|critical business impact|severe.*impact|100% fail)\b", combined_text):
-            customer_impact = CustomerImpact.SEVERE
-            impact_evidence.append("severe customer / checkout impact")
-        elif re.search(r"\b(sla breach|sla.*threatened|customer.*affected|users unable|35%|50%|major degradation|request timed out.*pool|502.*upstream|connection refused)\b", combined_text):
-            customer_impact = CustomerImpact.HIGH
-            impact_evidence.append("high customer visibility or SLA breach")
-        elif re.search(r"\b(limited.*impact|transient errors|retry succeeded|internal.*only|moderate|malformed cyclic|jsonparseexception|redelivery_count)\b", combined_text):
-            customer_impact = CustomerImpact.LIMITED
-            impact_evidence.append("limited or localized impact")
-        elif re.search(r"\b(no customer.*impact|zero user impact|staging|development|unaffected|absorbed traffic|request rejected status=401)\b", combined_text):
-            customer_impact = CustomerImpact.NONE
-            impact_evidence.append("zero customer impact reported")
+        # A single 500 must NOT infer SEVERE customer impact.
+        # ---------------------------------------------------------------------
+        cust = CustomerImpact.UNKNOWN
+        cust_source = SignalSource.UNKNOWN
+        cust_evidence = "customer impact unknown"
 
+        cust_sub, cust_s, cust_e = self._find_span(
+            raw_log,
+            r"\b(widespread.*customer|all users unable|global customer outage|100% requests failing|critical business halt)\b",
+        )
+        if cust_sub:
+            cust = CustomerImpact.SEVERE
+            cust_source = SignalSource.EXPLICIT
+            cust_evidence = f"severe customer impact: '{cust_sub}'"
+            impact_evidence.append(cust_evidence)
+        else:
+            cust_sub, cust_s, cust_e = self._find_span(
+                raw_log,
+                r"\b(sla breach|oldest unprocessed message age|lag=\d+|request timed out after \d+ms.*pool\.waiting)\b",
+            )
+            if cust_sub:
+                cust = CustomerImpact.HIGH
+                cust_source = SignalSource.EXPLICIT
+                cust_evidence = f"high customer impact / SLA breach: '{cust_sub}'"
+                impact_evidence.append(cust_evidence)
+            else:
+                cust_sub, cust_s, cust_e = self._find_span(
+                    raw_log,
+                    r"\b(requeued redelivery_count|single task failure|malformed cyclic document|transient retry)\b",
+                )
+                if cust_sub:
+                    cust = CustomerImpact.LIMITED
+                    cust_source = SignalSource.DERIVED_SAFE
+                    cust_evidence = f"limited customer impact: '{cust_sub}'"
+                    impact_evidence.append(cust_evidence)
+                else:
+                    cust_sub, cust_s, cust_e = self._find_span(
+                        raw_log,
+                        r"\b(request rejected status=401|routine defense|zero user impact)\b",
+                    )
+                    if cust_sub:
+                        cust = CustomerImpact.NONE
+                        cust_source = SignalSource.EXPLICIT
+                        cust_evidence = f"zero customer impact: '{cust_sub}'"
+                        impact_evidence.append(cust_evidence)
+
+        grounded_signals["customer_impact"] = GroundedSignal(
+            value=cust.value,
+            evidence=cust_evidence,
+            substring=cust_sub,
+            evidence_start=cust_s,
+            evidence_end=cust_e,
+            source=cust_source,
+        )
+
+        # ---------------------------------------------------------------------
         # 7. Redundancy Detection
-        redundancy = RedundancyState.UNKNOWN
-        if re.search(r"\b(healthy replicas absorbed|failover active|redundancy intact|standby healthy|remaining \d+ replicas)\b", combined_text):
-            redundancy = RedundancyState.AVAILABLE
-            impact_evidence.append("redundancy absorbed load")
-        elif re.search(r"\b(no healthy replicas|remaining capacity saturated|failover failed|no backup|last standing|pool\.active=\d+ pool\.idle=0|too many clients)\b", combined_text):
-            redundancy = RedundancyState.NONE
-            impact_evidence.append("zero redundancy remaining / pool exhausted")
-        elif re.search(r"\b(\d+ of \d+ replicas|degraded redundancy|single point of failure)\b", combined_text):
-            redundancy = RedundancyState.DEGRADED
-            impact_evidence.append("degraded redundancy state")
+        # ---------------------------------------------------------------------
+        red = RedundancyState.UNKNOWN
+        red_source = SignalSource.UNKNOWN
+        red_evidence = "redundancy state unknown"
+
+        red_sub, red_s, red_e = self._find_span(
+            raw_log,
+            r"\b(healthy replicas absorbed|failover active|redundancy intact|standby healthy)\b",
+        )
+        if red_sub:
+            red = RedundancyState.AVAILABLE
+            red_source = SignalSource.EXPLICIT
+            red_evidence = f"redundancy intact: '{red_sub}'"
+            impact_evidence.append(red_evidence)
+        else:
+            red_sub, red_s, red_e = self._find_span(
+                raw_log,
+                r"\b(pool\.active=\d+ pool\.idle=0|no healthy replicas|all replicas down|last standing replica)\b",
+            )
+            if red_sub:
+                red = RedundancyState.NONE
+                red_source = SignalSource.EXPLICIT
+                red_evidence = f"redundancy depleted / exhausted: '{red_sub}'"
+                impact_evidence.append(red_evidence)
+            else:
+                red_sub, red_s, red_e = self._find_span(
+                    raw_log,
+                    r"\b(\d+ of \d+ replicas|degraded redundancy|single point of failure)\b",
+                )
+                if red_sub:
+                    red = RedundancyState.DEGRADED
+                    red_source = SignalSource.EXPLICIT
+                    red_evidence = f"degraded redundancy: '{red_sub}'"
+                    impact_evidence.append(red_evidence)
+
+        grounded_signals["redundancy_state"] = GroundedSignal(
+            value=red.value,
+            evidence=red_evidence,
+            substring=red_sub,
+            evidence_start=red_s,
+            evidence_end=red_e,
+            source=red_source,
+        )
 
         return ImpactAssessment(
-            service_availability=availability,
+            service_availability=avail,
             blast_radius=blast,
-            customer_impact=customer_impact,
-            redundancy_state=redundancy,
+            customer_impact=cust,
+            redundancy_state=red,
             data_integrity=data_integrity,
-            security_exposure=security,
+            security_exposure=sec,
             environment=env,
+            service_error_observed=service_error_observed,
+            transaction_contention=transaction_contention,
             impact_evidence=impact_evidence,
+            grounded_signals=grounded_signals,
         )

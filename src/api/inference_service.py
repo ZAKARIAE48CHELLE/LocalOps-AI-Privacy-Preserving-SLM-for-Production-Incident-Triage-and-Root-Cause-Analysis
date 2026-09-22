@@ -20,6 +20,7 @@ from src.api.model_manager import ModelManager
 from src.api.schemas import InferenceTelemetry
 from src.api.settings import ApiSettings, settings
 from src.evaluation.parser import OutputParser
+from src.grounding import GroundingSanitizer
 from src.schemas.triage import LogTriageOutput
 from src.severity.extractor import ImpactExtractor
 from src.severity.policy import SeverityPolicyEngine
@@ -42,6 +43,7 @@ class InferenceService:
     ):
         self.cfg = cfg or settings
         self.model_manager = model_manager or ModelManager.get_instance(self.cfg)
+        self.sanitizer = GroundingSanitizer()
         self.impact_extractor = ImpactExtractor()
         self.policy_engine = SeverityPolicyEngine()
 
@@ -118,7 +120,7 @@ class InferenceService:
         if self.cfg.service.log_raw_payloads:
             logger.debug(f"Req {request_id} raw generation: {raw_output}")
 
-        # Parse and strictly validate
+        # Parse and validate JSON structure
         _, _, _, parsed_dict, pydantic_valid, errors, _ = OutputParser.parse_and_validate(raw_output)
         if not pydantic_valid or parsed_dict is None:
             err_msg = (
@@ -130,20 +132,29 @@ class InferenceService:
             MetricsRegistry.get_instance().inc_model_output_invalid()
             raise ModelOutputInvalidError(err_msg, request_id=request_id)
 
-        parsed_output = LogTriageOutput.model_validate(parsed_dict)
+        # Production Inference Order:
+        # Raw Log -> SLM Generation -> Grounding Sanitizer -> Impact Extractor -> Severity Policy Engine -> Pydantic Validation -> API Response
 
-        # Phase 14 Two-Stage Severity Calibration (Layer A + B + C)
+        # 1. Grounding Sanitizer (removes/rewrites unsupported IPs, hostnames, numeric claims)
+        sanitized_dict, grounding_telem = self.sanitizer.sanitize(parsed_dict, raw_log)
+
+        # 2. Impact Extractor (extracts grounded signals from raw_log & sanitized context)
         impact = self.impact_extractor.extract(
             raw_log,
-            parsed_output.root_cause,
-            parsed_output.suggested_action,
+            sanitized_dict.get("root_cause", ""),
+            sanitized_dict.get("suggested_action", ""),
         )
+
+        # 3. Severity Policy Engine
         decision = self.policy_engine.evaluate(impact)
         severity_source = "POLICY_ENGINE"
         if not decision.is_insufficient_evidence:
-            parsed_output = parsed_output.model_copy(update={"severity": decision.severity})
+            sanitized_dict["severity"] = decision.severity
         else:
             severity_source = "MODEL"
+
+        # 4. Pydantic Validation
+        parsed_output = LogTriageOutput.model_validate(sanitized_dict)
 
         telemetry = InferenceTelemetry(
             latency_ms=round(latency_ms, 2),
@@ -151,6 +162,10 @@ class InferenceService:
             generated_tokens=generated_token_count,
             severity_source=severity_source,
             severity_reason_code=decision.reason_code,
+            grounding_corrections_count=grounding_telem.grounding_corrections_count,
+            unsupported_ip_removed=grounding_telem.unsupported_ip_removed,
+            unsupported_hostname_removed=grounding_telem.unsupported_hostname_removed,
+            unsupported_numeric_claim_removed=grounding_telem.unsupported_numeric_claim_removed,
         )
 
         return parsed_output, telemetry
@@ -232,19 +247,26 @@ class InferenceService:
 
                     _, _, _, parsed_dict, pyd_valid, errors, _ = OutputParser.parse_and_validate(raw_text)
                     if pyd_valid and parsed_dict:
-                        validated_out = LogTriageOutput.model_validate(parsed_dict)
-                        # Phase 14 Two-Stage Severity Calibration
+                        # 1. Grounding Sanitizer
+                        sanitized_dict, grounding_telem = self.sanitizer.sanitize(parsed_dict, logs[global_idx])
+
+                        # 2. Impact Extractor
                         impact = self.impact_extractor.extract(
                             logs[global_idx],
-                            validated_out.root_cause,
-                            validated_out.suggested_action,
+                            sanitized_dict.get("root_cause", ""),
+                            sanitized_dict.get("suggested_action", ""),
                         )
+
+                        # 3. Severity Policy Engine
                         decision = self.policy_engine.evaluate(impact)
                         severity_source = "POLICY_ENGINE"
                         if not decision.is_insufficient_evidence:
-                            validated_out = validated_out.model_copy(update={"severity": decision.severity})
+                            sanitized_dict["severity"] = decision.severity
                         else:
                             severity_source = "MODEL"
+
+                        # 4. Pydantic Validation
+                        validated_out = LogTriageOutput.model_validate(sanitized_dict)
 
                         telem = InferenceTelemetry(
                             latency_ms=per_item_latency,
@@ -252,6 +274,10 @@ class InferenceService:
                             generated_tokens=gen_count,
                             severity_source=severity_source,
                             severity_reason_code=decision.reason_code,
+                            grounding_corrections_count=grounding_telem.grounding_corrections_count,
+                            unsupported_ip_removed=grounding_telem.unsupported_ip_removed,
+                            unsupported_hostname_removed=grounding_telem.unsupported_hostname_removed,
+                            unsupported_numeric_claim_removed=grounding_telem.unsupported_numeric_claim_removed,
                         )
                         results[global_idx] = (validated_out, telem, None)
                     else:

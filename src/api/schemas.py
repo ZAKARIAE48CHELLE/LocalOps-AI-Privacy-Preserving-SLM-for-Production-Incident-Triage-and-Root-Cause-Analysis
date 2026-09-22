@@ -61,6 +61,10 @@ class InferenceTelemetry(BaseModel):
     generated_tokens: int
     severity_source: Optional[str] = "POLICY_ENGINE"
     severity_reason_code: Optional[str] = None
+    grounding_corrections_count: int = 0
+    unsupported_ip_removed: int = 0
+    unsupported_hostname_removed: int = 0
+    unsupported_numeric_claim_removed: int = 0
 
 
 class TriageResponse(BaseModel):
